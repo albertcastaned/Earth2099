@@ -1041,7 +1041,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_SizeDelta: {x: -395.89014, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &758937834
 MonoBehaviour:
@@ -1056,7 +1056,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 0.392}
+  m_Color: {r: 0.08974791, g: 0.08851014, b: 0.122641504, a: 1}
   m_RaycastTarget: 1
   m_Maskable: 1
   m_OnCullStateChanged:
@@ -2298,7 +2298,7 @@ GameObject:
   - component: {fileID: 1681920656}
   - component: {fileID: 1681920657}
   m_Layer: 0
-  m_Name: AuthManager
+  m_Name: FirebaseSetup
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2330,7 +2330,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5cd45e7dd7ff9d5469c4acd95807ffe6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  authManager: {fileID: 11400000, guid: b6ba8c680fa88ae4ca9d1419f48d184f, type: 2}
 --- !u!1 &1775925833
 GameObject:
   m_ObjectHideFlags: 0

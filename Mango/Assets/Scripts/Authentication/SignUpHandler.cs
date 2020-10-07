@@ -1,12 +1,14 @@
 ﻿using System;
 using System.Threading.Tasks;
 using Firebase.Auth;
+using Firebase.Database;
 using Firebase.Extensions;
 using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 using System.Text.RegularExpressions;
+using System.Collections.Generic;
 
 public class SignUpHandler : MonoBehaviour
 {
@@ -24,7 +26,8 @@ public class SignUpHandler : MonoBehaviour
     public TMP_Text passwordErrorText;
     protected FirebaseAuth auth;
     protected string displayName = "";
-    
+    private FirebaseUser newUser;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -38,7 +41,7 @@ public class SignUpHandler : MonoBehaviour
         passwordErrorText.enabled = false;
         bool valid = true;
 
-        if (String.IsNullOrEmpty(emailTextBox.text))
+        if (string.IsNullOrEmpty(emailTextBox.text))
         {
             emailErrorText.text = "Este campo no puede estar vacio.";
             emailErrorText.enabled = true;
@@ -52,7 +55,7 @@ public class SignUpHandler : MonoBehaviour
             valid = false;
         }
 
-        if (String.IsNullOrEmpty(passwordTextBox.text) || String.IsNullOrEmpty(confirmPasswordTextBox.text))
+        if (string.IsNullOrEmpty(passwordTextBox.text) || string.IsNullOrEmpty(confirmPasswordTextBox.text))
         {
             passwordErrorText.text = "Este campo no puede estar vacio.";
             passwordErrorText.enabled = true;
@@ -67,11 +70,16 @@ public class SignUpHandler : MonoBehaviour
 
         }
 
-        if(valid)
-            CreateNewUser();
+        if (valid)
+        {
+            CreateNewUserAuth();
+            CreateUserData();
+        }
         
     }
-    public Task CreateNewUser()
+
+    
+    private Task CreateNewUserAuth()
     {
         string email = emailTextBox.text;
         string password = passwordTextBox.text;
@@ -80,22 +88,51 @@ public class SignUpHandler : MonoBehaviour
         return auth.CreateUserWithEmailAndPasswordAsync(email, password).ContinueWith(task => {
             if (task.IsCanceled)
             {
-                Debug.LogError("CreateUserWithEmailAndPasswordAsync was canceled.");
+                Debug.LogError("Se cancelo la creacion del usuario.");
                 return;
             }
             if (task.IsFaulted)
             {
-                Debug.LogError("CreateUserWithEmailAndPasswordAsync encountered an error: " + task.Exception);
+                Debug.LogError("Error al crear al usuario: " + task.Exception);
                 return;
             }
 
-            Firebase.Auth.FirebaseUser newUser = task.Result;
+            
+            newUser = task.Result;
             Debug.LogFormat("Firebase user created successfully: {0} ({1})",
-                newUser.DisplayName, newUser.UserId);
+            newUser.DisplayName, newUser.UserId);
         });
     }
 
-    public static bool validateEmail(string email)
+    private Task CreateUserData()
+    {
+
+        DatabaseReference database = FirebaseDatabase.DefaultInstance.RootReference;
+
+
+        User user = new User("sadasdas");
+
+        
+        return database.Child("users").Child("sadasdas").SetRawJsonValueAsync(JsonUtility.ToJson(user)).ContinueWith(databaseTask =>
+        {
+            if (databaseTask.IsCanceled)
+            {
+                Debug.LogError("Se cancelo la creacion del usuario.");
+                return;
+            }
+            if (databaseTask.IsFaulted)
+            {
+                Debug.LogError("Error al crear al usuario: " + databaseTask.Exception);
+                return;
+            }
+
+        });
+    
+     }
+
+
+
+    private static bool validateEmail(string email)
     {
         if (email != null)
             return Regex.IsMatch(email, MatchEmailPattern);
