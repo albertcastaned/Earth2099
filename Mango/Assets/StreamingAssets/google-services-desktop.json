@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "869460589571",
+    "firebase_url": "https://mango-a33ff.firebaseio.com",
+    "project_id": "mango-a33ff",
+    "storage_bucket": "mango-a33ff.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:869460589571:android:4066c974078f45f2e22236",
+        "android_client_info": {
+          "package_name": "com.mango.game"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "869460589571-erv29tkbdfslfqc89gjqtoposgkph7pk.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCeMvy-bkgkNO9pvxaMYFkT_YrXV7kQTqA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "869460589571-erv29tkbdfslfqc89gjqtoposgkph7pk.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
