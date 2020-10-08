@@ -1,6 +1,8 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour
 {
@@ -33,5 +35,11 @@ public class GameManager : MonoBehaviour
         GameObject dialog = Instantiate(loadingDialog);
 
         return dialog;
+    }
+
+    public void CreateMessageDialog(string title, string content, string buttonText = "Aceptar")
+    {
+        var dialog = Instantiate(messageDialog);
+        dialog.GetComponent<MessageDialog>().SetMessage(title, content, buttonText);
     }
 }

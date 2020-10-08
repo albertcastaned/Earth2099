@@ -27,14 +27,19 @@ public class SignUpHandler : MonoBehaviour
     protected FirebaseAuth auth;
     protected string displayName = "";
     private FirebaseUser newUser;
+    private bool loading;
 
     // Start is called before the first frame update
     void Start()
     {
         auth = FirebaseAuth.DefaultInstance;
         signupButton.onClick.AddListener(() => Submit());
-        
+    }
 
+    void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.Return))
+            Submit();
     }
 
     void Submit()
@@ -72,11 +77,13 @@ public class SignUpHandler : MonoBehaviour
 
         }
 
-        if (valid)
+        if (valid && !loading)
         {
+            loading = true;
             var loadingObj = GameManager.Instance.CreateLoadingDialog();
             CreateNewUserAuth();
             Destroy(loadingObj);
+            loading = false;
 
         }
 
@@ -89,15 +96,17 @@ public class SignUpHandler : MonoBehaviour
         string password = passwordTextBox.text;
         Debug.Log("Creando usuario...");
 
-        return auth.CreateUserWithEmailAndPasswordAsync(email, password).ContinueWith(task => {
+        return auth.CreateUserWithEmailAndPasswordAsync(email, password).ContinueWithOnMainThread(task => {
             if (task.IsCanceled)
             {
-                Debug.LogError("Se cancelo la creacion del usuario.");
+                GameManager.Instance.CreateMessageDialog("Error", "Se cancelo la creacion del usuario.");
+                Debug.Log("Se cancelo la creacion del usuario.");
                 return;
             }
             if (task.IsFaulted)
             {
-                Debug.LogError("Error al crear al usuario: " + task.Exception);
+                GameManager.Instance.CreateMessageDialog("Error", "Error al crear al usuario: " + task.Exception);
+                Debug.Log("Error al crear al usuario: " + task.Exception);
                 return;
             }
 
@@ -109,7 +118,7 @@ public class SignUpHandler : MonoBehaviour
 
             User user = new User(newUser.Email);
 
-            database.Child("users").Child(newUser.UserId).SetRawJsonValueAsync(JsonUtility.ToJson(user)).ContinueWith(databaseTask =>
+            database.Child("users").Child(newUser.UserId).SetRawJsonValueAsync(JsonUtility.ToJson(user)).ContinueWithOnMainThread(databaseTask =>
             {
                 if (databaseTask.IsCanceled)
                 {
@@ -127,6 +136,8 @@ public class SignUpHandler : MonoBehaviour
             ////////////////////////////
             Debug.LogFormat("Firebase user created successfully: {0} ({1})",
             newUser.DisplayName, newUser.UserId);
+            GameManager.Instance.CreateMessageDialog("Exito", "Se registro el nuevo usuario exitosamente.");
+
         });
     }
 
