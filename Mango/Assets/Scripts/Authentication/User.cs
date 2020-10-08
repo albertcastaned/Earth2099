@@ -4,9 +4,10 @@ using UnityEngine;
 
 public class User
 {
-    public string userId;
-    public User(string userId)
+    public string email;
+
+    public User(string email)
     {
-        this.userId = userId;
+        this.email = email;
     }
 }

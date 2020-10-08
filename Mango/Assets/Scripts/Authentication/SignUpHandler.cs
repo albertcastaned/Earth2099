@@ -73,7 +73,6 @@ public class SignUpHandler : MonoBehaviour
         if (valid)
         {
             CreateNewUserAuth();
-            CreateUserData();
         }
         
     }
@@ -97,38 +96,36 @@ public class SignUpHandler : MonoBehaviour
                 return;
             }
 
-            
             newUser = task.Result;
+
+            // Create User Data Profile
+            DatabaseReference database = FirebaseDatabase.DefaultInstance.RootReference;
+
+
+            User user = new User(newUser.Email);
+
+            database.Child("users").Child(newUser.UserId).SetRawJsonValueAsync(JsonUtility.ToJson(user)).ContinueWith(databaseTask =>
+            {
+                if (databaseTask.IsCanceled)
+                {
+                    Debug.LogError("Se cancelo la creacion del usuario.");
+                    return;
+                }
+                if (databaseTask.IsFaulted)
+                {
+                    Debug.LogError("Error al crear al usuario: " + databaseTask.Exception);
+                    return;
+                }
+
+            });
+
+            ////////////////////////////
             Debug.LogFormat("Firebase user created successfully: {0} ({1})",
             newUser.DisplayName, newUser.UserId);
         });
     }
 
-    private Task CreateUserData()
-    {
 
-        DatabaseReference database = FirebaseDatabase.DefaultInstance.RootReference;
-
-
-        User user = new User("sadasdas");
-
-        
-        return database.Child("users").Child("sadasdas").SetRawJsonValueAsync(JsonUtility.ToJson(user)).ContinueWith(databaseTask =>
-        {
-            if (databaseTask.IsCanceled)
-            {
-                Debug.LogError("Se cancelo la creacion del usuario.");
-                return;
-            }
-            if (databaseTask.IsFaulted)
-            {
-                Debug.LogError("Error al crear al usuario: " + databaseTask.Exception);
-                return;
-            }
-
-        });
-    
-     }
 
 
 
