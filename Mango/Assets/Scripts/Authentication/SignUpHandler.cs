@@ -33,6 +33,8 @@ public class SignUpHandler : MonoBehaviour
     {
         auth = FirebaseAuth.DefaultInstance;
         signupButton.onClick.AddListener(() => Submit());
+        
+
     }
 
     void Submit()
@@ -72,9 +74,12 @@ public class SignUpHandler : MonoBehaviour
 
         if (valid)
         {
+            var loadingObj = GameManager.Instance.CreateLoadingDialog();
             CreateNewUserAuth();
+            Destroy(loadingObj);
+
         }
-        
+
     }
 
     
