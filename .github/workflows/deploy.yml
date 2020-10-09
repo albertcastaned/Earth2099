@@ -1,0 +1,46 @@
+name: Desplegar a Github Pages 😎
+
+on:
+  push: { branches: [develop, master] }
+
+env:
+  UNITY_LICENSE: ${{ secrets.UNITY_LICENSE }}
+
+jobs:
+  build:
+    name: Compilando ✨
+    runs-on: ubuntu-latest
+    steps:
+      # Checkout
+      - name: Checkout repository
+        uses: actions/checkout@v2
+        with:
+          lfs: true
+
+      # Cache
+      - uses: actions/cache@v2.1.1
+        with:
+          path: Mango/Library
+          key: Library
+
+      # Build
+      - name: Build project
+        uses: webbertakken/unity-builder@v1.4
+        with:
+          unityVersion: 2019.4.8f1
+          targetPlatform: WebGL
+          projectPath: Mango
+
+      # Output
+      - uses: actions/upload-artifact@v2
+        with:
+          name: Build
+          path: build/WebGL/WebGL
+
+      - name: Deploy 🚀
+        uses: JamesIves/github-pages-deploy-action@3.6.2
+        with:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          BRANCH: gh-pages # The branch the action should deploy to.
+          FOLDER: build/WebGL/WebGL # The folder the action should deploy.
+          CLEAN: true # Automatically remove deleted files from the deploy branch
