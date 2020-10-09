@@ -9,7 +9,6 @@ using UnityEditor;
 public class GameLobby : MonoBehaviourPunCallbacks
 {
     public int maximosJugadores = 4;
-    public SceneAsset nivel;
 
     string playerName = "Player";
 
@@ -183,7 +182,7 @@ public class GameLobby : MonoBehaviourPunCallbacks
     {
         Debug.Log("Se creo la partida exitosamente");
         PhotonNetwork.NickName = playerName;
-        PhotonNetwork.LoadLevel(nivel.name);
+        PhotonNetwork.LoadLevel("Level");
     }
 
     public override void OnJoinedRoom()
