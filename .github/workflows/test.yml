@@ -28,9 +28,10 @@ jobs:
 
       # Test
       - name: Run tests
-        uses: webbertakken/unity-test-runner@v1.7
+        uses: webbertakken/unity-test-runner@v1.4
         with:
           unityVersion: 2019.4.8f1
+          projectPath: Mango
 
       # Output
       - uses: actions/upload-artifact@v2
