@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using UnityEngine;
 using Photon.Pun;
-using MangoVersioning;
 
 public class RoomController : MonoBehaviourPunCallbacks
 {
@@ -12,21 +11,12 @@ public class RoomController : MonoBehaviourPunCallbacks
     // Donde aparece el jugador
     public Transform spawnPoint;
 
-    private string gameVersion = "0.0.0";
+    private string gameVersion;
 
     // Use this for initialization
     void Start()
     {
-        // Recupera ultima tag de Git como version
-        try
-        {
-            gameVersion = Git.BuildVersion;
-        }
-        catch (GitException)
-        {
-            gameVersion = "0.0.0";
-
-        }
+        gameVersion = Application.version;
 
         if (PhotonNetwork.CurrentRoom == null)
         {
