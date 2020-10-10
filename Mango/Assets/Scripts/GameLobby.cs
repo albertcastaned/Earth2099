@@ -4,7 +4,6 @@ using UnityEngine;
 using Photon.Pun;
 using Photon.Realtime;
 using UnityEngine.SceneManagement;
-using MangoVersioning;
 
 public class GameLobby : MonoBehaviourPunCallbacks
 {
@@ -13,7 +12,7 @@ public class GameLobby : MonoBehaviourPunCallbacks
     string playerName = "Player";
 
     // Los jugadores seran separados por version. Es importante cambiar la version cuando se cambia el codigo para no tener errores en instancias por diferente codigo.
-    string gameVersion = "0.0.0";
+    string gameVersion;
 
     List<RoomInfo> createdRooms = new List<RoomInfo>();
 
@@ -26,18 +25,9 @@ public class GameLobby : MonoBehaviourPunCallbacks
     // Start is called before the first frame update
     void Start()
     {
-        // Recupera ultima tag de Git como version
-        try
-        {
-            gameVersion = Git.BuildVersion;
-        }
-        catch (GitException)
-        {
-            gameVersion = "0.0.0";
+        gameVersion = Application.version;
 
-        }
-        //////////////////////////////////////////
-
+        Debug.Log("Version: " + gameVersion);
         PhotonNetwork.AutomaticallySyncScene = true;
 
         if (!PhotonNetwork.IsConnected)
