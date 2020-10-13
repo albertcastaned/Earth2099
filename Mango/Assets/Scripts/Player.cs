@@ -9,9 +9,7 @@ using UnityEngine.UI;
 [RequireComponent(typeof(Rigidbody))]
 public class Player : MonoBehaviourPun
 {
-    public GameObject bullet;
     public Text nameTag;
-
 
     public float speed = 5f;
     public float jumpForce = 2.0f;
@@ -58,19 +56,26 @@ public class Player : MonoBehaviourPun
             Vector3 playerAimDirection = cameraRay.GetPoint(rayLength);
             Debug.DrawLine(cameraRay.origin, playerAimDirection, Color.blue);
 
-            transform.LookAt(new Vector3(playerAimDirection.x, transform.position.y, playerAimDirection.z));
-
-            if (Input.GetButtonDown("Fire1"))
-            {
-                photonView.RPC("FireProjectile", RpcTarget.All);
-            }
+            transform.LookAt(
+                new Vector3(playerAimDirection.x, transform.position.y, playerAimDirection.z)
+            );
         }
-
-
     }
+    
+    
+    /**
+     * TODO: fix the starting position of the bullet, in order to look like going out of the gun.
+     */
     [PunRPC]
     private void FireProjectile()
     {
-        Instantiate(bullet, transform.position, transform.rotation);
+        var gun = _getSelectedGun();
+        Instantiate(gun.GetComponent<Gun>().bullet, gun.transform.position, transform.rotation);
+    }
+
+    private GameObject _getSelectedGun()
+    {
+        var selectedGun = transform.Find("GunHolder").gameObject.GetComponent<GunHolder>();
+        return selectedGun.SelectedGun;
     }
 }
