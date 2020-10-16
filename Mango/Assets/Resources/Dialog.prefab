@@ -113,7 +113,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 674ae68019fd8a44aa5e0f0504b7152b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_color1: {r: 0.14192435, g: 0.12936097, b: 0.4811321, a: 0.7058824}
+  m_color1: {r: 0.084905684, g: 0.084905684, b: 0.084905684, a: 0.7058824}
   m_color2: {r: 0, g: 0, b: 0.20754719, a: 0.7058824}
   m_angle: -166
   m_ignoreRatio: 0
@@ -877,8 +877,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 674ae68019fd8a44aa5e0f0504b7152b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_color1: {r: 0.14192435, g: 0.12936097, b: 0.4811321, a: 1}
-  m_color2: {r: 0, g: 0, b: 0.20754719, a: 1}
+  m_color1: {r: 0.084905684, g: 0.084905684, b: 0.084905684, a: 0.7058824}
+  m_color2: {r: 0, g: 0, b: 0.20754719, a: 0.7058824}
   m_angle: -166
   m_ignoreRatio: 0
 --- !u!95 &2961059770369746472
