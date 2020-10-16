@@ -3066,7 +3066,7 @@ GameObject:
   - component: {fileID: 1681920656}
   - component: {fileID: 1681920657}
   m_Layer: 0
-  m_Name: FirebaseSetup
+  m_Name: Firebase
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
