@@ -10,13 +10,25 @@ public class Firebase : MonoBehaviour
     private static readonly string databaseUrl = $"https://{PROJECT_ID}.firebaseio.com/";
     private const string API_KEY = "AIzaSyCCr15EpoZRMcHaArnG9JP-j6ywh_3WfKw";
     private static readonly string baseAuthUrl = "https://identitytoolkit.googleapis.com/v1/accounts:";
+    private static string userID;
 
+    void Awake()
+    {
+        userID = PlayerPrefs.GetString("User UID");
+        if(IsAuthenticated())
+        {
+            Debug.Log("Se recupero la sesion del usuario: " + userID);
+        }
+    }
+
+    public static bool IsAuthenticated() { return userID != null; }
     public static void CreateUserProfile(User user, string id)
     {
 
         RestClient.Put<User>($"{databaseUrl}users/{id}.json", user).Then(response =>
         {
             Debug.Log("El usuario se creo exitosamente en la base de datos");
+            GameManager.Instance.CreateMessageDialog("Exito", "Se registraron tus datos exitosamente. Ya puedes iniciar sesion.");
         }).Catch(err =>
         {
             var error = err as RequestException;
@@ -55,11 +67,12 @@ public class Firebase : MonoBehaviour
         RestClient.Post($"{baseAuthUrl}signInWithPassword?key={API_KEY}", payLoad).Then(response =>
         {
             Debug.Log("Se inicio sesion en Firebase Auth");
-            Debug.Log(response.Text);
+
 
             FirebaseSignupResponse fbResponse = JsonUtility.FromJson<FirebaseSignupResponse>(response.Text);
+            PlayerPrefs.SetString("User UID", fbResponse.localId);
+            Debug.Log("Se guardo la sesion del usuario en PlayerPrefs");
 
-            Debug.Log(fbResponse);
 
         }
         ).Catch(err =>
