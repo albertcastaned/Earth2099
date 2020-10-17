@@ -19,11 +19,7 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="109bf6b6-9ab5-4220-b47c-afb0e34a3fd8" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/../Photon/PhotonNetworking-Documentation.pdf" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Photon/PhotonNetworking-Documentation.pdf.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../Packages/packages-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/../../Packages/packages-lock.json" afterDir="false" />
-    </list>
+    <list default="true" id="109bf6b6-9ab5-4220-b47c-afb0e34a3fd8" name="Default Changelist" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -62,7 +58,7 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1602458860255</updated>
-      <workItem from="1602458874098" duration="3135000" />
+      <workItem from="1602458874098" duration="3360000" />
     </task>
     <servers />
   </component>
