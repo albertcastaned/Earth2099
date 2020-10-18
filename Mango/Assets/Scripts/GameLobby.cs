@@ -130,6 +130,10 @@ public class GameLobby : MonoBehaviourPunCallbacks
         GUILayout.FlexibleSpace();
 
         GUI.enabled = (PhotonNetwork.NetworkClientState == ClientState.JoinedLobby || PhotonNetwork.NetworkClientState == ClientState.Disconnected) && !joiningRoom;
+        if (GUILayout.Button("Cerrar Sesion", GUILayout.Width(100)))
+        {
+            Firebase.SignOut();
+        }
         if (GUILayout.Button("Actualizar", GUILayout.Width(100)))
         {
             if (PhotonNetwork.IsConnected)
