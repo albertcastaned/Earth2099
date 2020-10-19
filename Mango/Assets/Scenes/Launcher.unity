@@ -234,7 +234,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maximosJugadores: 4
-  nivel: {fileID: 102900000, guid: c61dcd68fc6c49047b9ccaf452260233, type: 3}
 --- !u!4 &916252921
 Transform:
   m_ObjectHideFlags: 0
