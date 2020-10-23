@@ -4,17 +4,15 @@ using UnityEngine;
 using Photon.Pun;
 using Photon.Realtime;
 using UnityEngine.SceneManagement;
-using UnityEditor;
 
 public class GameLobby : MonoBehaviourPunCallbacks
 {
     public int maximosJugadores = 4;
-    public SceneAsset nivel;
 
     string playerName = "Player";
 
     // Los jugadores seran separados por version. Es importante cambiar la version cuando se cambia el codigo para no tener errores en instancias por diferente codigo.
-    string gameVersion = "0.0.0";
+    string gameVersion;
 
     List<RoomInfo> createdRooms = new List<RoomInfo>();
 
@@ -27,18 +25,9 @@ public class GameLobby : MonoBehaviourPunCallbacks
     // Start is called before the first frame update
     void Start()
     {
-        // Recupera ultima tag de Git como version
-        try
-        {
-            gameVersion = Git.BuildVersion;
-        }
-        catch (GitException)
-        {
-            gameVersion = "0.0.0";
+        gameVersion = Application.version;
 
-        }
-        //////////////////////////////////////////
-
+        Debug.Log("Version: " + gameVersion);
         PhotonNetwork.AutomaticallySyncScene = true;
 
         if (!PhotonNetwork.IsConnected)
@@ -141,6 +130,10 @@ public class GameLobby : MonoBehaviourPunCallbacks
         GUILayout.FlexibleSpace();
 
         GUI.enabled = (PhotonNetwork.NetworkClientState == ClientState.JoinedLobby || PhotonNetwork.NetworkClientState == ClientState.Disconnected) && !joiningRoom;
+        if (GUILayout.Button("Cerrar Sesion", GUILayout.Width(100)))
+        {
+            Firebase.SignOut();
+        }
         if (GUILayout.Button("Actualizar", GUILayout.Width(100)))
         {
             if (PhotonNetwork.IsConnected)
@@ -183,7 +176,7 @@ public class GameLobby : MonoBehaviourPunCallbacks
     {
         Debug.Log("Se creo la partida exitosamente");
         PhotonNetwork.NickName = playerName;
-        PhotonNetwork.LoadLevel(nivel.name);
+        PhotonNetwork.LoadLevel("Level");
     }
 
     public override void OnJoinedRoom()

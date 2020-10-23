@@ -1,4 +1,5 @@
 ﻿using Photon.Pun;
+using RSG;
 using System.Collections;
 using System.Collections.Generic;
 using System.Security.Cryptography;
@@ -6,46 +7,98 @@ using System.Threading;
 using UnityEngine;
 using UnityEngine.UI;
 
-[RequireComponent(typeof(Rigidbody))]
+public enum PlayerState
+{
+    Idle,
+    Moving,
+    Dodging,
+    Dead
+}
+
+[RequireComponent(typeof(CharacterController))]
 public class Player : MonoBehaviourPun
 {
+    public PlayerState state = PlayerState.Idle;
     public Text nameTag;
 
     public float speed = 5f;
-    public float jumpForce = 2.0f;
+    public float jumpSpeed = 2f;
+    public float gravity = 9.81f;
+    public float maxDodgeTime = 50f;
+    public float dodgeSpeed = 2f;
 
-    private Rigidbody rb;
-    private bool isOnGround;
+    private CharacterController controller;
+    private Vector3 moveDir = Vector3.zero;
+    private float currentDodgeTime = 0;
 
-    // Start is called before the first frame update
+    // Start is called beforz the first frame update
     void Start()
     {
         nameTag.text = photonView.Owner.NickName;
-        rb = GetComponent<Rigidbody>();
+        controller = GetComponent<CharacterController>();
     }
-
-    void OnCollisionStay()
+    void Movement()
     {
-        if (!isOnGround && rb.velocity.y == 0)
+        switch(state)
         {
-            isOnGround = true;
+            case PlayerState.Idle:
+                moveDir.x = Input.GetAxis("Horizontal");
+
+                if (controller.isGrounded && Input.GetButton("Jump"))
+                {
+                    moveDir.y = jumpSpeed;
+                }
+                moveDir.y -= gravity * Time.deltaTime;
+                moveDir.z = Input.GetAxis("Vertical");
+
+                if(moveDir != Vector3.zero)
+                {
+                    state = PlayerState.Moving;
+                }
+                break;
+            case PlayerState.Moving:
+                moveDir.x = Input.GetAxis("Horizontal");
+
+                if (controller.isGrounded && Input.GetButton("Jump"))
+                {
+                    moveDir.y = jumpSpeed;
+                }
+                moveDir.y -= gravity * Time.deltaTime;
+                moveDir.z = Input.GetAxis("Vertical");
+
+                if (moveDir == Vector3.zero)
+                {
+                    state = PlayerState.Idle;
+                }else
+                {
+                    if(Input.GetButtonDown("Fire2"))
+                    {
+                        state = PlayerState.Dodging;
+                        currentDodgeTime = 0;
+                        moveDir *= dodgeSpeed;
+                        moveDir.y = 0;
+                    }
+                }
+                break;
+            case PlayerState.Dodging:
+                if(currentDodgeTime < maxDodgeTime)
+                {
+                    currentDodgeTime += 0.1f;
+                }
+                else
+                {
+                    state = PlayerState.Idle;
+                }
+                break;
         }
+
+        controller.Move(moveDir * speed * Time.deltaTime);
     }
 
     // Update is called once per frame
     void Update()
     {
-        float horizontalInput = Input.GetAxis("Horizontal");
-        float verticalInput = Input.GetAxis("Vertical");
-
-        transform.position += new Vector3(horizontalInput, 0, verticalInput) * speed * Time.deltaTime;
-
-        if (Input.GetButtonDown("Jump") && isOnGround)
-        {
-            rb.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
-
-            isOnGround = false;
-        }
+        Movement();
 
         Ray cameraRay = Camera.main.ScreenPointToRay(Input.mousePosition);
         Plane ground = new Plane(Vector3.up, Vector3.zero);

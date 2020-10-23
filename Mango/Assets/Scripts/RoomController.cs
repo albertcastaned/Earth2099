@@ -9,23 +9,14 @@ public class RoomController : MonoBehaviourPunCallbacks
     public GameObject playerPrefab;
 
     // Donde aparece el jugador
-    public Transform spawnPoint;
+    public Vector3 spawnPoint = Vector3.zero;
 
-    private string gameVersion = "0.0.0";
+    private string gameVersion;
 
     // Use this for initialization
     void Start()
     {
-        // Recupera ultima tag de Git como version
-        try
-        {
-            gameVersion = Git.BuildVersion;
-        }
-        catch (GitException)
-        {
-            gameVersion = "0.0.0";
-
-        }
+        gameVersion = Application.version;
 
         if (PhotonNetwork.CurrentRoom == null)
         {
@@ -35,7 +26,7 @@ public class RoomController : MonoBehaviourPunCallbacks
         }
 
         // Iniciar al jugador sincronizadamente
-        PhotonNetwork.Instantiate(playerPrefab.name, spawnPoint.position, Quaternion.identity, 0);
+        PhotonNetwork.Instantiate(playerPrefab.name, spawnPoint, Quaternion.identity, 0);
     }
 
     void OnGUI()

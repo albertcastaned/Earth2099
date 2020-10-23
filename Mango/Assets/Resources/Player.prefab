@@ -350,11 +350,10 @@ GameObject:
   - component: {fileID: 7824355909446858000}
   - component: {fileID: 7824355909446858003}
   - component: {fileID: 7824355909446858002}
-  - component: {fileID: 7824355909446858005}
   - component: {fileID: 7824355909446858004}
-  - component: {fileID: 7824355909446858001}
   - component: {fileID: 3657018973477295847}
   - component: {fileID: 4478204235442107708}
+  - component: {fileID: 2588825623405760121}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -425,20 +424,6 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
---- !u!136 &7824355909446858005
-CapsuleCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7824355909446858007}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  m_Radius: 0.5000001
-  m_Height: 2
-  m_Direction: 1
-  m_Center: {x: 0.000000059604645, y: 0, z: -0.00000008940697}
 --- !u!114 &7824355909446858004
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -451,25 +436,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f98af5f73f286f7409bd8878505d46f7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  state: 0
   nameTag: {fileID: 1953687055714106527}
   speed: 10
-  jumpForce: 10
---- !u!54 &7824355909446858001
-Rigidbody:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7824355909446858007}
-  serializedVersion: 2
-  m_Mass: 1
-  m_Drag: 0
-  m_AngularDrag: 0.05
-  m_UseGravity: 1
-  m_IsKinematic: 0
-  m_Interpolate: 0
-  m_Constraints: 122
-  m_CollisionDetection: 0
+  jumpSpeed: 3
+  gravity: 9.81
+  maxDodgeTime: 3
+  dodgeSpeed: 2
 --- !u!114 &3657018973477295847
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -512,6 +485,24 @@ MonoBehaviour:
   viewIdField: 0
   InstantiationId: 0
   isRuntimeInstantiated: 0
+--- !u!143 &2588825623405760121
+CharacterController:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7824355909446858007}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Height: 2
+  m_Radius: 0.5000001
+  m_SlopeLimit: 45
+  m_StepOffset: 0.3
+  m_SkinWidth: 0.08
+  m_MinMoveDistance: 0.001
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &8387594768095041706
 GameObject:
   m_ObjectHideFlags: 0
