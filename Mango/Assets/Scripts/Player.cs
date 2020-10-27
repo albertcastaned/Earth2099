@@ -1,4 +1,5 @@
-﻿using Photon.Pun;
+﻿using Mango.Game;
+using Photon.Pun;
 using RSG;
 using System.Collections;
 using System.Collections.Generic;
@@ -32,15 +33,29 @@ public class Player : MonoBehaviourPun
     private CharacterController controller;
     private Vector3 moveDir = Vector3.zero;
     private float currentDodgeTime = 0;
+    private Vector3 startPos;
+    private bool isLoaded = false;
 
     // Start is called beforz the first frame update
     void Start()
     {
+        startPos = transform.position;
         nameTag.text = photonView.Owner.NickName;
         controller = GetComponent<CharacterController>();
+        StartCoroutine(WaitForLoad());
+    }
+
+    IEnumerator WaitForLoad()
+    {
+        RoomController.Instance.SetLoading(true);
+        yield return new WaitForSeconds(2f);
+        isLoaded = true;
+        RoomController.Instance.SetLoading(false);
+
     }
     void Movement()
     {
+
         switch(state)
         {
             case PlayerState.Idle:
@@ -100,6 +115,8 @@ public class Player : MonoBehaviourPun
     // Update is called once per frame
     void Update()
     {
+        if (!isLoaded)
+            return;
         Movement();
 
         Ray cameraRay = Camera.main.ScreenPointToRay(Input.mousePosition);
@@ -118,6 +135,7 @@ public class Player : MonoBehaviourPun
                 photonView.RPC("FireProjectile", RpcTarget.All);
             }
         }
+      CheckStillOnMap();
 
 
     }
@@ -125,5 +143,13 @@ public class Player : MonoBehaviourPun
     private void FireProjectile()
     {
         Instantiate(bullet, transform.position, transform.rotation);
+    }
+
+    private void CheckStillOnMap()
+    {
+        if(transform.position.y < -50f)
+        {
+            transform.position = new Vector3(startPos.x, startPos.y + 5f, startPos.z);
+        }
     }
 }

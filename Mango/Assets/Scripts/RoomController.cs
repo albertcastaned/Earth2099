@@ -3,15 +3,41 @@ using System.Collections.Generic;
 using UnityEngine;
 using Photon.Pun;
 
+namespace Mango.Game
+{
+
 public class RoomController : MonoBehaviourPunCallbacks
 {
+
+    private static RoomController instance;
+
+    public static RoomController Instance { get { return instance; } }
+
     // Objeto de jugador
     public GameObject playerPrefab;
 
     // Donde aparece el jugador
     public Vector3 spawnPoint = Vector3.zero;
 
+    public GameObject loadingPanel;
+
     private string gameVersion;
+        private bool isLoading;
+
+    void Awake()
+    {
+        //Singleton
+        if (instance != null && instance != this)
+        {
+            Destroy(this.gameObject);
+        }
+        else
+        {
+            instance = this;
+        }
+
+        DontDestroyOnLoad(this.gameObject);
+    }
 
     // Use this for initialization
     void Start()
@@ -21,16 +47,25 @@ public class RoomController : MonoBehaviourPunCallbacks
         if (PhotonNetwork.CurrentRoom == null)
         {
             Debug.Log("Ocurrio un error al cargar la escena, volviendo a lobby.");
-            UnityEngine.SceneManagement.SceneManager.LoadScene("GameLobby");
+            UnityEngine.SceneManagement.SceneManager.LoadScene("Launcher");
             return;
         }
 
-        // Iniciar al jugador sincronizadamente
-        PhotonNetwork.Instantiate(playerPrefab.name, spawnPoint, Quaternion.identity, 0);
-    }
+            // Iniciar al jugador sincronizadamente
+            PhotonNetwork.Instantiate(playerPrefab.name, spawnPoint, Quaternion.identity, 0);
+
+        }
+
+    public void SetLoading(bool value)
+        {
+            RoomController.Instance.loadingPanel.SetActive(value);
+            isLoading = value;
+        }
 
     void OnGUI()
     {
+            if (isLoading)
+                return;
         if (PhotonNetwork.CurrentRoom == null)
             return;
 
@@ -56,4 +91,5 @@ public class RoomController : MonoBehaviourPunCallbacks
     {
         UnityEngine.SceneManagement.SceneManager.LoadScene("Launcher");
     }
+}
 }
