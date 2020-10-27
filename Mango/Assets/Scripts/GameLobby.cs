@@ -58,6 +58,15 @@ public class GameLobby : MonoBehaviourPunCallbacks
         GUI.Window(0, new Rect(Screen.width / 2 - 450, Screen.height / 2 - 200, 900, 400), LobbyWindow, "Lobby");
     }
 
+    bool RoomNameAvailable()
+    {
+        foreach(RoomInfo room in createdRooms)
+        {
+            if (room.Name == roomName)
+                return false;
+        }
+        return true;
+    }
     void LobbyWindow(int index)
     {
         GUILayout.BeginHorizontal();
@@ -75,7 +84,7 @@ public class GameLobby : MonoBehaviourPunCallbacks
 
         if (GUILayout.Button("Crear Partida", GUILayout.Width(125)))
         {
-            if (roomName != "" && playerName != "")
+            if (roomName != "" && playerName != "" && RoomNameAvailable())
             {
                 joiningRoom = true;
 

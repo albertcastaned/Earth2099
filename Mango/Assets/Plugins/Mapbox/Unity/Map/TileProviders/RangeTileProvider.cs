@@ -21,6 +21,7 @@ namespace Mapbox.Unity.Map.TileProviders
 
 			_initialized = true;
 			_currentExtent.activeTiles = new HashSet<UnwrappedTileId>();
+
 		}
 
 		public override void UpdateTileExtent()

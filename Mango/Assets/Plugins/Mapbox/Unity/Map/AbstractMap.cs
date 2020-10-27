@@ -1,28 +1,26 @@
-using Mapbox.Platform.Cache;
+
 using Mapbox.Unity.Map.Interfaces;
 using Mapbox.Unity.Map.Strategies;
 using Mapbox.Unity.Map.TileProviders;
 
 namespace Mapbox.Unity.Map
 {
-	using System;
-	using System.Collections;
-	using System.Collections.Generic;
-	using System.Linq;
-	using Mapbox.Unity.Utilities;
-	using Utils;
-	using UnityEngine;
-	using Mapbox.Map;
-	using Mapbox.Unity.MeshGeneration.Factories;
-	using Mapbox.Unity.MeshGeneration.Data;
-	using System.Globalization;
-
-	/// <summary>
-	/// Abstract map.
-	/// This is the main monobehavior which controls the map. It controls the visualization of map data.
-	/// Abstract map encapsulates the image, terrain and vector sources and provides a centralized interface to control the visualization of the map.
-	/// </summary>
-	[ExecuteInEditMode]
+    using System;
+    using System.Collections;
+    using System.Collections.Generic;
+    using Mapbox.Unity.Utilities;
+    using Utils;
+    using UnityEngine;
+    using Mapbox.Map;
+    using Mapbox.Unity.MeshGeneration.Factories;
+    using Mapbox.Unity.MeshGeneration.Data;
+    using System.Globalization;
+    /// <summary>
+    /// Abstract map.
+    /// This is the main monobehavior which controls the map. It controls the visualization of map data.
+    /// Abstract map encapsulates the image, terrain and vector sources and provides a centralized interface to control the visualization of the map.
+    /// </summary>
+    [ExecuteInEditMode]
 	public class AbstractMap : MonoBehaviour, IMap
 	{
 		#region Private Fields
