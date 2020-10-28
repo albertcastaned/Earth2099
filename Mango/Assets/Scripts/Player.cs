@@ -22,7 +22,6 @@ public class Player : MonoBehaviourPun
     [Header("Prefabs")]
     public GameObject bullet;
 
-
     [Header("Player stats")]
     public float speed = 5f;
     public float jumpSpeed = 2f;
@@ -43,6 +42,7 @@ public class Player : MonoBehaviourPun
     private Vector3 startPos;
     private bool isLoaded = false;
     private PlayerState state = PlayerState.Idle;
+    private new Camera camera;
 
     // Start is called beforz the first frame update
     void Start()
@@ -50,6 +50,7 @@ public class Player : MonoBehaviourPun
         startPos = transform.position;
         nameTag.text = DEBUG ? "Player" : photonView.Owner.NickName;
         controller = GetComponent<CharacterController>();
+        camera = Camera.main;
         if(DEBUG)
         {
             isLoaded = true;
@@ -78,7 +79,7 @@ public class Player : MonoBehaviourPun
             case PlayerState.Idle:
                 moveDir.x = Input.GetAxis("Horizontal");
                 moveDir.z = Input.GetAxis("Vertical");
-                newDir = Camera.main.transform.TransformDirection(moveDir.x, 0, moveDir.z);
+                newDir = camera.transform.TransformDirection(moveDir.x, 0, moveDir.z);
                 moveDir.x = newDir.x;
                 moveDir.z = newDir.z;
                 if (controller.isGrounded && Input.GetButton("Jump"))
@@ -97,7 +98,7 @@ public class Player : MonoBehaviourPun
             case PlayerState.Moving:
                 moveDir.x = Input.GetAxis("Horizontal");
                 moveDir.z = Input.GetAxis("Vertical");
-                newDir = Camera.main.transform.TransformDirection(moveDir.x, 0, moveDir.z);
+                newDir = camera.transform.TransformDirection(moveDir.x, 0, moveDir.z);
                 moveDir.x = newDir.x;
                 moveDir.z = newDir.z;
                 if (controller.isGrounded && Input.GetButton("Jump"))
@@ -141,6 +142,8 @@ public class Player : MonoBehaviourPun
         if (!isLoaded)
             return;
         Movement();
+        CheckStillOnMap();
+
 
         Ray cameraRay = Camera.main.ScreenPointToRay(Input.mousePosition);
         Plane ground = new Plane(Vector3.up, Vector3.zero);
@@ -166,7 +169,6 @@ public class Player : MonoBehaviourPun
                 }
             }
         }
-      CheckStillOnMap();
 
 
     }

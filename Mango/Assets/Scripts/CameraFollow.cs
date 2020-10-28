@@ -4,60 +4,45 @@ using UnityEngine;
 
 public class CameraFollow : MonoBehaviour
 {
-    public GameObject follow;
+    public Transform centerPoint;
+    public Transform follow;
     public float speed = 2.0f;
     public float turnSpeed = 5f;
     public float smoothFactor = 0.5f;
 
-    public float zoomSpeed = 0.2f;
-    public float zoomMin = 10f;
-    public float zoomMax = 50f;
-    private float zoom = 10f;
-    
-    private Vector3 offset;
-    
+    public float zoomSpeed = 2f;
+    public float zoomMin = 5f;
+    public float zoomMax = 30f;
+    private float zoom = 15f;
+
+    private float mouseX, mouseY = -30f;
+
 
     void Start()
     {
-        offset = transform.position - follow.transform.position;
+        transform.localPosition = new Vector3(0, 0, -20f);
+
     }
     void LateUpdate()
     {
         if (follow != null)
         {
 
-            if (Input.GetMouseButton(1))
+            zoom -= Input.GetAxis("Mouse ScrollWheel") * zoomSpeed;
+            zoom = Mathf.Clamp(zoom, zoomMin, zoomMax);
+
+            transform.localPosition = new Vector3(0, 0, zoom);
+
+            if(Input.GetMouseButton(1))
             {
-                Quaternion camTurnAngle = Quaternion.AngleAxis(Input.GetAxis("Mouse X") * turnSpeed, Vector3.up);
-                camTurnAngle *= Quaternion.AngleAxis(Input.GetAxis("Mouse Y") * turnSpeed, Vector3.right);
-
-                float scroll = Input.GetAxis("Mouse ScrollWheel");
-                zoom += Input.GetAxis("Mouse ScrollWheel");
-
-                if (zoom > zoomMax)
-                {
-                    zoom = zoomMax;
-                    scroll = 0;
-                }
-
-                if(zoom < zoomMin)
-                {
-                    zoom = zoomMin;
-                    scroll = 0;
-                }
-
-                offset = camTurnAngle * offset;
-                print(zoom);
-                offset += transform.forward * scroll * zoomSpeed;
-                
+                mouseX += Input.GetAxis("Mouse X") * turnSpeed;
+                mouseY -= Input.GetAxis("Mouse Y") * turnSpeed;
             }
+            mouseY = Mathf.Clamp(mouseY, -60f, 0f);
+            transform.LookAt(centerPoint);
+            centerPoint.localRotation = Quaternion.Euler(mouseY, mouseX, 0);
 
-
-            Vector3 newPos = follow.transform.position + offset;
-
-            transform.position = Vector3.Slerp(transform.position, newPos, smoothFactor);
-
-            transform.LookAt(follow.transform);
+            centerPoint.position = new Vector3(follow.position.x, follow.position.y, follow.position.z);
         }
     }
 
