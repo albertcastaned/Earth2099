@@ -1,4 +1,5 @@
-﻿using Mango.Game;
+using System;
+using Mango.Game;
 using Photon.Pun;
 using RSG;
 using System.Collections;
@@ -20,9 +21,7 @@ public enum PlayerState
 public class Player : MonoBehaviourPun
 {
     public PlayerState state = PlayerState.Idle;
-    public GameObject bullet;
     public Text nameTag;
-
 
     public float speed = 5f;
     public float jumpSpeed = 2f;
@@ -128,21 +127,37 @@ public class Player : MonoBehaviourPun
             Vector3 playerAimDirection = cameraRay.GetPoint(rayLength);
             Debug.DrawLine(cameraRay.origin, playerAimDirection, Color.blue);
 
-            transform.LookAt(new Vector3(playerAimDirection.x, transform.position.y, playerAimDirection.z));
-
-            if (Input.GetButtonDown("Fire1"))
-            {
-                photonView.RPC("FireProjectile", RpcTarget.All);
-            }
+            transform.LookAt(
+                new Vector3(playerAimDirection.x, transform.position.y, playerAimDirection.z)
+            );
         }
+
       CheckStillOnMap();
 
-
     }
+    
+    
+    /**
+     * TODO: fix the starting position of the bullet, in order to look like going out of the gun.
+     */
     [PunRPC]
     private void FireProjectile()
     {
-        Instantiate(bullet, transform.position, transform.rotation);
+        var gun = _getSelectedGun();
+        try
+        {
+            Instantiate(gun.GetComponent<Gun>().bullet, gun.transform.position, transform.rotation);
+        }
+        catch
+        {
+            // ignored
+        }
+    }
+
+    private GameObject _getSelectedGun()
+    {
+        var selectedGun = transform.Find("GunHolder").gameObject.GetComponent<GunHolder>();
+        return selectedGun.SelectedGun;
     }
 
     private void CheckStillOnMap()
