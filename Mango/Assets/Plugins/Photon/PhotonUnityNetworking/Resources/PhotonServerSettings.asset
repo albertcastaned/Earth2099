@@ -16,7 +16,7 @@ MonoBehaviour:
     AppIdRealtime: f21aa330-747e-4204-a2f2-ed6054dcd8a8
     AppIdChat: a776e96d-ee07-49bf-b36a-7273e9fd9505
     AppIdVoice: 
-    AppVersion: 0.9
+    AppVersion: 0.0.1.1
     UseNameServer: 1
     FixedRegion: 
     Server: 
@@ -39,6 +39,7 @@ MonoBehaviour:
   - Fire
   - RespawnSpaceship
   - FireProjectile
+  - SelectGun
   DisableAutoOpenWizard: 1
   ShowSettings: 0
   DevRegionSetOnce: 1
