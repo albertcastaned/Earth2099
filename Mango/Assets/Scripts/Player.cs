@@ -19,54 +19,75 @@ public enum PlayerState
 [RequireComponent(typeof(CharacterController))]
 public class Player : MonoBehaviourPun
 {
-    public PlayerState state = PlayerState.Idle;
+    [Header("Prefabs")]
     public GameObject bullet;
-    public Text nameTag;
 
 
+    [Header("Player stats")]
     public float speed = 5f;
     public float jumpSpeed = 2f;
     public float gravity = 9.81f;
     public float maxDodgeTime = 50f;
     public float dodgeSpeed = 2f;
 
+    [Header("HUD")]
+    public Text nameTag;
+    public GameObject loadingPanel;
+    [Header("Debug")]
+    public bool DEBUG = false;
+
+
     private CharacterController controller;
     private Vector3 moveDir = Vector3.zero;
     private float currentDodgeTime = 0;
     private Vector3 startPos;
     private bool isLoaded = false;
+    private PlayerState state = PlayerState.Idle;
 
     // Start is called beforz the first frame update
     void Start()
     {
         startPos = transform.position;
-        nameTag.text = photonView.Owner.NickName;
+        nameTag.text = DEBUG ? "Player" : photonView.Owner.NickName;
         controller = GetComponent<CharacterController>();
-        StartCoroutine(WaitForLoad());
+        if(DEBUG)
+        {
+            isLoaded = true;
+        }
+        else
+        {
+            StartCoroutine(WaitForLoad());
+        }
     }
 
     IEnumerator WaitForLoad()
     {
+        loadingPanel.SetActive(true);
         RoomController.Instance.SetLoading(true);
         yield return new WaitForSeconds(2f);
         isLoaded = true;
         RoomController.Instance.SetLoading(false);
-
+        loadingPanel.SetActive(false);
     }
     void Movement()
     {
+        Vector3 newDir;
 
-        switch(state)
+        switch (state)
         {
             case PlayerState.Idle:
                 moveDir.x = Input.GetAxis("Horizontal");
-
+                moveDir.z = Input.GetAxis("Vertical");
+                newDir = Camera.main.transform.TransformDirection(moveDir.x, 0, moveDir.z);
+                moveDir.x = newDir.x;
+                moveDir.z = newDir.z;
                 if (controller.isGrounded && Input.GetButton("Jump"))
                 {
                     moveDir.y = jumpSpeed;
                 }
-                moveDir.y -= gravity * Time.deltaTime;
-                moveDir.z = Input.GetAxis("Vertical");
+
+                if(!controller.isGrounded)
+                    moveDir.y -= gravity * Time.deltaTime;
 
                 if(moveDir != Vector3.zero)
                 {
@@ -75,20 +96,23 @@ public class Player : MonoBehaviourPun
                 break;
             case PlayerState.Moving:
                 moveDir.x = Input.GetAxis("Horizontal");
-
+                moveDir.z = Input.GetAxis("Vertical");
+                newDir = Camera.main.transform.TransformDirection(moveDir.x, 0, moveDir.z);
+                moveDir.x = newDir.x;
+                moveDir.z = newDir.z;
                 if (controller.isGrounded && Input.GetButton("Jump"))
                 {
                     moveDir.y = jumpSpeed;
                 }
-                moveDir.y -= gravity * Time.deltaTime;
-                moveDir.z = Input.GetAxis("Vertical");
+                if (!controller.isGrounded)
+                    moveDir.y -= gravity * Time.deltaTime;
 
                 if (moveDir == Vector3.zero)
                 {
                     state = PlayerState.Idle;
                 }else
                 {
-                    if(Input.GetButtonDown("Fire2"))
+                    if(Input.GetKeyDown(KeyCode.LeftShift))
                     {
                         state = PlayerState.Dodging;
                         currentDodgeTime = 0;
@@ -108,7 +132,6 @@ public class Player : MonoBehaviourPun
                 }
                 break;
         }
-
         controller.Move(moveDir * speed * Time.deltaTime);
     }
 
@@ -132,7 +155,15 @@ public class Player : MonoBehaviourPun
 
             if (Input.GetButtonDown("Fire1"))
             {
-                photonView.RPC("FireProjectile", RpcTarget.All);
+                if(DEBUG)
+                {
+                    FireProjectile();
+                }
+                else
+                {
+                    photonView.RPC("FireProjectile", RpcTarget.All);
+
+                }
             }
         }
       CheckStillOnMap();
