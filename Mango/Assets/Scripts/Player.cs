@@ -1,4 +1,5 @@
-﻿using Photon.Pun;
+﻿using System;
+using Photon.Pun;
 using RSG;
 using System.Collections;
 using System.Collections.Generic;
@@ -123,7 +124,14 @@ public class Player : MonoBehaviourPun
     private void FireProjectile()
     {
         var gun = _getSelectedGun();
-        Instantiate(gun.GetComponent<Gun>().bullet, gun.transform.position, transform.rotation);
+        try
+        {
+            Instantiate(gun.GetComponent<Gun>().bullet, gun.transform.position, transform.rotation);
+        }
+        catch
+        {
+            // ignored
+        }
     }
 
     private GameObject _getSelectedGun()

@@ -11,10 +11,12 @@ public class PlayerSync : MonoBehaviourPun, IPunObservable
 
     // Lista de objectos que deben ser solo activos para el jugador local ( Camara, sonido, etc )
     public GameObject[] localObjects;
+    public GameObject gunHolder;
 
     // Valores que deben sincronizados
     Vector3 latestPos;
     Quaternion latestRot;
+    private int latestSelectedGun;
 
     // Start is called before the first frame update
     void Start()
@@ -40,12 +42,14 @@ public class PlayerSync : MonoBehaviourPun, IPunObservable
             // Enviar nuestros datos a otros jugadores
             stream.SendNext(transform.position);
             stream.SendNext(transform.rotation);
+            stream.SendNext(gunHolder.GetComponent<GunHolder>().selectedGunIndex);
         }
         else
         {
             // Recibir datos de otros jugadores
             latestPos = (Vector3)stream.ReceiveNext();
             latestRot = (Quaternion)stream.ReceiveNext();
+            latestSelectedGun = (int)stream.ReceiveNext();
         }
     }
 
@@ -56,6 +60,7 @@ public class PlayerSync : MonoBehaviourPun, IPunObservable
         {
             transform.position = Vector3.Lerp(transform.position, latestPos, Time.deltaTime * 5);
             transform.rotation = Quaternion.Lerp(transform.rotation, latestRot, Time.deltaTime * 5);
+            gunHolder.GetComponent<GunHolder>().SelectGun(latestSelectedGun);
         }
     }
 }
