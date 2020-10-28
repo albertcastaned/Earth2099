@@ -19,8 +19,6 @@ public class RoomController : MonoBehaviourPunCallbacks
     // Donde aparece el jugador
     public Vector3 spawnPoint = Vector3.zero;
 
-    public GameObject loadingPanel;
-
     private string gameVersion;
         private bool isLoading;
 
@@ -57,15 +55,14 @@ public class RoomController : MonoBehaviourPunCallbacks
         }
 
     public void SetLoading(bool value)
-        {
-            RoomController.Instance.loadingPanel.SetActive(value);
-            isLoading = value;
-        }
+    {
+        isLoading = value;
+    }
 
     void OnGUI()
     {
-            if (isLoading)
-                return;
+        if (isLoading)
+            return;
         if (PhotonNetwork.CurrentRoom == null)
             return;
 

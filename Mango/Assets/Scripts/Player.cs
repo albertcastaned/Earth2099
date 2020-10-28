@@ -20,52 +20,76 @@ public enum PlayerState
 [RequireComponent(typeof(CharacterController))]
 public class Player : MonoBehaviourPun
 {
-    public PlayerState state = PlayerState.Idle;
-    public Text nameTag;
+    [Header("Prefabs")]
+    public GameObject bullet;
 
+    [Header("Player stats")]
     public float speed = 5f;
     public float jumpSpeed = 2f;
     public float gravity = 9.81f;
     public float maxDodgeTime = 50f;
     public float dodgeSpeed = 2f;
 
+    [Header("HUD")]
+    public Text nameTag;
+    public GameObject loadingPanel;
+    [Header("Debug")]
+    public bool DEBUG = false;
+
+
     private CharacterController controller;
     private Vector3 moveDir = Vector3.zero;
     private float currentDodgeTime = 0;
     private Vector3 startPos;
     private bool isLoaded = false;
+    private PlayerState state = PlayerState.Idle;
+    private new Camera camera;
 
     // Start is called beforz the first frame update
     void Start()
     {
         startPos = transform.position;
-        nameTag.text = photonView.Owner.NickName;
+        nameTag.text = DEBUG ? "Player" : photonView.Owner.NickName;
         controller = GetComponent<CharacterController>();
-        StartCoroutine(WaitForLoad());
+        camera = Camera.main;
+        if(DEBUG)
+        {
+            isLoaded = true;
+        }
+        else
+        {
+            StartCoroutine(WaitForLoad());
+        }
     }
 
     IEnumerator WaitForLoad()
     {
+        loadingPanel.SetActive(true);
         RoomController.Instance.SetLoading(true);
         yield return new WaitForSeconds(2f);
         isLoaded = true;
         RoomController.Instance.SetLoading(false);
-
+        loadingPanel.SetActive(false);
     }
     void Movement()
     {
+        Vector3 newDir;
 
-        switch(state)
+        switch (state)
         {
             case PlayerState.Idle:
                 moveDir.x = Input.GetAxis("Horizontal");
-
+                moveDir.z = Input.GetAxis("Vertical");
+                newDir = camera.transform.TransformDirection(moveDir.x, 0, moveDir.z);
+                moveDir.x = newDir.x;
+                moveDir.z = newDir.z;
                 if (controller.isGrounded && Input.GetButton("Jump"))
                 {
                     moveDir.y = jumpSpeed;
                 }
-                moveDir.y -= gravity * Time.deltaTime;
-                moveDir.z = Input.GetAxis("Vertical");
+
+                if(!controller.isGrounded)
+                    moveDir.y -= gravity * Time.deltaTime;
 
                 if(moveDir != Vector3.zero)
                 {
@@ -74,20 +98,23 @@ public class Player : MonoBehaviourPun
                 break;
             case PlayerState.Moving:
                 moveDir.x = Input.GetAxis("Horizontal");
-
+                moveDir.z = Input.GetAxis("Vertical");
+                newDir = camera.transform.TransformDirection(moveDir.x, 0, moveDir.z);
+                moveDir.x = newDir.x;
+                moveDir.z = newDir.z;
                 if (controller.isGrounded && Input.GetButton("Jump"))
                 {
                     moveDir.y = jumpSpeed;
                 }
-                moveDir.y -= gravity * Time.deltaTime;
-                moveDir.z = Input.GetAxis("Vertical");
+                if (!controller.isGrounded)
+                    moveDir.y -= gravity * Time.deltaTime;
 
                 if (moveDir == Vector3.zero)
                 {
                     state = PlayerState.Idle;
                 }else
                 {
-                    if(Input.GetButtonDown("Fire2"))
+                    if(Input.GetKeyDown(KeyCode.LeftShift))
                     {
                         state = PlayerState.Dodging;
                         currentDodgeTime = 0;
@@ -107,7 +134,6 @@ public class Player : MonoBehaviourPun
                 }
                 break;
         }
-
         controller.Move(moveDir * speed * Time.deltaTime);
     }
 
@@ -117,6 +143,8 @@ public class Player : MonoBehaviourPun
         if (!isLoaded)
             return;
         Movement();
+        CheckStillOnMap();
+
 
         Ray cameraRay = Camera.main.ScreenPointToRay(Input.mousePosition);
         Plane ground = new Plane(Vector3.up, Vector3.zero);
@@ -130,9 +158,9 @@ public class Player : MonoBehaviourPun
             transform.LookAt(
                 new Vector3(playerAimDirection.x, transform.position.y, playerAimDirection.z)
             );
+
         }
 
-      CheckStillOnMap();
 
     }
     
