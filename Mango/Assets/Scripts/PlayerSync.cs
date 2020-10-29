@@ -40,15 +40,15 @@ public class PlayerSync : MonoBehaviourPun, IPunObservable
         if (stream.IsWriting)
         {
             // Enviar nuestros datos a otros jugadores
-            stream.SendNext(transform.position);
-            stream.SendNext(transform.rotation);
+         //   stream.SendNext(transform.position);
+           // stream.SendNext(transform.rotation);
             stream.SendNext(gunHolder.GetComponent<GunHolder>().selectedGunIndex);
         }
         else
         {
             // Recibir datos de otros jugadores
-            latestPos = (Vector3)stream.ReceiveNext();
-            latestRot = (Quaternion)stream.ReceiveNext();
+         //   latestPos = (Vector3)stream.ReceiveNext();
+          //  latestRot = (Quaternion)stream.ReceiveNext();
             latestSelectedGun = (int)stream.ReceiveNext();
         }
     }
@@ -58,8 +58,8 @@ public class PlayerSync : MonoBehaviourPun, IPunObservable
     {
         if (!photonView.IsMine)
         {
-            transform.position = Vector3.Lerp(transform.position, latestPos, Time.deltaTime * 5);
-            transform.rotation = Quaternion.Lerp(transform.rotation, latestRot, Time.deltaTime * 5);
+          //  transform.position = Vector3.Lerp(transform.position, latestPos, Time.deltaTime * 5);
+           // transform.rotation = Quaternion.Lerp(transform.rotation, latestRot, Time.deltaTime * 5);
             gunHolder.GetComponent<GunHolder>().SelectGun(latestSelectedGun);
         }
     }
