@@ -13,15 +13,15 @@ public enum PlayerState
 {
     Idle,
     Moving,
+    Jumping,
     Dodging,
     Dead
 }
 
 [RequireComponent(typeof(CharacterController))]
+[RequireComponent(typeof(PlayerAnimator))]
 public class Player : MonoBehaviourPun
 {
-    [Header("Prefabs")]
-    public GameObject bullet;
 
     [Header("Player stats")]
     public float speed = 5f;
@@ -44,7 +44,9 @@ public class Player : MonoBehaviourPun
     private bool isLoaded = false;
     private PlayerState state = PlayerState.Idle;
     private new Camera camera;
+    private Animator animator;
 
+    private float fps = 0f, timer, refresh;
     // Start is called beforz the first frame update
     void Start()
     {
@@ -52,7 +54,9 @@ public class Player : MonoBehaviourPun
         nameTag.text = DEBUG ? "Player" : photonView.Owner.NickName;
         controller = GetComponent<CharacterController>();
         camera = Camera.main;
-        if(DEBUG)
+        animator = GetComponent<Animator>();
+        SetAnimation("isIdle", true);
+        if (DEBUG)
         {
             isLoaded = true;
         }
@@ -71,6 +75,22 @@ public class Player : MonoBehaviourPun
         RoomController.Instance.SetLoading(false);
         loadingPanel.SetActive(false);
     }
+
+
+    void ResetAnimationParameters()
+    {
+        foreach (AnimatorControllerParameter parameter in animator.parameters)
+        {
+            animator.SetBool(parameter.name, false);
+        }
+    }
+    void SetAnimation(string parameter, bool value)
+    {
+
+        ResetAnimationParameters();
+        animator.SetBool(parameter, value);
+    }
+
     void Movement()
     {
         Vector3 newDir;
@@ -86,16 +106,41 @@ public class Player : MonoBehaviourPun
                 if (controller.isGrounded && Input.GetButton("Jump"))
                 {
                     moveDir.y = jumpSpeed;
-                }
+                    state = PlayerState.Jumping;
+                    SetAnimation("isJumping", true);
 
-                if(!controller.isGrounded)
+                }
+                if (!controller.isGrounded)
                     moveDir.y -= gravity * Time.deltaTime;
 
-                if(moveDir != Vector3.zero)
+
+
+                if (moveDir.x != 0f || moveDir.z != 0f)
                 {
                     state = PlayerState.Moving;
+                    SetAnimation("isRunning", true);
+
                 }
                 break;
+            case PlayerState.Jumping:
+                if (!controller.isGrounded)
+                    moveDir.y -= gravity * Time.deltaTime;
+                else
+                {
+                    if (moveDir.x == 0f && moveDir.z == 0f)
+                    {
+                        state = PlayerState.Idle;
+                        SetAnimation("isIdle", true);
+
+                    }
+                    else
+                    {
+                        state = PlayerState.Moving;
+                        SetAnimation("isRunning", true);
+                    }
+                }
+                break;
+
             case PlayerState.Moving:
                 moveDir.x = Input.GetAxis("Horizontal");
                 moveDir.z = Input.GetAxis("Vertical");
@@ -105,14 +150,20 @@ public class Player : MonoBehaviourPun
                 if (controller.isGrounded && Input.GetButton("Jump"))
                 {
                     moveDir.y = jumpSpeed;
+                    state = PlayerState.Jumping;
+                    SetAnimation("isJumping", true);
+
                 }
                 if (!controller.isGrounded)
                     moveDir.y -= gravity * Time.deltaTime;
 
-                if (moveDir == Vector3.zero)
+                if (moveDir.x == 0f && moveDir.z == 0f)
                 {
                     state = PlayerState.Idle;
-                }else
+                    SetAnimation("isIdle", true);
+
+                }
+                else
                 {
                     if(Input.GetKeyDown(KeyCode.LeftShift))
                     {
@@ -120,17 +171,39 @@ public class Player : MonoBehaviourPun
                         currentDodgeTime = 0;
                         moveDir *= dodgeSpeed;
                         moveDir.y = 0;
+
+                        SetAnimation("isDashing", true);
+
                     }
                 }
                 break;
             case PlayerState.Dodging:
-                if(currentDodgeTime < maxDodgeTime)
+                if (controller.isGrounded && Input.GetButton("Jump"))
+                {
+                    moveDir.y = jumpSpeed;
+                    state = PlayerState.Jumping;
+                    SetAnimation("isJumping", true);
+
+                }
+
+                if (!controller.isGrounded)
+                    moveDir.y -= gravity * Time.deltaTime;
+                if (currentDodgeTime < maxDodgeTime)
                 {
                     currentDodgeTime += 0.1f;
                 }
                 else
                 {
-                    state = PlayerState.Idle;
+                    if (moveDir.x == 0f && moveDir.z == 0f)
+                    {
+                        state = PlayerState.Moving;
+                        SetAnimation("isRunning", true);
+                    }
+                    else
+                    {
+                        state = PlayerState.Idle;
+                        SetAnimation("isIdle", true);
+                    }
                 }
                 break;
         }
@@ -140,6 +213,7 @@ public class Player : MonoBehaviourPun
     // Update is called once per frame
     void Update()
     {
+        CalculateFPS();
         if (!isLoaded)
             return;
         Movement();
@@ -155,12 +229,24 @@ public class Player : MonoBehaviourPun
             Vector3 playerAimDirection = cameraRay.GetPoint(rayLength);
             Debug.DrawLine(cameraRay.origin, playerAimDirection, Color.blue);
 
-            transform.LookAt(
-                new Vector3(playerAimDirection.x, transform.position.y, playerAimDirection.z)
-            );
+            if (state != PlayerState.Dodging)
+            {
+                transform.LookAt(
+                    new Vector3(playerAimDirection.x, transform.position.y, playerAimDirection.z)
+                );
+            }
 
         }
 
+
+    }
+
+    void CalculateFPS()
+    {
+        float timelapse = Time.smoothDeltaTime;
+        timer = timer <= 0 ? refresh : timer -= timelapse;
+
+        if (timer <= 0) fps = (int)(1f / timelapse);
 
     }
     
@@ -194,5 +280,13 @@ public class Player : MonoBehaviourPun
         {
             transform.position = new Vector3(startPos.x, startPos.y + 5f, startPos.z);
         }
+    }
+
+    void OnGUI()
+    {
+        GUI.Label(new Rect(Screen.width - 300, 5, 200, 25), state.ToString());
+        GUI.Label(new Rect(Screen.width - 300, 50, 200, 25), "FPS: " + fps);
+
+
     }
 }
