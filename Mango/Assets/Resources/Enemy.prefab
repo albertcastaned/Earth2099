@@ -302,6 +302,7 @@ GameObject:
   - component: {fileID: 691285729588051671}
   - component: {fileID: 6822812413088278747}
   - component: {fileID: 2118089711637213411}
+  - component: {fileID: 2544733599200211432}
   m_Layer: 5
   m_Name: Life
   m_TagString: Untagged
@@ -389,3 +390,15 @@ MonoBehaviour:
   m_BlockingMask:
     serializedVersion: 2
     m_Bits: 4294967295
+--- !u!114 &2544733599200211432
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7965504677250589675}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 66974a91134267d46b1ce02ec49403c1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
