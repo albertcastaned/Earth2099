@@ -20,11 +20,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="109bf6b6-9ab5-4220-b47c-afb0e34a3fd8" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/../Plugins/Mapbox/Core/Plugins/iOS/MapboxMobileEvents/libMapboxMobileEventsStatic.a" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Plugins/Mapbox/Core/Plugins/iOS/MapboxMobileEvents/libMapboxMobileEventsStatic.a.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Plugins/Photon/.PhotonNetworking-Documentation.pdf.icloud" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.Scripts.dir/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Scripts.dir/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../Packages/packages-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/../../Packages/packages-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Health_enemy.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Health_enemy.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/makeDamage.cs" beforeDir="false" afterPath="$PROJECT_DIR$/makeDamage.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -50,8 +48,8 @@
     <option name="CHANGED_PATHS">
       <list>
         <option value="$PROJECT_DIR$/createEnemies.cs" />
-        <option value="$PROJECT_DIR$/Health_enemy.cs" />
         <option value="$PROJECT_DIR$/makeDamage.cs" />
+        <option value="$PROJECT_DIR$/Health_enemy.cs" />
       </list>
     </option>
   </component>
@@ -76,7 +74,7 @@
       <updated>1602458860255</updated>
       <workItem from="1602458874098" duration="3360000" />
       <workItem from="1603781794582" duration="499000" />
-      <workItem from="1603860905323" duration="2918000" />
+      <workItem from="1603860905323" duration="4548000" />
     </task>
     <servers />
   </component>
