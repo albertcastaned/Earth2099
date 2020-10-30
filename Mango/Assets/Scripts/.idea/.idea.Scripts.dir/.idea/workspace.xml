@@ -20,12 +20,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="109bf6b6-9ab5-4220-b47c-afb0e34a3fd8" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/../Map.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Plugins/Mapbox/Core/Plugins/iOS/MapboxMobileEvents/.libMapboxMobileEventsStatic.a.icloud" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/../Resources/Player.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/../Resources/Player.prefab" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../SciFiWarriorPBRHPPolyart/Animators.meta" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.Scripts.dir/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Scripts.dir/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../Packages/packages-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/../../Packages/packages-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ReceiveDamage.cs" beforeDir="false" afterPath="$PROJECT_DIR$/ReceiveDamage.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -81,7 +78,7 @@
       <updated>1602458860255</updated>
       <workItem from="1602458874098" duration="3360000" />
       <workItem from="1603781794582" duration="499000" />
-      <workItem from="1603860905323" duration="6181000" />
+      <workItem from="1603860905323" duration="7959000" />
     </task>
     <servers />
   </component>
