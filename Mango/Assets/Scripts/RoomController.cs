@@ -34,7 +34,6 @@ public class RoomController : MonoBehaviourPunCallbacks
             instance = this;
         }
 
-        DontDestroyOnLoad(this.gameObject);
     }
 
     // Use this for initialization
