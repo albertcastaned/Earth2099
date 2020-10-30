@@ -20,9 +20,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="109bf6b6-9ab5-4220-b47c-afb0e34a3fd8" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/../Resources/Player.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/../Resources/Player.prefab" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.Scripts.dir/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Scripts.dir/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Health_enemy.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Health_enemy.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/makeDamage.cs" beforeDir="false" afterPath="$PROJECT_DIR$/makeDamage.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ReceiveDamage.cs" beforeDir="false" afterPath="$PROJECT_DIR$/ReceiveDamage.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -43,6 +43,8 @@
     <setting file="file://$PROJECT_DIR$/Enemy.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Dialog.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Bullet.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Health_Player.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/ReceiveDamage.cs" root0="SKIP_HIGHLIGHTING" />
   </component>
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
@@ -50,6 +52,8 @@
         <option value="$PROJECT_DIR$/createEnemies.cs" />
         <option value="$PROJECT_DIR$/makeDamage.cs" />
         <option value="$PROJECT_DIR$/Health_enemy.cs" />
+        <option value="$PROJECT_DIR$/Health_Player.cs" />
+        <option value="$PROJECT_DIR$/ReceiveDamage.cs" />
       </list>
     </option>
   </component>
@@ -74,7 +78,7 @@
       <updated>1602458860255</updated>
       <workItem from="1602458874098" duration="3360000" />
       <workItem from="1603781794582" duration="499000" />
-      <workItem from="1603860905323" duration="4548000" />
+      <workItem from="1603860905323" duration="7959000" />
     </task>
     <servers />
   </component>
