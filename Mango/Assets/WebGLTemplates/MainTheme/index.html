@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <title>Unity WebGL Player | Mango</title>
+    <link rel="stylesheet" href="./style.css">
+    <link href="https://emoji-css.afeld.me/emoji.css" rel="stylesheet">
+    <script src="%UNITY_WEBGL_LOADER_URL%"></script>
+    <script>
+    var unityInstance = UnityLoader.instantiate("unityContainer", "%UNITY_WEBGL_BUILD_URL%");
+    </script>
+  </head>
+  <body>
+    <div class="webgl-content">
+      <h1 class="mainTitle">Earth 2099</h1>
+     <div id="unityContainer" style="width: 1280px; height: 720px"></div>
+      <div class="footer">
+        <div class="webgl-logo"></div>
+        <div class="fullscreen" onclick="unityInstance.SetFullscreen(1)"></div>
+        <div class="title">Mango</div>
+      </div>
+    </div>
+    <div class="controls">
+      <p style="text-align: center; font-size: 40px;">¿Cómo jugar?</p>
+      <ul style="font-size: 30px;">
+        <li>WASD: Moverse</li>
+        <li>Espacio: Brincar</li>
+        <li>Shift: Correr</li>
+        <li>123: Cambiar de arma</li>
+        <li>Click Izquierdo: Disparar</li>
+        <li>Click Derecho: Rotar Cámara</li>
+        <li>Click Derecho + Scroll: Acercar-Alejar Cámara</li>
+      </ul>
+    </div>
+    
+  </body>
+</html>
