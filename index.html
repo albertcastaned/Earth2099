@@ -3,35 +3,23 @@
   <head>
     <meta charset="utf-8">
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-    <title>Earth 2099 | Mango</title>
+    <title>Unity WebGL Player | Mango</title>
     <link rel="shortcut icon" href="TemplateData/favicon.ico">
     <link rel="stylesheet" href="TemplateData/style.css">
-    <link href="https://emoji-css.afeld.me/emoji.css" rel="stylesheet">
     <script src="TemplateData/UnityProgress.js"></script>
     <script src="Build/UnityLoader.js"></script>
+    <script>
+      var unityInstance = UnityLoader.instantiate("unityContainer", "Build/Desktop.json", {onProgress: UnityProgress});
+    </script>
   </head>
   <body>
-    <h1 class="mainTitle">Earth 2099</h1>
     <div class="webgl-content">
-     <div id="unityContainer" style="width: 1280px; height: 720px"></div>
+      <div id="unityContainer" style="width: 1280px; height: 720px"></div>
       <div class="footer">
         <div class="webgl-logo"></div>
         <div class="fullscreen" onclick="unityInstance.SetFullscreen(1)"></div>
         <div class="title">Mango</div>
       </div>
     </div>
-    <div class="controls">
-      <p style="text-align: center; font-size: 40px;">¿Cómo jugar?</p>
-      <ul style="font-size: 30px;">
-        <li>WASD: Moverse</li>
-        <li>Espacio: Brincar</li>
-        <li>Shift: Correr</li>
-        <li>123: Cambiar de arma</li>
-        <li>Click Izquierdo: Disparar</li>
-        <li>Click Derecho: Rotar Cámara</li>
-        <li>Click Derecho + Scroll: Acercar-Alejar Cámara</li>
-      </ul>
-    </div>
-
   </body>
 </html>
