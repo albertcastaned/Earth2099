@@ -36,24 +36,22 @@ public class Player : MonoBehaviourPun
     [Header("Debug")]
     public bool DEBUG = false;
 
-
     private CharacterController controller;
     private Vector3 moveDir = Vector3.zero;
     private float currentDodgeTime = 0;
     private Vector3 startPos;
     private bool isLoaded = false;
     private PlayerState state = PlayerState.Idle;
-    private new Camera camera;
+    private Camera m_camera;
     private Animator animator;
 
-    private float fps = 0f, timer, refresh;
     // Start is called beforz the first frame update
     void Start()
     {
         startPos = transform.position;
         nameTag.text = DEBUG ? "Player" : photonView.Owner.NickName;
         controller = GetComponent<CharacterController>();
-        camera = Camera.main;
+        m_camera = Camera.main;
         animator = GetComponent<Animator>();
         SetAnimation("isIdle", true);
         if (DEBUG)
@@ -100,7 +98,7 @@ public class Player : MonoBehaviourPun
             case PlayerState.Idle:
                 moveDir.x = Input.GetAxis("Horizontal");
                 moveDir.z = Input.GetAxis("Vertical");
-                newDir = camera.transform.TransformDirection(moveDir.x, 0, moveDir.z);
+                newDir = m_camera.transform.TransformDirection(moveDir.x, 0, moveDir.z);
                 moveDir.x = newDir.x;
                 moveDir.z = newDir.z;
                 if (controller.isGrounded && Input.GetButton("Jump"))
@@ -144,7 +142,7 @@ public class Player : MonoBehaviourPun
             case PlayerState.Moving:
                 moveDir.x = Input.GetAxis("Horizontal");
                 moveDir.z = Input.GetAxis("Vertical");
-                newDir = camera.transform.TransformDirection(moveDir.x, 0, moveDir.z);
+                newDir = m_camera.transform.TransformDirection(moveDir.x, 0, moveDir.z);
                 moveDir.x = newDir.x;
                 moveDir.z = newDir.z;
                 if (controller.isGrounded && Input.GetButton("Jump"))
@@ -213,7 +211,6 @@ public class Player : MonoBehaviourPun
     // Update is called once per frame
     void Update()
     {
-        CalculateFPS();
         if (!isLoaded)
             return;
         Movement();
@@ -241,14 +238,7 @@ public class Player : MonoBehaviourPun
 
     }
 
-    void CalculateFPS()
-    {
-        float timelapse = Time.smoothDeltaTime;
-        timer = timer <= 0 ? refresh : timer -= timelapse;
 
-        if (timer <= 0) fps = (int)(1f / timelapse);
-
-    }
     
     
     /**
@@ -280,13 +270,5 @@ public class Player : MonoBehaviourPun
         {
             transform.position = new Vector3(startPos.x, startPos.y + 5f, startPos.z);
         }
-    }
-
-    void OnGUI()
-    {
-        GUI.Label(new Rect(Screen.width - 300, 5, 200, 25), state.ToString());
-        GUI.Label(new Rect(Screen.width - 300, 50, 200, 25), "FPS: " + fps);
-
-
     }
 }

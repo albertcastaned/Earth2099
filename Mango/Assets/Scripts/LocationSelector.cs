@@ -8,7 +8,7 @@ using UnityEngine;
 public class LocationSelector : MonoBehaviour
 {
     
-    [SerializeField] private Vector2d[] locations;
+    public Vector2d[] locations;
     [SerializeField] private int zoom = 16;
 
     private void Awake(){

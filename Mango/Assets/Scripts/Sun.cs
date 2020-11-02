@@ -16,5 +16,7 @@ public class Sun : MonoBehaviour
     {
         transform.RotateAround(Vector3.zero, Vector3.right, speed * Time.deltaTime);
         transform.LookAt(Vector3.zero);
+        RenderSettings.skybox.SetFloat("_Rotation", Time.time * 1f);
+
     }
 }

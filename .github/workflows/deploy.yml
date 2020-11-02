@@ -7,9 +7,18 @@ env:
   UNITY_LICENSE: ${{ secrets.UNITY_LICENSE }}
 
 jobs:
-  build:
-    name: Compilando ✨
+  buildForSomePlatforms:
+    name: Compilando para ${{ matrix.targetPlatform }}✨
     runs-on: ubuntu-latest
+    strategy:
+      fail-fast: true
+      matrix:
+        projectPath: 
+          - Mango
+        targetPlatform:
+          - WebGL
+          - StandaloneOSX
+          - StandaloneWindows64
     steps:
       # Checkout
       - name: Checkout repository
@@ -21,21 +30,23 @@ jobs:
       - uses: actions/cache@v2.1.2
         with:
           path: Library
-          key: Library
-
+          key: Library-${{ matrix.projectPath }}-${{ matrix.targetPlatform }}
+          restore-keys: |
+            Library-${{ matrix.projectPath }}-
+            Library-
       # Build
       - name: Build project
         uses: webbertakken/unity-builder@v1.3
         with:
           unityVersion: 2019.4.8f1
-          targetPlatform: WebGL
+          targetPlatform: ${{ matrix.targetPlatform }}
           projectPath: Mango
 
       # Output
       - uses: actions/upload-artifact@v2
         with:
           name: Build
-          path: build/WebGL/WebGL
+          path: build
 
       - name: Deploy 🚀
         uses: JamesIves/github-pages-deploy-action@3.6.2
