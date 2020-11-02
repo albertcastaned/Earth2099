@@ -74,11 +74,10 @@ public class RoomController : MonoBehaviourPunCallbacks
 
         for (int i = 0; i < PhotonNetwork.PlayerList.Length; i++)
         {
-            string isMasterClient = (PhotonNetwork.PlayerList[i].IsMasterClient ? ": MasterClient" : "");
+            string isMasterClient = (PhotonNetwork.PlayerList[i].IsMasterClient ? ": Host" : "");
             GUI.Label(new Rect(5, 35 + 30 * i, 200, 25), PhotonNetwork.PlayerList[i].NickName + isMasterClient);
         }
 
-        GUI.Box(new Rect(0, Screen.height - 50, 100, 50), "Version: " + gameVersion);
 
 
     }
