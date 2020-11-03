@@ -47,7 +47,7 @@ jobs:
           - Mango
         targetPlatform:
         #  - WebGL
-          - StandaloneOSX
+          #- StandaloneOSX
           - StandaloneWindows64
     steps:
       # Checkout
@@ -72,8 +72,8 @@ jobs:
           targetPlatform: ${{ matrix.targetPlatform }}
           projectPath: Mango
           buildName: Earth2099
-      - run: cd build
-      - run: mv ${{ matrix.targetPlatform }} Earth2099
+      - run: ls -lr
+      - run: mv build/${{ matrix.targetPlatform }} Earth2099
       - run: tar -czvf Earth2099-${{ matrix.targetPlatform}}.tar Earth2099
 
       # Output
