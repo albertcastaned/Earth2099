@@ -72,8 +72,9 @@ jobs:
           targetPlatform: ${{ matrix.targetPlatform }}
           projectPath: Mango
           buildName: Earth2099
-
-      - run: tar -czvf Earth2099-${{ matrix.targetPlatform}}.tar /build/${{ matrix.targetPlatform }}
+      - run: cd build
+      - run: mv ${{ matrix.targetPlatform }} Earth2099
+      - run: tar -czvf Earth2099-${{ matrix.targetPlatform}}.tar Earth2099
 
       # Output
       - uses: actions/upload-artifact@v2
