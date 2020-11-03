@@ -1,7 +1,7 @@
-name: Desplegar a Github Pages 😎
+name: Integracion Continua 😎
 
 on:
-  push: { branches: [develop, master] }
+  push: { branches: [develop, master, ci] }
 
 env:
   UNITY_LICENSE: ${{ secrets.UNITY_LICENSE }}
@@ -45,10 +45,11 @@ jobs:
       # Output
       - uses: actions/upload-artifact@v2
         with:
-          name: Build
+          name: ${{ matrix.targetPlatform }}
           path: build
 
       - name: Deploy 🚀
+        if: ${{ matrix.targetPlatform == 'WebGL' }}
         uses: JamesIves/github-pages-deploy-action@3.6.2
         with:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

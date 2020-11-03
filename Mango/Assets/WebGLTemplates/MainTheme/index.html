@@ -5,20 +5,99 @@
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
     <title>Earth 2099</title>
     <link rel="stylesheet" href="./style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link href="https://emoji-css.afeld.me/emoji.css" rel="stylesheet">
+
+      <script type="module">
+      import { Octokit } from "https://cdn.skypack.dev/@octokit/core";
+
+
+        const octokit = new Octokit({ auth: `2afff450161fabacce9e8c5c2adf4807b804957f` });
+        async function DownloadArtifact(artifact_id) {
+          var loader = document.getElementById("loader");
+          loader.classList.add("loader");
+          const response = await octokit.request('GET https://api.github.com/repos/albertcastaned/GraficasComputacionales/actions/artifacts/' + String(artifact_id) + '/zip', {
+            owner: 'albertcastaned',
+            repo: 'GraficasComputacionales',
+            artifact_id: artifact_id,
+            archive_format: 'zip'
+          });
+          loader.classList.remove("loader");
+
+          var link = document.createElement("a");
+          link.download = 'build';
+          link.href = response.url;
+          document.body.appendChild(link);
+          link.click();
+          document.body.deleteChild(link);
+
+        }
+        function findDownloadLink(array, findName, displayName)
+        {
+          for(var i = 0; i < array.length; i++){
+            if(array[i].name == String(findName))
+            {
+              var node = document.createElement("div");
+              var downloadNode = document.createElement("button");
+              var icon = document.createElement("i")
+              icon.classList = ["fa fa-download"];
+              var id = array[i].id;
+              downloadNode.classList = ["btn"]
+              downloadNode.onclick = async function () { DownloadArtifact(id) } ;
+              downloadNode.appendChild(icon);
+              var current_datetime = new Date(Date.parse(String(array[i].created_at)));
+              var formatted_date = current_datetime.getDate() + "-" + (current_datetime.getMonth() + 1) + "-" + current_datetime.getFullYear()
+              var textnode = document.createTextNode(String(displayName) + " (" + String(formatted_date) + ")");
+
+              downloadNode.appendChild(textnode);
+              node.appendChild(downloadNode);
+              document.getElementById('download-links').appendChild(node);
+            }
+          }
+        }
+        async function getArtifacts() {
+          const response = await octokit.request('GET /repos/albertcastaned/GraficasComputacionales/actions/artifacts', {
+            owner: 'albertcastaned',
+            repo: 'GraficasComputacionales'
+          });
+          var array = response.data.artifacts;
+          findDownloadLink(array, "StandaloneWindows64", "Windows - 64 bit");
+          findDownloadLink(array, "StandaloneOSX", "Mac OS");
+          if(response.data.artifacts.length <= 0)
+          {
+            var node = document.createElement("p");
+            var textNode = document.createTextNode('No se encontraron descargas disponibles');
+            node.appendChild(textNode);
+            document.getElementById('download-links').appendChild(node);
+
+          }
+        }
+
+        getArtifacts();
+      </script>
     <script src="%UNITY_WEBGL_LOADER_URL%"></script>
     <script>
     var unityInstance = UnityLoader.instantiate("unityContainer", "%UNITY_WEBGL_BUILD_URL%");
     </script>
   </head>
   <body>
+    <h1 class="mainTitle">Earth 2099</h1>
+
     <div class="webgl-content">
-      <h1 class="mainTitle">Earth 2099</h1>
+
      <div id="unityContainer" style="width: 1280px; height: 720px"></div>
       <div class="footer">
         <div class="webgl-logo"></div>
         <div class="fullscreen" onclick="unityInstance.SetFullscreen(1)"></div>
         <div class="title">Earth 2099</div>
+      </div>
+    </div>
+    <div class="controls">
+      <p style="text-align: center; font-size: 40px;">Descargar</p>
+      <p style="text-align: center; font-size: 30px;"">Para mejor rendimiento puede descargar la ultima version como ejecutable.</p>
+      <div id='loader'></div>
+
+      <div style="text-align: center;font-size: 30px;" id='download-links'>
       </div>
     </div>
     <div class="controls">
@@ -31,6 +110,15 @@
         <li>Click Izquierdo: Disparar</li>
         <li>Click Derecho: Rotar Cámara</li>
         <li>Click Derecho + Scroll: Acercar-Alejar Cámara</li>
+      </ul>
+    </div>
+    <div class="controls">
+      <p style="text-align: center; font-size: 40px;">Creditos</p>
+      <ul style="font-size: 30px;">
+        <li>Adriana Paola Salinas García</li>
+        <li>Alberto Castañeda Arana</li>
+        <li>Carlos Alfonso Sánchez Rosales</li>
+        <li>Topiltzin Hernández Mares </li>
       </ul>
     </div>
   </body>
