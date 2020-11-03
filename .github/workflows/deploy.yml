@@ -32,7 +32,7 @@ jobs:
         with:
           tag_name: ${{ steps.tag.outputs.new_tag }}
           release_name: Release ${{ steps.tag.outputs.new_tag }}
-          body: ${{ steps.tag.outputs.changelog }}
+          body_path: git.log
           draft: true
           prerelease: true
 
@@ -72,15 +72,17 @@ jobs:
           targetPlatform: ${{ matrix.targetPlatform }}
           projectPath: Mango
           buildName: Earth2099
-      - run: ls -lr
-      - run: mv build/${{ matrix.targetPlatform }} Earth2099
-      - run: tar -czvf Earth2099-${{ matrix.targetPlatform}}.tar Earth2099
+      - run: |
+          ls -lR build
+          cd build
+          mv ${{ matrix.targetPlatform}} Earth2099
+          tar -czvf Earth2099-${{ matrix.targetPlatform}}.tar ./Earth2099
 
       # Output
       - uses: actions/upload-artifact@v2
         with:
-          name: Earth2099-${{ matrix.targetPlatform }}.tar
-          path: Earth2099-${{ matrix.targetPlatform}}.tar
+          name: Earth2099-${{ matrix.targetPlatform }}
+          path: Earth2099-${{ matrix.targetPlatform }}.tar
 
       # Release
       - uses: actions/upload-release-asset@v1
