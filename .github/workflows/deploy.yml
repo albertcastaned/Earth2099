@@ -12,6 +12,7 @@ jobs:
     runs-on: ubuntu-latest
     outputs:
       upload_url: ${{ steps.create_release.outputs.upload_url }}
+      latest_tag: ${{ steps.tag.outputs.new_tag }}
     steps:
       - name: Checkout repository
         uses: actions/checkout@v2
@@ -73,16 +74,15 @@ jobs:
           projectPath: Mango
           buildName: Earth2099
       - run: |
-          ls -lR build
-          cd build
-          mv ${{ matrix.targetPlatform}} Earth2099
-          tar -czvf Earth2099-${{ matrix.targetPlatform}}.tar ./Earth2099
+          mv build/${{ matrix.targetPlatform}} Earth2099
+          ls -l
+          tar -czvf Earth2099-${{ matrix.targetPlatform }}-${{ needs.createRelease.outputs.latest_tag }}.tar.gz Earth2099
 
       # Output
       - uses: actions/upload-artifact@v2
         with:
-          name: Earth2099-${{ matrix.targetPlatform }}
-          path: Earth2099-${{ matrix.targetPlatform }}.tar
+          name: Earth2099-${{ matrix.targetPlatform }}-${{ needs.createRelease.outputs.latest_tag }}
+          path: Earth2099-${{ matrix.targetPlatform }}-${{ needs.createRelease.outputs.latest_tag }}.tar.gz
 
       # Release
       - uses: actions/upload-release-asset@v1
@@ -93,9 +93,9 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
           upload_url: ${{ needs.createRelease.outputs.upload_url }}
-          asset_path: Earth2099-${{ matrix.targetPlatform}}.tar
-          asset_name: Earth2099-${{ matrix.targetPlatform}}.tar
-          asset_content_type: application/tar
+          asset_path: Earth2099-${{ matrix.targetPlatform }}-${{ needs.createRelease.outputs.latest_tag }}.tar.gz
+          asset_name: Earth2099-${{ matrix.targetPlatform }}-${{ needs.createRelease.outputs.latest_tag }}
+          asset_content_type: application/x-tar
 
       #- name: Deploy 🚀
        # if: ${{ matrix.targetPlatform == 'WebGL' }}
