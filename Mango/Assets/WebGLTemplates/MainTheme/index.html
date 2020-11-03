@@ -9,10 +9,10 @@
     <link href="https://emoji-css.afeld.me/emoji.css" rel="stylesheet">
 
       <script type="module">
-      import { Octokit } from "https://cdn.skypack.dev/@octokit/core";
+        import { Octokit } from "https://cdn.skypack.dev/@octokit/core";
 
 
-        const octokit = new Octokit({ auth: `2afff450161fabacce9e8c5c2adf4807b804957f` });
+        const octokit = new Octokit();
         async function DownloadArtifact(artifact_id) {
           var loader = document.getElementById("loader");
           loader.classList.add("loader");
@@ -52,6 +52,7 @@
               downloadNode.appendChild(textnode);
               node.appendChild(downloadNode);
               document.getElementById('download-links').appendChild(node);
+              break;
             }
           }
         }
