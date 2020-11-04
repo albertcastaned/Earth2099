@@ -24,6 +24,7 @@ jobs:
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           release_branches: master
+
       - run: git log $(git describe --tags --abbrev=0)..HEAD --no-merges --oneline > git.log
       - name: Create Release
         id: create_release

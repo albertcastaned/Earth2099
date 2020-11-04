@@ -135,6 +135,7 @@ public class GameLobby : MonoBehaviourPunCallbacks
  
         GUILayout.Label("Version: " + gameVersion + "\nRegion: " + PhotonNetwork.CloudRegion, GUILayout.Width(85));
 
+
         GUILayout.FlexibleSpace();
 
         GUI.enabled = (PhotonNetwork.NetworkClientState == ClientState.JoinedLobby || PhotonNetwork.NetworkClientState == ClientState.Disconnected) && !joiningRoom;
