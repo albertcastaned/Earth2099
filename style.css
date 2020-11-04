@@ -63,7 +63,6 @@ html {
 
 .controls ul{
   list-style-type: disc; 
-  
 }
 
 .control .lista3 li{
@@ -89,7 +88,6 @@ html {
 
 .btn:hover {
   background-color: RoyalBlue;
-
 }
 .loader {
   margin-left: auto;
