@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <title>Earth 2099</title>
+    <link rel="stylesheet" href="./style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link href="https://emoji-css.afeld.me/emoji.css" rel="stylesheet">
+
+
+    <script src="Build/UnityLoader.js"></script>
+    <script>
+    var unityInstance = UnityLoader.instantiate("unityContainer", "Build/WebGL.json");
+    </script>
+  </head>
+  <body>
+    <h1 class="mainTitle">Earth 2099</h1>
+
+    <div class="webgl-content">
+
+     <div id="unityContainer" style="width: 1280px; height: 720px"></div>
+      <div class="footer">
+        <div class="webgl-logo"></div>
+        <div class="fullscreen" onclick="unityInstance.SetFullscreen(1)"></div>
+        <div class="title">Earth 2099</div>
+      </div>
+    </div>
+    <div class="controls">
+      <p style="text-align: center; font-size: 40px;">Descargar</p>
+      <p style="text-align: center; font-size: 30px;"">Para mejor rendimiento puede descargar la ultima version como ejecutable.</p>
+      
+      <div style="text-align: center;font-size: 15px;margin-top: 50px;margin-bottom: 50px;">
+      <a class="btn"href="https://github.com/albertcastaned/GraficasComputacionales/releases">Descargas</a>
+      </div>
+    </div>
+    <div class="controls">
+      <p style="text-align: center; font-size: 40px;">¿Cómo jugar?</p>
+      <ul style="font-size: 30px;">
+        <li>WASD: Moverse</li>
+        <li>Espacio: Brincar</li>
+        <li>Shift: Correr</li>
+        <li>123: Cambiar de arma</li>
+        <li>Click Izquierdo: Disparar</li>
+        <li>Click Derecho: Rotar Cámara</li>
+        <li>Click Derecho + Scroll: Acercar-Alejar Cámara</li>
+      </ul>
+    </div>
+    <div class="controls">
+      <p style="text-align: center; font-size: 40px;">Creditos</p>
+      <ul style="font-size: 30px;">
+        <li>Adriana Paola Salinas García</li>
+        <li>Alberto Castañeda Arana</li>
+        <li>Carlos Alfonso Sánchez Rosales</li>
+        <li>Topiltzin Hernández Mares </li>
+      </ul>
+    </div>
+  </body>
+</html>
