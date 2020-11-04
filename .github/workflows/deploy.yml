@@ -75,7 +75,6 @@ jobs:
           buildName: Earth2099
       - run: |
           mv build/${{ matrix.targetPlatform}} Earth2099
-          ls -l
           tar -czvf Earth2099-${{ matrix.targetPlatform }}-${{ needs.createRelease.outputs.latest_tag }}.tar.gz Earth2099
 
       # Output
@@ -94,7 +93,7 @@ jobs:
         with:
           upload_url: ${{ needs.createRelease.outputs.upload_url }}
           asset_path: Earth2099-${{ matrix.targetPlatform }}-${{ needs.createRelease.outputs.latest_tag }}.tar.gz
-          asset_name: Earth2099-${{ matrix.targetPlatform }}-${{ needs.createRelease.outputs.latest_tag }}
+          asset_name: Earth2099-${{ matrix.targetPlatform }}-${{ needs.createRelease.outputs.latest_tag }}.tar.gz
           asset_content_type: application/x-tar
 
       #- name: Deploy 🚀
