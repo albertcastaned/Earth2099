@@ -8,76 +8,10 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link href="https://emoji-css.afeld.me/emoji.css" rel="stylesheet">
 
-      <script type="module">
-      import { Octokit } from "https://cdn.skypack.dev/@octokit/core";
 
-
-        const octokit = new Octokit({ auth: `2afff450161fabacce9e8c5c2adf4807b804957f` });
-        async function DownloadArtifact(artifact_id) {
-          var loader = document.getElementById("loader");
-          loader.classList.add("loader");
-          const response = await octokit.request('GET https://api.github.com/repos/albertcastaned/GraficasComputacionales/actions/artifacts/' + String(artifact_id) + '/zip', {
-            owner: 'albertcastaned',
-            repo: 'GraficasComputacionales',
-            artifact_id: artifact_id,
-            archive_format: 'zip'
-          });
-          loader.classList.remove("loader");
-
-          var link = document.createElement("a");
-          link.download = 'build';
-          link.href = response.url;
-          document.body.appendChild(link);
-          link.click();
-          document.body.deleteChild(link);
-
-        }
-        function findDownloadLink(array, findName, displayName)
-        {
-          for(var i = 0; i < array.length; i++){
-            if(array[i].name == String(findName))
-            {
-              var node = document.createElement("div");
-              var downloadNode = document.createElement("button");
-              var icon = document.createElement("i")
-              icon.classList = ["fa fa-download"];
-              var id = array[i].id;
-              downloadNode.classList = ["btn"]
-              downloadNode.onclick = async function () { DownloadArtifact(id) } ;
-              downloadNode.appendChild(icon);
-              var current_datetime = new Date(Date.parse(String(array[i].created_at)));
-              var formatted_date = current_datetime.getDate() + "-" + (current_datetime.getMonth() + 1) + "-" + current_datetime.getFullYear()
-              var textnode = document.createTextNode(String(displayName) + " (" + String(formatted_date) + ")");
-
-              downloadNode.appendChild(textnode);
-              node.appendChild(downloadNode);
-              document.getElementById('download-links').appendChild(node);
-            }
-          }
-        }
-        async function getArtifacts() {
-          const response = await octokit.request('GET /repos/albertcastaned/GraficasComputacionales/actions/artifacts', {
-            owner: 'albertcastaned',
-            repo: 'GraficasComputacionales'
-          });
-          var array = response.data.artifacts;
-          findDownloadLink(array, "StandaloneWindows64", "Windows - 64 bit");
-          findDownloadLink(array, "StandaloneOSX", "Mac OS");
-          if(response.data.artifacts.length <= 0)
-          {
-            var node = document.createElement("p");
-            var textNode = document.createTextNode('No se encontraron descargas disponibles');
-            node.appendChild(textNode);
-            document.getElementById('download-links').appendChild(node);
-
-          }
-        }
-
-        getArtifacts();
-      </script>
     <script src="Build/UnityLoader.js"></script>
     <script>
-    var unityInstance = UnityLoader.instantiate("unityContainer", "Build/Earth2099.json");
+    var unityInstance = UnityLoader.instantiate("unityContainer", "Build/WebGL.json");
     </script>
   </head>
   <body>
@@ -95,9 +29,9 @@
     <div class="controls">
       <p style="text-align: center; font-size: 40px;">Descargar</p>
       <p style="text-align: center; font-size: 30px;"">Para mejor rendimiento puede descargar la ultima version como ejecutable.</p>
-      <div id='loader'></div>
-
-      <div style="text-align: center;font-size: 30px;" id='download-links'>
+      
+      <div style="text-align: center;font-size: 15px;margin-top: 50px;margin-bottom: 50px;">
+      <a class="btn"href="https://github.com/albertcastaned/GraficasComputacionales/releases">Descargas</a>
       </div>
     </div>
     <div class="controls">
