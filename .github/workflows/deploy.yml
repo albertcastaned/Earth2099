@@ -1,7 +1,7 @@
 name: Integracion Continua 😎
 
 on:
-  push: { branches: [master, ci] }
+  push: { branches: [master] }
 
 env:
   UNITY_LICENSE: ${{ secrets.UNITY_LICENSE }}
