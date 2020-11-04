@@ -133,7 +133,7 @@ public class GameLobby : MonoBehaviourPunCallbacks
         playerName = GUILayout.TextField(playerName, GUILayout.Width(250));
 
  
-        GUILayout.Label("Version: " + gameVersion, GUILayout.Width(85));
+        GUILayout.Label("Version: " + gameVersion + "\nRegion: " + PhotonNetwork.CloudRegion, GUILayout.Width(85));
 
 
         GUILayout.FlexibleSpace();
