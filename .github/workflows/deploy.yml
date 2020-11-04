@@ -47,8 +47,8 @@ jobs:
         projectPath: 
           - Mango
         targetPlatform:
-        #  - WebGL
-          #- StandaloneOSX
+          - WebGL
+          - StandaloneOSX
           - StandaloneWindows64
     steps:
       # Checkout
@@ -73,7 +73,9 @@ jobs:
           targetPlatform: ${{ matrix.targetPlatform }}
           projectPath: Mango
           buildName: Earth2099
-      - run: |
+      - name: Compress files
+        if: ${{ matrix.targetPlatform != 'WebGL' }}
+        run: |
           mv build/${{ matrix.targetPlatform}} Earth2099
           tar -czvf Earth2099-${{ matrix.targetPlatform }}-${{ needs.createRelease.outputs.latest_tag }}.tar.gz Earth2099
 
@@ -96,11 +98,11 @@ jobs:
           asset_name: Earth2099-${{ matrix.targetPlatform }}-${{ needs.createRelease.outputs.latest_tag }}.tar.gz
           asset_content_type: application/x-tar
 
-      #- name: Deploy 🚀
-       # if: ${{ matrix.targetPlatform == 'WebGL' }}
-        #uses: JamesIves/github-pages-deploy-action@3.6.2
-        #with:
-         # GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          #BRANCH: gh-pages # The branch the action should deploy to.
-          #FOLDER: build/WebGL/WebGL # The folder the action should deploy.
-          #CLEAN: true # Automatically remove deleted files from the deploy branch
+      - name: Deploy 🚀
+        if: ${{ matrix.targetPlatform == 'WebGL' }}
+        uses: JamesIves/github-pages-deploy-action@3.6.2
+        with:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          BRANCH: gh-pages # The branch the action should deploy to.
+          FOLDER: build/WebGL/WebGL # The folder the action should deploy.
+          CLEAN: true # Automatically remove deleted files from the deploy branch
