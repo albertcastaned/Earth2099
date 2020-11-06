@@ -106,7 +106,18 @@ public class AuthHandler : MonoBehaviour
         loading = false;
     }
 
-private void CreateNewUser()
+    public void LoginAnonymous()
+    {
+        loading = true;
+        var loadingObj = GameManager.Instance.CreateLoadingDialog();
+        Debug.Log("Iniciando sesion anonimamente...");
+        Firebase.LoginAnonymous();
+        Destroy(loadingObj);
+        loading = false;
+
+    }
+
+    private void CreateNewUser()
     {
         loading = true;
         var loadingObj = GameManager.Instance.CreateLoadingDialog();
