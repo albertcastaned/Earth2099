@@ -1,13 +1,9 @@
-using System;
 using Mango.Game;
 using Photon.Pun;
-using RSG;
 using System.Collections;
-using System.Collections.Generic;
-using System.Security.Cryptography;
-using System.Threading;
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 
 public enum PlayerState
 {
@@ -20,10 +16,11 @@ public enum PlayerState
 
 [RequireComponent(typeof(CharacterController))]
 [RequireComponent(typeof(PlayerAnimator))]
-public class Player : MonoBehaviourPun
+public class Player : MonoBehaviourPun, IPunObservable
 {
 
     [Header("Player stats")]
+    public int maxHealth = 100;
     public float speed = 5f;
     public float jumpSpeed = 2f;
     public float gravity = 9.81f;
@@ -33,6 +30,10 @@ public class Player : MonoBehaviourPun
     [Header("HUD")]
     public Text nameTag;
     public GameObject loadingPanel;
+    public Image barraVida;
+    public Text lifeText;
+    public DamagePopupText popupTextPrefab;
+
     [Header("Debug")]
     public bool DEBUG = false;
 
@@ -40,38 +41,40 @@ public class Player : MonoBehaviourPun
     private Vector3 moveDir = Vector3.zero;
     private float currentDodgeTime = 0;
     private Vector3 startPos;
-    private bool isLoaded = false;
     private PlayerState state = PlayerState.Idle;
     private Camera m_camera;
     private Animator animator;
+    private int health;
+    private bool isLoading = false;
+    public GameObject gunHolder;
 
+    // Valores que deben sincronizados
+    private int latestSelectedGun;
     // Start is called beforz the first frame update
     void Start()
     {
+        health = maxHealth;
         startPos = transform.position;
         nameTag.text = DEBUG ? "Player" : photonView.Owner.NickName;
         controller = GetComponent<CharacterController>();
         m_camera = Camera.main;
         animator = GetComponent<Animator>();
         SetAnimation("isIdle", true);
-        if (DEBUG)
-        {
-            isLoaded = true;
-        }
-        else
-        {
-            StartCoroutine(WaitForLoad());
-        }
+        StartCoroutine("WaitForLoad");
     }
 
-    IEnumerator WaitForLoad()
-    {
+
+
+    public IEnumerator WaitForLoad()
+    { 
+
+        isLoading = true;
         loadingPanel.SetActive(true);
-        RoomController.Instance.SetLoading(true);
-        yield return new WaitForSeconds(2f);
-        isLoaded = true;
+        yield return new WaitUntil(() => RoomController.Instance.isLoading == false);
         RoomController.Instance.SetLoading(false);
         loadingPanel.SetActive(false);
+        isLoading = false;
+
     }
 
 
@@ -211,7 +214,7 @@ public class Player : MonoBehaviourPun
     // Update is called once per frame
     void Update()
     {
-        if (!isLoaded)
+        if (isLoading || state == PlayerState.Dead)
             return;
         Movement();
         CheckStillOnMap();
@@ -232,6 +235,11 @@ public class Player : MonoBehaviourPun
                     new Vector3(playerAimDirection.x, transform.position.y, playerAimDirection.z)
                 );
             }
+
+        }
+        if (!photonView.IsMine)
+        {
+            gunHolder.GetComponent<GunHolder>().SelectGun(latestSelectedGun);
 
         }
 
@@ -271,4 +279,56 @@ public class Player : MonoBehaviourPun
             transform.position = new Vector3(startPos.x, startPos.y + 5f, startPos.z);
         }
     }
+    [PunRPC]
+    public void ReduceHealth(int amount)
+    {
+        Debug.Log("Player receives damage");
+        health -= amount;
+        UpdateHealthUI();
+        CreateFloatingText("-" + amount);
+        if (health <= 0)
+        {
+            state = PlayerState.Dead;
+        }
+    }
+
+    private void UpdateHealthUI()
+    {
+        barraVida.fillAmount = (float)health / maxHealth;
+        lifeText.text = health.ToString() + " / " + maxHealth.ToString();
+    }
+
+    public void OnPhotonSerializeView(PhotonStream stream, PhotonMessageInfo info)
+    {
+        if (stream.IsWriting)
+        {
+            stream.SendNext(gunHolder.GetComponent<GunHolder>().selectedGunIndex);
+            stream.SendNext(health);
+            stream.SendNext(state);
+        }
+        else
+        {
+            int oldHealth = health;
+
+            latestSelectedGun = (int)stream.ReceiveNext();
+            health = (int)stream.ReceiveNext();
+            state = (PlayerState)stream.ReceiveNext();
+
+            if (health != oldHealth)
+                UpdateHealthUI();
+        }
+    }
+
+    public int Health { get { return health; } }
+
+    public bool IsAlive { get { return state != PlayerState.Dead; } }
+
+    private void CreateFloatingText(string text)
+    {
+        DamagePopupText instance = Instantiate(popupTextPrefab, transform);
+
+        instance.SetText(text);
+    }
+
+    public PlayerState State {  get { return state; } }
 }

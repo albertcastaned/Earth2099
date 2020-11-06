@@ -7,7 +7,7 @@ using UnityEngine.SceneManagement;
 
 public class GameLobby : MonoBehaviourPunCallbacks
 {
-    public int maximosJugadores = 4;
+    public int maximosJugadores = 8;
 
     string playerName = "Player";
 
@@ -19,7 +19,7 @@ public class GameLobby : MonoBehaviourPunCallbacks
     string roomName = "Lobby 1";
     Vector2 roomListScroll = Vector2.zero;
     bool joiningRoom = false;
-
+    bool joiningDebugRoom = false;
 
 
     // Start is called before the first frame update
@@ -96,7 +96,20 @@ public class GameLobby : MonoBehaviourPunCallbacks
                 PhotonNetwork.JoinOrCreateRoom(roomName, roomOptions, TypedLobby.Default);
             }
         }
+        if (GUILayout.Button("Entrar a debug"))
+        {
 
+                joiningRoom = true;
+                joiningDebugRoom = true;
+
+                RoomOptions roomOptions = new RoomOptions();
+                roomOptions.IsOpen = true;
+                roomOptions.IsVisible = true;
+                roomOptions.MaxPlayers = (byte)maximosJugadores;
+                
+                PhotonNetwork.JoinOrCreateRoom("DEBUG-" + CreateRandomString(), roomOptions, TypedLobby.Default);
+            
+        }
         GUILayout.EndHorizontal();
 
         roomListScroll = GUILayout.BeginScrollView(roomListScroll, true, true);
@@ -121,6 +134,7 @@ public class GameLobby : MonoBehaviourPunCallbacks
                     PhotonNetwork.NickName = playerName;
                     PhotonNetwork.JoinRoom(createdRooms[i].Name);
                 }
+
                 GUILayout.EndHorizontal();
             }
         }
@@ -185,11 +199,25 @@ public class GameLobby : MonoBehaviourPunCallbacks
     {
         Debug.Log("Se creo la partida exitosamente");
         PhotonNetwork.NickName = playerName;
-        PhotonNetwork.LoadLevel("Level");
+        if (joiningDebugRoom)
+            PhotonNetwork.LoadLevel("DebugLevel");
+        else
+            PhotonNetwork.LoadLevel("Level");
     }
 
     public override void OnJoinedRoom()
     {
         Debug.Log("Se unio a la partida exitosamente");
+    }
+    private string CreateRandomString(int stringLength = 10)
+    {
+        int _stringLength = stringLength - 1;
+        string randomString = "";
+        string[] characters = new string[] { "a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z" };
+        for (int i = 0; i <= _stringLength; i++)
+        {
+            randomString = randomString + characters[Random.Range(0, characters.Length)];
+        }
+        return randomString;
     }
 }

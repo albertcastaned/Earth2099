@@ -41,4 +41,6 @@ public class GameManager : MonoBehaviour
         var dialog = Instantiate(messageDialog);
         dialog.GetComponent<MessageDialog>().SetMessage(title, content, buttonText);
     }
+
+
 }
