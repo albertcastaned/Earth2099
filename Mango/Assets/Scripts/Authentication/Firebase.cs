@@ -97,6 +97,27 @@ public class Firebase : MonoBehaviour
             GameManager.Instance.CreateMessageDialog("Error", error.Response);
         });
     }
+    public static void LoginAnonymous()
+    {
+        var payLoad = $"{{\"returnSecureToken\":true}}";
+
+        RestClient.Post($"{baseAuthUrl}signUp?key={API_KEY}", payLoad).Then(response =>
+        {
+            Debug.Log("Se inicio sesion en Firebase Auth anonimamnete");
+
+
+            FirebaseSignupResponse fbResponse = JsonUtility.FromJson<FirebaseSignupResponse>(response.Text);
+            PlayerPrefs.SetString("User UID", fbResponse.localId);
+            Debug.Log("Se guardo la sesion del usuario en PlayerPrefs");
+            SceneManager.LoadScene("Launcher");
+
+        }
+        ).Catch(err =>
+        {
+            var error = err as RequestException;
+            GameManager.Instance.CreateMessageDialog("Error", error.Response);
+        });
+    }
 
     [Serializable]
     private class FirebaseSignupResponse

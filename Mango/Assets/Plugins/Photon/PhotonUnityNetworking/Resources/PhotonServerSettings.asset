@@ -16,9 +16,9 @@ MonoBehaviour:
     AppIdRealtime: f21aa330-747e-4204-a2f2-ed6054dcd8a8
     AppIdChat: a776e96d-ee07-49bf-b36a-7273e9fd9505
     AppIdVoice: 
-    AppVersion: 0.0.1.1
+    AppVersion: 0.1.1.1
     UseNameServer: 1
-    FixedRegion: 
+    FixedRegion: us
     Server: 
     Port: 0
     ProxyServer: 
@@ -40,6 +40,10 @@ MonoBehaviour:
   - RespawnSpaceship
   - FireProjectile
   - SelectGun
+  - DestroyEnemy
+  - ReduceHealth
+  - SyncHealth
+  - SpawnEnemy
   DisableAutoOpenWizard: 1
-  ShowSettings: 0
+  ShowSettings: 1
   DevRegionSetOnce: 1
