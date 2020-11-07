@@ -78,14 +78,14 @@ jobs:
         if: ${{ matrix.targetPlatform != 'WebGL' }}
         run: |
           mv build/${{ matrix.targetPlatform}} Earth2099
-          tar -czvf Earth2099-${{ matrix.targetPlatform }}-${{ needs.createRelease.outputs.latest_tag }}.tar.gz Earth2099
+          zip Earth2099-${{ matrix.targetPlatform }}-${{ needs.createRelease.outputs.latest_tag }} Earth2099
 
       # Output
       - uses: actions/upload-artifact@v2
         if: ${{ matrix.targetPlatform != 'WebGL' }}
         with:
-          name: Earth2099-${{ matrix.targetPlatform }}-${{ needs.createRelease.outputs.latest_tag }}
-          path: Earth2099-${{ matrix.targetPlatform }}-${{ needs.createRelease.outputs.latest_tag }}.tar.gz
+          name: Earth2099-${{ matrix.targetPlatform }}-${{ needs.createRelease.outputs.latest_tag }}.zip
+          path: Earth2099-${{ matrix.targetPlatform }}-${{ needs.createRelease.outputs.latest_tag }}.zip
 
       # Release
       - uses: actions/upload-release-asset@v1
@@ -96,9 +96,9 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
           upload_url: ${{ needs.createRelease.outputs.upload_url }}
-          asset_path: Earth2099-${{ matrix.targetPlatform }}-${{ needs.createRelease.outputs.latest_tag }}.tar.gz
-          asset_name: Earth2099-${{ matrix.targetPlatform }}-${{ needs.createRelease.outputs.latest_tag }}.tar.gz
-          asset_content_type: application/x-tar
+          asset_path: Earth2099-${{ matrix.targetPlatform }}-${{ needs.createRelease.outputs.latest_tag }}.zip
+          asset_name: Earth2099-${{ matrix.targetPlatform }}-${{ needs.createRelease.outputs.latest_tag }}.zip
+          asset_content_type: application/zip
       - run: ls -lR
       - name: Deploy 🚀
         if: ${{ matrix.targetPlatform == 'WebGL' }}
