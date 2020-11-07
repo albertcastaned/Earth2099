@@ -1,7 +1,7 @@
 {
 "companyName": "Mango",
 "productName": "Earth2099",
-"productVersion": "0.3.0.0",
+"productVersion": "0.3.1.0",
 "dataUrl": "Earth2099.data.unityweb",
 "wasmCodeUrl": "Earth2099.wasm.code.unityweb",
 "wasmFrameworkUrl": "Earth2099.wasm.framework.unityweb",
