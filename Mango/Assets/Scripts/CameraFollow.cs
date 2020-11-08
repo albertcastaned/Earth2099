@@ -5,7 +5,7 @@ using UnityEngine;
 public class CameraFollow : MonoBehaviour
 {
     public Transform centerPoint;
-    public Transform follow;
+    public Player follow;
     public float speed = 2.0f;
     public float turnSpeed = 5f;
     public float smoothFactor = 0.5f;
@@ -27,10 +27,11 @@ public class CameraFollow : MonoBehaviour
     {
         if (follow != null)
         {
-
-            zoom -= Input.GetAxis("Mouse ScrollWheel") * zoomSpeed;
-            zoom = Mathf.Clamp(zoom, zoomMin, zoomMax);
-
+            if (!follow.IsChatting)
+            {
+                zoom -= Input.GetAxis("Mouse ScrollWheel") * zoomSpeed;
+                zoom = Mathf.Clamp(zoom, zoomMin, zoomMax);
+            }
             transform.localPosition = new Vector3(0, 0, zoom);
 
             if(Input.GetMouseButton(1))
@@ -42,7 +43,7 @@ public class CameraFollow : MonoBehaviour
             transform.LookAt(centerPoint);
             centerPoint.localRotation = Quaternion.Euler(mouseY, mouseX, 0);
 
-            centerPoint.position = new Vector3(follow.position.x, follow.position.y, follow.position.z);
+            centerPoint.position = new Vector3(follow.transform.position.x, follow.transform.position.y, follow.transform.position.z);
         }
     }
 

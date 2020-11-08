@@ -6,7 +6,6 @@ using UnityEngine.UI;
 
 public class MessageDialog : MonoBehaviour
 {
-
     public TextMeshProUGUI title;
     public TextMeshProUGUI content;
     public TextMeshProUGUI buttonText;

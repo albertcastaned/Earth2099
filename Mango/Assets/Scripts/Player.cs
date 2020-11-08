@@ -33,6 +33,7 @@ public class Player : MonoBehaviourPun, IPunObservable
     public Image barraVida;
     public Text lifeText;
     public DamagePopupText popupTextPrefab;
+    public ChatManager chatManager;
 
     [Header("Debug")]
     public bool DEBUG = false;
@@ -66,7 +67,7 @@ public class Player : MonoBehaviourPun, IPunObservable
 
 
     public IEnumerator WaitForLoad()
-    { 
+    {
 
         isLoading = true;
         loadingPanel.SetActive(true);
@@ -92,27 +93,41 @@ public class Player : MonoBehaviourPun, IPunObservable
         animator.SetBool(parameter, value);
     }
 
+    void ApplyGravity()
+    {
+        if (!controller.isGrounded)
+            moveDir.y -= gravity * Time.deltaTime;
+    }
+
+    void SetDirection()
+    {
+        if(!CanMove)
+        {
+            moveDir.x = 0;
+            moveDir.z = 0;
+            return;
+        }
+        Vector3 newDir;
+        moveDir.x = Input.GetAxis("Horizontal");
+        moveDir.z = Input.GetAxis("Vertical");
+        newDir = m_camera.transform.TransformDirection(moveDir.x, 0, moveDir.z);
+        moveDir.x = newDir.x;
+        moveDir.z = newDir.z;
+    }
     void Movement()
     {
-        Vector3 newDir;
 
         switch (state)
         {
             case PlayerState.Idle:
-                moveDir.x = Input.GetAxis("Horizontal");
-                moveDir.z = Input.GetAxis("Vertical");
-                newDir = m_camera.transform.TransformDirection(moveDir.x, 0, moveDir.z);
-                moveDir.x = newDir.x;
-                moveDir.z = newDir.z;
-                if (controller.isGrounded && Input.GetButton("Jump"))
+                SetDirection();
+                if (CanMove && controller.isGrounded && Input.GetButton("Jump"))
                 {
                     moveDir.y = jumpSpeed;
                     state = PlayerState.Jumping;
                     SetAnimation("isJumping", true);
 
                 }
-                if (!controller.isGrounded)
-                    moveDir.y -= gravity * Time.deltaTime;
 
 
 
@@ -124,9 +139,7 @@ public class Player : MonoBehaviourPun, IPunObservable
                 }
                 break;
             case PlayerState.Jumping:
-                if (!controller.isGrounded)
-                    moveDir.y -= gravity * Time.deltaTime;
-                else
+                if (controller.isGrounded)
                 {
                     if (moveDir.x == 0f && moveDir.z == 0f)
                     {
@@ -143,20 +156,15 @@ public class Player : MonoBehaviourPun, IPunObservable
                 break;
 
             case PlayerState.Moving:
-                moveDir.x = Input.GetAxis("Horizontal");
-                moveDir.z = Input.GetAxis("Vertical");
-                newDir = m_camera.transform.TransformDirection(moveDir.x, 0, moveDir.z);
-                moveDir.x = newDir.x;
-                moveDir.z = newDir.z;
-                if (controller.isGrounded && Input.GetButton("Jump"))
+                SetDirection();
+                if (CanMove && controller.isGrounded && Input.GetButton("Jump"))
                 {
                     moveDir.y = jumpSpeed;
                     state = PlayerState.Jumping;
                     SetAnimation("isJumping", true);
 
                 }
-                if (!controller.isGrounded)
-                    moveDir.y -= gravity * Time.deltaTime;
+
 
                 if (moveDir.x == 0f && moveDir.z == 0f)
                 {
@@ -166,7 +174,7 @@ public class Player : MonoBehaviourPun, IPunObservable
                 }
                 else
                 {
-                    if(Input.GetKeyDown(KeyCode.LeftShift))
+                    if (CanMove && Input.GetKeyDown(KeyCode.LeftShift))
                     {
                         state = PlayerState.Dodging;
                         currentDodgeTime = 0;
@@ -179,7 +187,7 @@ public class Player : MonoBehaviourPun, IPunObservable
                 }
                 break;
             case PlayerState.Dodging:
-                if (controller.isGrounded && Input.GetButton("Jump"))
+                if (CanMove && controller.isGrounded && Input.GetButton("Jump"))
                 {
                     moveDir.y = jumpSpeed;
                     state = PlayerState.Jumping;
@@ -187,8 +195,7 @@ public class Player : MonoBehaviourPun, IPunObservable
 
                 }
 
-                if (!controller.isGrounded)
-                    moveDir.y -= gravity * Time.deltaTime;
+
                 if (currentDodgeTime < maxDodgeTime)
                 {
                     currentDodgeTime += 0.1f;
@@ -208,23 +215,30 @@ public class Player : MonoBehaviourPun, IPunObservable
                 }
                 break;
         }
+        ApplyGravity();
+
+        
         controller.Move(moveDir * speed * Time.deltaTime);
     }
+
+    public bool IsChatting { get { return chatManager.IsChatting; } }
+    public bool CanMove { get { return !isLoading && state != PlayerState.Dead && !IsChatting; } }
 
     // Update is called once per frame
     void Update()
     {
-        if (isLoading || state == PlayerState.Dead)
-            return;
+
+
         Movement();
         CheckStillOnMap();
 
+        if (!CanMove)
+            return;
 
         Ray cameraRay = Camera.main.ScreenPointToRay(Input.mousePosition);
         Plane ground = new Plane(Vector3.up, Vector3.zero);
-        float rayLength;
 
-        if (ground.Raycast(cameraRay, out rayLength))
+        if (ground.Raycast(cameraRay, out float rayLength))
         {
             Vector3 playerAimDirection = cameraRay.GetPoint(rayLength);
             Debug.DrawLine(cameraRay.origin, playerAimDirection, Color.blue);
@@ -240,10 +254,7 @@ public class Player : MonoBehaviourPun, IPunObservable
         if (!photonView.IsMine)
         {
             gunHolder.GetComponent<GunHolder>().SelectGun(latestSelectedGun);
-
         }
-
-
     }
 
 
