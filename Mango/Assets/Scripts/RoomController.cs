@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using Photon.Pun;
 using Photon.Realtime;
+using UnityEditor;
 
 namespace Mango.Game
 {
@@ -58,6 +59,7 @@ namespace Mango.Game
             // Iniciar al jugador sincronizadamente
             GameObject player = PhotonNetwork.Instantiate(playerPrefab.name, spawnPoint, Quaternion.identity, 0);
             player.name = PhotonNetwork.NickName;
+
             if (!PhotonNetwork.CurrentRoom.Name.StartsWith("DEBUG-"))
                 StartCoroutine(nameof(Load));
             else
@@ -108,10 +110,15 @@ namespace Mango.Game
             }
 
         }
-
         public override void OnLeftRoom()
         {
             UnityEngine.SceneManagement.SceneManager.LoadScene("Launcher");
+        }
+        public override void OnPlayerLeftRoom(Photon.Realtime.Player otherPlayer)
+        {
+            PhotonView.Find(1).RPC("SendChat", RpcTarget.All, $"<b>{otherPlayer.NickName}</b> left the game.", ChatManager.ChatMessageType.NotificationMessage);
+
+            base.OnPlayerLeftRoom(otherPlayer);
         }
 
     }
