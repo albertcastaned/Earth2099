@@ -34,6 +34,7 @@ public class Player : MonoBehaviourPun, IPunObservable
     public Text lifeText;
     public DamagePopupText popupTextPrefab;
     public ChatManager chatManager;
+    public TrailRenderer trailRenderrer;
 
     [Header("Debug")]
     public bool DEBUG = false;
@@ -145,12 +146,16 @@ public class Player : MonoBehaviourPun, IPunObservable
                     {
                         state = PlayerState.Idle;
                         SetAnimation("isIdle", true);
+                        trailRenderrer.emitting = false;
+
 
                     }
                     else
                     {
                         state = PlayerState.Moving;
                         SetAnimation("isRunning", true);
+                        trailRenderrer.emitting = false;
+
                     }
                 }
                 break;
@@ -180,7 +185,7 @@ public class Player : MonoBehaviourPun, IPunObservable
                         currentDodgeTime = 0;
                         moveDir *= dodgeSpeed;
                         moveDir.y = 0;
-
+                        trailRenderrer.emitting = true;
                         SetAnimation("isDashing", true);
 
                     }
@@ -206,12 +211,15 @@ public class Player : MonoBehaviourPun, IPunObservable
                     {
                         state = PlayerState.Moving;
                         SetAnimation("isRunning", true);
+
                     }
                     else
                     {
                         state = PlayerState.Idle;
                         SetAnimation("isIdle", true);
                     }
+                    trailRenderrer.emitting = false;
+
                 }
                 break;
         }
@@ -316,6 +324,7 @@ public class Player : MonoBehaviourPun, IPunObservable
             stream.SendNext(gunHolder.GetComponent<GunHolder>().selectedGunIndex);
             stream.SendNext(health);
             stream.SendNext(state);
+            stream.SendNext(trailRenderrer.emitting);
         }
         else
         {
@@ -324,7 +333,7 @@ public class Player : MonoBehaviourPun, IPunObservable
             latestSelectedGun = (int)stream.ReceiveNext();
             health = (int)stream.ReceiveNext();
             state = (PlayerState)stream.ReceiveNext();
-
+            trailRenderrer.emitting = (bool)stream.ReceiveNext();
             if (health != oldHealth)
                 UpdateHealthUI();
         }
