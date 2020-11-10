@@ -16,6 +16,7 @@ public class CameraFollow : MonoBehaviour
     private float zoom = 15f;
 
     private float mouseX, mouseY = -30f;
+    
 
 
     void Start()

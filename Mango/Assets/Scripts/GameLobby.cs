@@ -145,8 +145,11 @@ public class GameLobby : MonoBehaviourPunCallbacks
 
         GUILayout.Label("Nombre de jugador: ", GUILayout.Width(85));
         playerName = GUILayout.TextField(playerName, GUILayout.Width(250));
+        if (GUILayout.Button("Costumizar personaje"))
+        {
+            SceneManager.LoadScene("ChangeColor");
+        }
 
- 
         GUILayout.Label("Version: " + gameVersion + "\nRegion: " + PhotonNetwork.CloudRegion, GUILayout.Width(85));
 
 
