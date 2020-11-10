@@ -21,8 +21,10 @@
   <component name="ChangeListManager">
     <list default="true" id="109bf6b6-9ab5-4220-b47c-afb0e34a3fd8" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/../Resources/Player.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/../Resources/Player.prefab" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../SciFiWarriorPBRHPPolyart/Animators.meta" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.Scripts.dir/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Scripts.dir/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ReceiveDamage.cs" beforeDir="false" afterPath="$PROJECT_DIR$/ReceiveDamage.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Player.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Player.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Packages/packages-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/../../Packages/packages-lock.json" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -33,18 +35,16 @@
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/../../.." />
   </component>
   <component name="HighlightingSettingsPerFile">
-    <setting file="file://$PROJECT_DIR$/FaceCamera.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/createEnemies.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/CameraFollow.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/makeDamage.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/GameLobby.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/RoomController.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Health_enemy.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Enemy.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Dialog.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Bullet.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Health_Player.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/ReceiveDamage.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/RoomController.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/GameLobby.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/FaceCamera.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Dialog.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Player.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/createPowerups.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/createEnemies.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Enemy.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/CameraFollow.cs" root0="SKIP_HIGHLIGHTING" />
   </component>
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
@@ -54,6 +54,8 @@
         <option value="$PROJECT_DIR$/Health_enemy.cs" />
         <option value="$PROJECT_DIR$/Health_Player.cs" />
         <option value="$PROJECT_DIR$/ReceiveDamage.cs" />
+        <option value="$PROJECT_DIR$/Player.cs" />
+        <option value="$PROJECT_DIR$/createPowerups.cs" />
       </list>
     </option>
   </component>
@@ -79,6 +81,7 @@
       <workItem from="1602458874098" duration="3360000" />
       <workItem from="1603781794582" duration="499000" />
       <workItem from="1603860905323" duration="7959000" />
+      <workItem from="1604984711694" duration="958000" />
     </task>
     <servers />
   </component>

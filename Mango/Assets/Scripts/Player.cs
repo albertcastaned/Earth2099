@@ -342,4 +342,23 @@ public class Player : MonoBehaviourPun, IPunObservable
     }
 
     public PlayerState State {  get { return state; } }
+
+
+    void OnTriggerEnter(Collider other)
+    {
+        if (other.tag == "Life")
+        {
+            if (health > 90)
+            {
+                health = 100;
+            }
+            else
+            {
+                health += 10;
+            }
+
+            UpdateHealthUI();
+            Destroy(other.gameObject);
+        }
+    }
 }
