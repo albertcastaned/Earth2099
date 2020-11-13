@@ -26,9 +26,10 @@ public class Bullet : MonoBehaviour
         {
 
             Enemy enemy = collision.gameObject.GetComponent<Enemy>();
-            if(enemy.photonView.IsMine)
+            if (enemy.photonView.IsMine)
+            {
                 collision.gameObject.GetComponent<Enemy>().photonView.RPC("ReduceHealth", RpcTarget.AllBufferedViaServer, 10);
-            
+            }
             Destroy(gameObject);
 
         }
