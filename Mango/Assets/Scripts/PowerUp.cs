@@ -5,7 +5,7 @@ using System;
 using UnityEngine.Events;
 
 [Serializable]
-public class PowerUp : MonoBehaviour
+public class PowerUp 
 {
 	[SerializeField]
 	public string name;
@@ -26,6 +26,7 @@ public class PowerUp : MonoBehaviour
 
 	public void Start()
 	{
-		startAction.Invoke();
+		if(startAction != null)
+			startAction.Invoke();
 	}
 }

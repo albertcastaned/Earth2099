@@ -5,15 +5,19 @@ using UnityEngine;
 public class PowerUpActions : MonoBehaviour
 {
     [SerializeField] 
-    private Player player;
+    private GameObject player;
 
+    private Player scriptPLayer;
+    
     public void HighSpeedStartAction()
     {
-        player.speed = player.speed * 2;
+        scriptPLayer = player.GetComponent<Player>();
+        scriptPLayer.speed = scriptPLayer.speed * 2;
     }
 
     public void HighSpeedEndAction()
     {
-        player.speed = player.speed / 2;
+        scriptPLayer = player.GetComponent<Player>();
+        scriptPLayer.speed = scriptPLayer.speed / 2;
     }
 }

@@ -26,18 +26,18 @@ public class PowerUpController : MonoBehaviour
     {
         bool changed = false;
 
-        if (activePowerUps.Count > 0)
+        if (activatePowerUps.Count > 0)
         {
             foreach (PowerUp powerup in keys)
             {
-                if (activePowerUps[powerup] > 0)
+                if (activatePowerUps[powerup] > 0)
                 {
-                    activePowerUps[powerup] -= Time.deltaTime;
+                    activatePowerUps[powerup] -= Time.deltaTime;
                 }
                 else
                 {
                     changed = true;
-                    activePowerUps.Remove(powerup);
+                    activatePowerUps.Remove(powerup);
                     powerup.End();
                 }
             }
@@ -45,30 +45,30 @@ public class PowerUpController : MonoBehaviour
 
         if (changed)
         {
-            keys = new List<PowerUp>(activePowerUps.Keys);
+            keys = new List<PowerUp>(activatePowerUps.Keys);
                 
         }
     }
 
     public void ActivatePowerUp(PowerUp powerup)
     {
-        if (!activePowerUps.ContainsKey(powerup))
+        if (!activatePowerUps.ContainsKey(powerup))
         {
             powerup.Start();
-            activePowerUps.Add(powerup, powerup.duration);
+            activatePowerUps.Add(powerup, powerup.duration);
         }
         else
         {
-            activePowerUps[powerup] += powerup.duration;
+            activatePowerUps[powerup] += powerup.duration;
         }
 
-        keys = new List<PowerUp>(activePowerUps.Keys);
+        keys = new List<PowerUp>(activatePowerUps.Keys);
     }
 
     public GameObject SpawnPowerUp(PowerUp powerup, Vector3 posicion)
     {
         GameObject powerupGameObject = Instantiate(prefabPowerUp);
-        var powerUpBehaviour = powerupGameObject.GetComponent<PowerUpBehaviour>;
+        var powerUpBehaviour = powerupGameObject.GetComponent<PowerUpBehaviour>();
         powerUpBehaviour.controller = this;
         powerUpBehaviour.SetPowerUp(powerup);
         powerupGameObject.transform.position = posicion;
