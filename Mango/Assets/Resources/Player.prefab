@@ -2413,7 +2413,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5539257300262835790}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -118.131454, y: -98.01, z: -57.969975}
+  m_LocalPosition: {x: -118.1315, y: 3.3, z: -57.969975}
   m_LocalScale: {x: 0.01, y: 0.01, z: 0.01}
   m_Children: []
   m_Father: {fileID: 4654584037944614440}
@@ -3774,8 +3774,8 @@ MonoBehaviour:
   localScripts:
   - {fileID: 7824355909446858004}
   - {fileID: 1932339761540891469}
-  - {fileID: 7637419647303751779}
-  - {fileID: 2205957758924071774}
+  - {fileID: 0}
+  - {fileID: 0}
   localObjects:
   - {fileID: 5578451398214372871}
   - {fileID: 805173685}
@@ -4012,7 +4012,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8949957450136423027}
-  - component: {fileID: 8635213996644019067}
+  - component: {fileID: 2181167258582970811}
   m_Layer: 0
   m_Name: GunHolder
   m_TagString: Untagged
@@ -4036,7 +4036,7 @@ Transform:
   m_Father: {fileID: 7824355909446858000}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 90, y: 0, z: 0}
---- !u!114 &8635213996644019067
+--- !u!114 &2181167258582970811
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -4213,20 +4213,29 @@ PrefabInstance:
       propertyPath: m_Name
       value: BlueGun
       objectReference: {fileID: 0}
+    - target: {fileID: 6503184709123533709, guid: e794a86a30e45435cae703fae0b56b11,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8057118742464245583, guid: e794a86a30e45435cae703fae0b56b11,
+        type: 3}
+      propertyPath: bullet
+      value: 
+      objectReference: {fileID: 4316944969416228886, guid: d763b5234022e40eb9c2834554c1bb58,
+        type: 3}
+    - target: {fileID: 8057118742464245583, guid: e794a86a30e45435cae703fae0b56b11,
+        type: 3}
+      propertyPath: shootForce
+      value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 8057118742464245583, guid: e794a86a30e45435cae703fae0b56b11,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e794a86a30e45435cae703fae0b56b11, type: 3}
---- !u!114 &2205957758924071774 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 3261839367250412348, guid: e794a86a30e45435cae703fae0b56b11,
-    type: 3}
-  m_PrefabInstance: {fileID: 3736091564619276386}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f06e70470e2364addbcdb1e0f2aa8813, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!4 &8674532708215657647 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 5457064166701708493, guid: e794a86a30e45435cae703fae0b56b11,
@@ -4240,10 +4249,40 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 8949957450136423027}
     m_Modifications:
+    - target: {fileID: 1575532849651846432, guid: 10ef02deccbb24e8799bffc6c79017b2,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3951776591763521355, guid: 10ef02deccbb24e8799bffc6c79017b2,
         type: 3}
       propertyPath: m_Enabled
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6289744820228628819, guid: 10ef02deccbb24e8799bffc6c79017b2,
+        type: 3}
+      propertyPath: attackPoint
+      value: 
+      objectReference: {fileID: 4822983494057073786}
+    - target: {fileID: 6289744820228628819, guid: 10ef02deccbb24e8799bffc6c79017b2,
+        type: 3}
+      propertyPath: shootForce
+      value: 50
+      objectReference: {fileID: 0}
+    - target: {fileID: 6289744820228628819, guid: 10ef02deccbb24e8799bffc6c79017b2,
+        type: 3}
+      propertyPath: magazineSize
+      value: 50
+      objectReference: {fileID: 0}
+    - target: {fileID: 6289744820228628819, guid: 10ef02deccbb24e8799bffc6c79017b2,
+        type: 3}
+      propertyPath: allowButtonHold
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6289744820228628819, guid: 10ef02deccbb24e8799bffc6c79017b2,
+        type: 3}
+      propertyPath: bulletsPerTap
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7108649787425219985, guid: 10ef02deccbb24e8799bffc6c79017b2,
         type: 3}
@@ -4258,12 +4297,12 @@ PrefabInstance:
     - target: {fileID: 8296309643524258513, guid: 10ef02deccbb24e8799bffc6c79017b2,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 8296309643524258513, guid: 10ef02deccbb24e8799bffc6c79017b2,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0
+      value: -0.8
       objectReference: {fileID: 0}
     - target: {fileID: 8296309643524258513, guid: 10ef02deccbb24e8799bffc6c79017b2,
         type: 3}
@@ -4305,20 +4344,15 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 1575532849651846432, guid: 10ef02deccbb24e8799bffc6c79017b2, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 10ef02deccbb24e8799bffc6c79017b2, type: 3}
---- !u!114 &7637419647303751779 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 1575532849651846432, guid: 10ef02deccbb24e8799bffc6c79017b2,
+--- !u!4 &4822983494057073786 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 4525651004918335801, guid: 10ef02deccbb24e8799bffc6c79017b2,
     type: 3}
   m_PrefabInstance: {fileID: 8944424232546473283}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f06e70470e2364addbcdb1e0f2aa8813, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!4 &1081589422580641682 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 8296309643524258513, guid: 10ef02deccbb24e8799bffc6c79017b2,

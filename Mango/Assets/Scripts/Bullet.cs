@@ -6,17 +6,11 @@ using UnityEngine;
 
 public class Bullet : MonoBehaviour
 {
-    public float speed = 20;
+    public float damage = 10;
 
     void Start()
     {
-        Destroy(gameObject, 10.0f);
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        transform.Translate(Vector3.forward * speed);
+        Destroy(gameObject, 5.0f);
     }
 
     void OnCollisionEnter(Collision collision)
@@ -32,8 +26,9 @@ public class Bullet : MonoBehaviour
             Destroy(gameObject);
 
         }
-        else if (collision.gameObject.tag != "Player")
+        else if (collision.gameObject.tag != "Player" || collision.gameObject.tag != "Bullet")
         {
+            Debug.Log(collision.gameObject.tag);
             Destroy(gameObject);
         }
     }
