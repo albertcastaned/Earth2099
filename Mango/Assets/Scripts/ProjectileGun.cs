@@ -1,7 +1,8 @@
-﻿using UnityEngine;
+﻿using Photon.Pun;
+using UnityEngine;
 // using TMPro;
 
-public class ProjectileGun : MonoBehaviour
+public class ProjectileGun : MonoBehaviourPun
 {
     // Bullet
     public GameObject bullet;
@@ -109,7 +110,6 @@ public class ProjectileGun : MonoBehaviour
 
         if (muzzleFlash != null)
         {
-            Debug.Log("Flash");
             Instantiate(muzzleFlash, position, Quaternion.identity);
         }
 
