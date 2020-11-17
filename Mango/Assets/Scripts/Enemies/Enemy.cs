@@ -8,10 +8,10 @@ using UnityEngine;
 using UnityEngine.AI;
 using UnityEngine.UI;
 
+
 public class Enemy : MonoBehaviourPun
 {
-    [Header("Animator")]
-    public Animator animator;
+    private Animator animator;
 
     [Header("Stats")]
     public int maxHealth = 100;
@@ -21,6 +21,7 @@ public class Enemy : MonoBehaviourPun
     public float attackRange = 5f;
     public float walkPointRange = 10f;
     public float timeBetweenAttacks = 5f;
+    public bool stunnedByHits = true;
 
     [Header("HUD")]
     public Image barraVida;
@@ -38,8 +39,23 @@ public class Enemy : MonoBehaviourPun
     private Player[] playersInSightRange;
     private Player[] playersInAttackRange;
 
+    private EnemyState currentState;
+    delegate void OnAnimationFinished();
+
+    enum EnemyState
+    {
+        AttackIdle,
+        Patrolling,
+        Chasing,
+        Attacking,
+        GettingHit,
+        Dead
+    }
+
     void Start()
     {
+        animator = GetComponent<Animator>();
+        currentState = EnemyState.Patrolling;
         isGround = LayerMask.GetMask("Floor");
         isPlayer = LayerMask.GetMask("Player");
         agent = GetComponent<NavMeshAgent>();
@@ -47,6 +63,8 @@ public class Enemy : MonoBehaviourPun
         agent.speed = speed;
         lifeText.text = health.ToString() + " / " + maxHealth.ToString();
         UpdateAnimation("IsWalking", true);
+
+        animator.SetFloat("MovementSpeed", 1.4f - 1f / speed);
     }
 
     void UpdateAnimation(string parameter, bool value)
@@ -68,6 +86,8 @@ public class Enemy : MonoBehaviourPun
         if (!playerInAttackRange && !playerInSightRange) Patroling();
         if (playerInSightRange && !playerInAttackRange) ChasePlayer();
         if (playerInAttackRange && playerInSightRange) AttackPlayer();
+
+
     }
 
     private bool CheckPlayersInRange(float range, ref Player[] playerList)
@@ -87,9 +107,8 @@ public class Enemy : MonoBehaviourPun
 
     private void Patroling()
     {
-        UpdateAnimation("IsAttacking", false);
-        UpdateAnimation("IsChasing", false);
-        UpdateAnimation("IsWalking", true);
+        currentState = EnemyState.Patrolling;
+        UpdateAnimation();
 
         // Remove target when out of sight
         if (target != null)
@@ -106,6 +125,44 @@ public class Enemy : MonoBehaviourPun
         if (distanceToWalkPoint.magnitude < 5f)
             walkPointSet = false;
     }
+    private void ChasePlayer()
+    {
+        currentState = EnemyState.Chasing;
+        UpdateAnimation();
+        if (target == null)
+            ChooseRandomTargetInList(ref playersInSightRange);
+        agent.SetDestination(target.transform.position);
+    }
+
+    private void AttackPlayer()
+    {
+        currentState = EnemyState.Attacking;
+        UpdateAnimation();
+
+        agent.SetDestination(transform.position);
+        if (target == null)
+        {
+            ChooseRandomTargetInList(ref playersInAttackRange);
+        }
+
+        transform.LookAt(target.transform.position);
+
+        if (!alreadyAttacked)
+        {
+            UpdateAnimation("AttackReady", false);
+
+            target.photonView.RPC("ReduceHealth", RpcTarget.All, damage);
+            ChooseRandomTargetInList(ref playersInAttackRange);
+            alreadyAttacked = true;
+            Invoke(nameof(ResetAttack), timeBetweenAttacks);
+
+        }
+    }
+    private void ResetAttack()
+    {
+        alreadyAttacked = false;
+        UpdateAnimation("AttackReady", true);
+    }
 
     private void SearchWalkPoint()
     {
@@ -120,69 +177,34 @@ public class Enemy : MonoBehaviourPun
         }
     }
 
-    private void ChasePlayer()
+
+    void UpdateAnimation()
     {
-        UpdateAnimation("IsAttacking", false);
-        UpdateAnimation("IsChasing", true);
-        UpdateAnimation("IsWalking", false);
-        if (target == null)
-            ChooseRandomTargetInList(ref playersInSightRange);
-        agent.SetDestination(target.transform.position);
-    }
-
-    private void AttackPlayer()
-    {
-        UpdateAnimation("IsAttacking", true);
-        UpdateAnimation("IsChasing", false);
-        UpdateAnimation("IsWalking", false);
-
-        agent.SetDestination(transform.position);
-
-        if(target == null)
+        switch(currentState)
         {
-            ChooseRandomTargetInList(ref playersInAttackRange);
-        }
-
-        transform.LookAt(target.transform.position);
-
-        if(!alreadyAttacked)
-        {
-            UpdateAnimation("IsAttacking", true);
-            target.photonView.RPC("ReduceHealth", RpcTarget.All, damage);
-            ChooseRandomTargetInList(ref playersInAttackRange);
-            alreadyAttacked = true;
-            Invoke(nameof(ResetAttack), timeBetweenAttacks);
+            case EnemyState.Chasing:
+                UpdateAnimation("IsAttacking", false);
+                UpdateAnimation("IsChasing", true);
+                UpdateAnimation("IsWalking", false);
+                break;
+            case EnemyState.Patrolling:
+                UpdateAnimation("IsAttacking", false);
+                UpdateAnimation("IsChasing", false);
+                UpdateAnimation("IsWalking", true);
+                break;
+            case EnemyState.Attacking:
+                UpdateAnimation("IsAttacking", true);
+                UpdateAnimation("IsChasing", false);
+                UpdateAnimation("IsWalking", false);
+                break;
         }
     }
+
 
     private void ChooseRandomTargetInList(ref Player[] playerRangeList)
     {
         target = playerRangeList[Random.Range(0, playerRangeList.Length - 1)];
     }
-
-    private void ResetAttack()
-    {
-        alreadyAttacked = false;
-    }
-
-    void OnDrawGizmosSelected()
-    {
-        Gizmos.color = Color.red;
-        Gizmos.DrawWireSphere(transform.position, attackRange);
-        Gizmos.color = Color.yellow;
-        Gizmos.DrawWireSphere(transform.position, sightRange);
-        Gizmos.color = Color.green;
-        Gizmos.DrawWireSphere(transform.position, walkPointRange);
-        Gizmos.DrawLine(walkPoint, walkPoint + Vector3.up * 100f);
-        if(target != null)
-        {
-            Gizmos.color = Color.red;
-            Gizmos.DrawLine(target.transform.position, target.transform.position + Vector3.up * 100f);
-        }
-
-    }
-
-    delegate void OnAnimationFinished();
 
 
 
@@ -198,7 +220,6 @@ public class Enemy : MonoBehaviourPun
 
         }
         onAnimationFinished();
-        Debug.Log("Finished hurt animation");
 
     }
 
@@ -214,16 +235,19 @@ public class Enemy : MonoBehaviourPun
         CreateFloatingText("-" + amount);
         OnAnimationFinished onAnimationFinished;
 
-        agent.isStopped = true;
-        animator.Play("GetHit", 0, 0);
-        UpdateAnimation("GotHit", true);
-        onAnimationFinished = delegate ()
+        if (stunnedByHits)
         {
-            UpdateAnimation("GotHit", false);
-            agent.isStopped = false;
-        };
-        StopCoroutine(nameof(WaitForAnimation));
-        StartCoroutine(nameof(WaitForAnimation), onAnimationFinished);
+            agent.isStopped = true;
+            animator.Play("GetHit", 0, 0);
+            UpdateAnimation("GotHit", true);
+            onAnimationFinished = delegate ()
+            {
+                UpdateAnimation("GotHit", false);
+                agent.isStopped = false;
+            };
+            StopCoroutine(nameof(WaitForAnimation));
+            StartCoroutine(nameof(WaitForAnimation), onAnimationFinished);
+        }
         if (health <= 0)
         {
             onAnimationFinished = delegate ()
@@ -251,4 +275,28 @@ public class Enemy : MonoBehaviourPun
 
         instance.SetText(text);
     }
+
+
+    // DEBUG ///////////////////////////////////////////////////
+
+    void OnDrawGizmosSelected()
+    {
+        Gizmos.color = Color.red;
+        Gizmos.DrawWireSphere(transform.position, attackRange);
+        Gizmos.color = Color.yellow;
+        Gizmos.DrawWireSphere(transform.position, sightRange);
+        Gizmos.color = Color.green;
+        Gizmos.DrawWireSphere(transform.position, walkPointRange);
+        Gizmos.DrawLine(walkPoint, walkPoint + Vector3.up * 100f);
+        if (target != null)
+        {
+            Gizmos.color = Color.red;
+            Gizmos.DrawLine(target.transform.position, target.transform.position + Vector3.up * 100f);
+        }
+        Gizmos.color = Color.white;
+
+    }
+
+
+    // ////////////////////////////////////////////////////////
 }

@@ -210,7 +210,7 @@ Animator:
   m_Enabled: 1
   m_Avatar: {fileID: 9000000, guid: 032e9c3d6b8f7bd4281b52741574f3af, type: 3}
   m_Controller: {fileID: 22100000, guid: 5684d65d4545b7440b31e9c3a37533de, type: 2}
-  m_CullingMode: 0
+  m_CullingMode: 2
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
   m_LinearVelocityBlending: 0
@@ -248,6 +248,12 @@ MonoBehaviour:
   - Type: 4
     SynchronizeType: 1
     Name: GotHit
+  - Type: 4
+    SynchronizeType: 1
+    Name: AttackReady
+  - Type: 1
+    SynchronizeType: 0
+    Name: MovementSpeed
   m_SynchronizeLayers:
   - SynchronizeType: 0
     LayerIndex: 0
@@ -483,6 +489,36 @@ PrefabInstance:
       propertyPath: animator
       value: 
       objectReference: {fileID: 8071136476040938742}
+    - target: {fileID: 2065600435316049353, guid: f37578f931d906d42b9daa7577aff4ba,
+        type: 3}
+      propertyPath: sightRange
+      value: 35
+      objectReference: {fileID: 0}
+    - target: {fileID: 2065600435316049353, guid: f37578f931d906d42b9daa7577aff4ba,
+        type: 3}
+      propertyPath: attackRange
+      value: 1.85
+      objectReference: {fileID: 0}
+    - target: {fileID: 2065600435316049353, guid: f37578f931d906d42b9daa7577aff4ba,
+        type: 3}
+      propertyPath: walkPointRange
+      value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 2065600435316049353, guid: f37578f931d906d42b9daa7577aff4ba,
+        type: 3}
+      propertyPath: timeBetweenAttacks
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2065600435316049353, guid: f37578f931d906d42b9daa7577aff4ba,
+        type: 3}
+      propertyPath: speed
+      value: 16
+      objectReference: {fileID: 0}
+    - target: {fileID: 2065600435316049353, guid: f37578f931d906d42b9daa7577aff4ba,
+        type: 3}
+      propertyPath: maxHealth
+      value: 50
+      objectReference: {fileID: 0}
     - target: {fileID: 2065600435316049357, guid: f37578f931d906d42b9daa7577aff4ba,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -562,6 +598,21 @@ PrefabInstance:
         type: 3}
       propertyPath: m_BaseOffset
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2065600435316049358, guid: f37578f931d906d42b9daa7577aff4ba,
+        type: 3}
+      propertyPath: m_AngularSpeed
+      value: 160
+      objectReference: {fileID: 0}
+    - target: {fileID: 2065600435316049358, guid: f37578f931d906d42b9daa7577aff4ba,
+        type: 3}
+      propertyPath: m_Radius
+      value: 0.65
+      objectReference: {fileID: 0}
+    - target: {fileID: 2065600435316049358, guid: f37578f931d906d42b9daa7577aff4ba,
+        type: 3}
+      propertyPath: m_Height
+      value: 0.85
       objectReference: {fileID: 0}
     - target: {fileID: 3397632230520522197, guid: f37578f931d906d42b9daa7577aff4ba,
         type: 3}
