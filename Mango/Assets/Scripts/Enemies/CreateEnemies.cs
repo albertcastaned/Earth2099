@@ -1,7 +1,7 @@
 ﻿using Photon.Pun;
 using System.Collections;
 using UnityEngine;
-
+using Mango.Game;
 
 
 public class CreateEnemies : MonoBehaviour
@@ -24,7 +24,7 @@ public class CreateEnemies : MonoBehaviour
         
         Vector3 posicion = new Vector3(numx,0f,numy);
         GameObject newEnemyPrefab = GetRandomEnemy().prefab;
-        PhotonNetwork.Instantiate(newEnemyPrefab.name, posicion, gameObject.transform.rotation);  
+        RoomController.Instance.Spawn(newEnemyPrefab.name, posicion);
     }
 
     IEnumerator CreateObjectInValidPlace()

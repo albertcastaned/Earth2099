@@ -19,7 +19,7 @@ public class Player : MonoBehaviourPun, IPunObservable
 {
 
     [Header("Player stats")]
-    public int maxHealth = 100;
+    public int maxHealth = 100, health;
     public float speed = 5f;
     public float jumpSpeed = 2f;
     public float gravity = 9.81f;
@@ -45,7 +45,6 @@ public class Player : MonoBehaviourPun, IPunObservable
     private PlayerState state = PlayerState.Idle;
     private Camera m_camera;
     private Animator animator;
-    private int health;
     private bool isLoading = false;
     public GameObject gunHolder;
 
@@ -229,13 +228,11 @@ public class Player : MonoBehaviourPun, IPunObservable
     }
 
     public bool IsChatting { get { return chatManager.IsChatting; } }
-    public bool CanMove { get { return !isLoading && state != PlayerState.Dead && !IsChatting; } }
+    public bool CanMove { get { return !isLoading && state != PlayerState.Dead && !IsChatting && !DebugController.Instance.showConsole; } }
 
     // Update is called once per frame
     void Update()
     {
-
-
         Movement();
         CheckStillOnMap();
 

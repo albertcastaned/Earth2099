@@ -39,7 +39,6 @@ namespace Mango.Game
             {
                 instance = this;
             }
-
         }
 
         // Use this for initialization
@@ -119,6 +118,13 @@ namespace Mango.Game
             PhotonView.Find(1).RPC("SendChat", RpcTarget.All, $"<b>{otherPlayer.NickName}</b> left the game.", ChatManager.ChatMessageType.NotificationMessage);
 
             base.OnPlayerLeftRoom(otherPlayer);
+        }
+
+
+        public void Spawn(string prefabName, Vector3 position)
+        {
+
+            PhotonNetwork.Instantiate(prefabName, position, Quaternion.identity);
         }
 
     }
