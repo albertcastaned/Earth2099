@@ -233,7 +233,7 @@ public class Enemy : MonoBehaviourPun
         health -= amount;
         UpdateHealthUI();
         CreateFloatingText("-" + amount);
-        OnAnimationFinished onAnimationFinished;
+  OnAnimationFinished onAnimationFinished;
 
         if (stunnedByHits)
         {
@@ -254,13 +254,15 @@ public class Enemy : MonoBehaviourPun
             {
                 UpdateAnimation("IsDead", true);
                 agent.isStopped = false;
-                PhotonNetwork.Destroy(gameObject);
+                if(photonView.IsMine)
+                    PhotonNetwork.Destroy(gameObject);
             };
             agent.isStopped = true;
             animator.Play("Die", 0, 0);
             StopCoroutine(nameof(WaitForAnimation));
             StartCoroutine(nameof(WaitForAnimation), onAnimationFinished);
         }
+        
     }
 
     private void UpdateHealthUI()

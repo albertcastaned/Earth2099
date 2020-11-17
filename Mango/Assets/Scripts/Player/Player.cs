@@ -35,9 +35,6 @@ public class Player : MonoBehaviourPun, IPunObservable
     public ChatManager chatManager;
     public TrailRenderer trailRenderrer;
 
-    [Header("Debug")]
-    public bool DEBUG = false;
-
     private CharacterController controller;
     private Vector3 moveDir = Vector3.zero;
     private float currentDodgeTime = 0;
@@ -48,6 +45,8 @@ public class Player : MonoBehaviourPun, IPunObservable
     private bool isLoading = false;
     public GameObject gunHolder;
 
+    private DebugController debugController;
+
     // Valores que deben sincronizados
     private int latestSelectedGun;
     // Start is called beforz the first frame update
@@ -55,8 +54,9 @@ public class Player : MonoBehaviourPun, IPunObservable
     {
         health = maxHealth;
         startPos = transform.position;
-        nameTag.text = DEBUG ? "Player" : photonView.Owner.NickName;
+        nameTag.text = photonView.Owner.NickName;
         controller = GetComponent<CharacterController>();
+        debugController = GetComponent<DebugController>();
         m_camera = Camera.main;
         animator = GetComponent<Animator>();
         SetAnimation("isIdle", true);
@@ -228,7 +228,7 @@ public class Player : MonoBehaviourPun, IPunObservable
     }
 
     public bool IsChatting { get { return chatManager.IsChatting; } }
-    public bool CanMove { get { return !isLoading && state != PlayerState.Dead && !IsChatting && !DebugController.Instance.showConsole; } }
+    public bool CanMove { get { return !isLoading && state != PlayerState.Dead && !IsChatting && !debugController.showConsole; } }
 
     // Update is called once per frame
     void Update()
@@ -307,7 +307,7 @@ public class Player : MonoBehaviourPun, IPunObservable
         }
     }
 
-    private void UpdateHealthUI()
+    public void UpdateHealthUI()
     {
         barraVida.fillAmount = (float)health / maxHealth;
         lifeText.text = health.ToString() + " / " + maxHealth.ToString();
@@ -347,4 +347,6 @@ public class Player : MonoBehaviourPun, IPunObservable
     }
 
     public PlayerState State {  get { return state; } }
+
+    public void Revive() { state = PlayerState.Idle; }
 }

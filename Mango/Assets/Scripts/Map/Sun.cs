@@ -5,10 +5,12 @@ using UnityEngine;
 public class Sun : MonoBehaviour
 {
     public float speed = 10f;
+
+    private Material skyboxRuntime;
     // Start is called before the first frame update
     void Start()
     {
-        
+        skyboxRuntime = RenderSettings.skybox;
     }
 
     // Update is called once per frame
@@ -16,7 +18,7 @@ public class Sun : MonoBehaviour
     {
         transform.RotateAround(Vector3.zero, Vector3.right, speed * Time.deltaTime);
         transform.LookAt(Vector3.zero);
-        RenderSettings.skybox.SetFloat("_Rotation", Time.time * 1f);
+        skyboxRuntime.SetFloat("_Rotation", Time.time * 1f);
 
     }
 }

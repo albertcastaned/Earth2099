@@ -5,9 +5,6 @@ using Mango.Game;
 
 public class DebugController : MonoBehaviour
 {
-    private static DebugController instance;
-
-    public static DebugController Instance { get { return instance; } }
 
 
     public bool showConsole = true;
@@ -23,15 +20,6 @@ public class DebugController : MonoBehaviour
 
     void Awake()
     {
-        //Singleton
-        if (instance != null && instance != this)
-        {
-            Destroy(this.gameObject);
-        }
-        else
-        {
-            instance = this;
-        }
 
         #region Commands
         SPAWN = new DebugCommand<string>("spawn", "Spawns a prefab", "spawn <prefabName>", (x) =>
@@ -47,6 +35,8 @@ public class DebugController : MonoBehaviour
             player.health = 9999999;
 
             player.maxHealth = 9999999;
+            player.UpdateHealthUI();
+            player.Revive();
         });
 
         #endregion

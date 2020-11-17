@@ -28,6 +28,7 @@ public class ChatManager : MonoBehaviourPun
     public Button sendButton;
     public GameObject messagePrefab;
     public ScrollRect scrollRect;
+    public DebugController debugController;
 
     private CanvasGroup canvasGroup;
     private float alpha = 0.0f;
@@ -58,7 +59,7 @@ public class ChatManager : MonoBehaviourPun
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyUp(KeyCode.Return) && (DebugController.Instance == null || !DebugController.Instance.showConsole))
+        if (Input.GetKeyUp(KeyCode.Return) && !debugController.showConsole)
         {
             if (!IsChatting)
             {
