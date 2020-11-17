@@ -16,19 +16,13 @@ public class Bullet : MonoBehaviour
     void OnCollisionEnter(Collision collision)
     {
         //TODO: Different damage per bullet
-        if (collision.gameObject.tag == "Enemy")
+        if (collision.gameObject.CompareTag("Enemy"))
         {
-
-            Enemy enemy = collision.gameObject.GetComponent<Enemy>();
-            if(enemy.photonView.IsMine)
-                collision.gameObject.GetComponent<Enemy>().photonView.RPC("ReduceHealth", RpcTarget.AllBufferedViaServer, 10);
-            
+            collision.gameObject.GetComponent<Enemy>().photonView.RPC("ReduceHealth", RpcTarget.AllBufferedViaServer, 10);
             Destroy(gameObject);
-
         }
-        else if (collision.gameObject.tag != "Player" || collision.gameObject.tag != "Bullet")
+        else if (!collision.gameObject.CompareTag("Player"))
         {
-            Debug.Log(collision.gameObject.tag);
             Destroy(gameObject);
         }
     }

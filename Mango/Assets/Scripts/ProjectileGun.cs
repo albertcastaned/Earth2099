@@ -1,6 +1,6 @@
 ﻿using Photon.Pun;
 using UnityEngine;
-// using TMPro;
+using TMPro;
 
 public class ProjectileGun : MonoBehaviourPun
 {
@@ -25,7 +25,7 @@ public class ProjectileGun : MonoBehaviourPun
     
     // UI
     public GameObject muzzleFlash;
-    // public TextMeshProUGUI ammunitionDisplay;
+    public TextMeshProUGUI ammunitionDisplay;
 
     public bool allowInvoke = true;
 
@@ -38,16 +38,15 @@ public class ProjectileGun : MonoBehaviourPun
 
     private void Update()
     {
-        if (!gameObject.activeSelf) return;
         EventInput();
         
         // Set ammo display
-        // if (ammunitionDisplay != null)
-        // {
-        //     ammunitionDisplay.SetText(
-        //         bulletsLeft / bulletsPerTap + " / " + magazineSize / bulletsPerTap
-        //     );
-        // }
+        if (ammunitionDisplay != null)
+        {
+            ammunitionDisplay.SetText(
+                bulletsLeft / bulletsPerTap + " / " + magazineSize / bulletsPerTap
+            );
+        }
     }
 
     private void EventInput()
@@ -66,12 +65,13 @@ public class ProjectileGun : MonoBehaviourPun
         if (readyToShoot && shooting && !reloading && bulletsLeft > 0)
         {
             bulletsShot = 0;
-
-            Shoot();
+            photonView.RPC(nameof(Shoot), RpcTarget.AllBuffered);
+            // Shoot();
         }
     }
 
-    private void Shoot()
+    [PunRPC]
+    public void Shoot()
     {
         readyToShoot = false;
 
@@ -98,7 +98,6 @@ public class ProjectileGun : MonoBehaviourPun
 
         // Instantiate bullet/projectile
         GameObject currentBullet = Instantiate(bullet, position, Quaternion.identity);
-
         // Rotate bullet to shoot direction
         currentBullet.transform.forward = directionSpread.normalized;
 
@@ -112,19 +111,19 @@ public class ProjectileGun : MonoBehaviourPun
         {
             Instantiate(muzzleFlash, position, Quaternion.identity);
         }
-
+        
         bulletsLeft--;
         bulletsShot++;
 
         if (allowInvoke)
         {
-            Invoke("ResetShot", timeBetweenShooting);
+            Invoke(nameof(ResetShot), timeBetweenShooting);
             allowInvoke = false;
         }
         
         // if more than one bulletsPerShot make shure to repeat shoot function
         if (bulletsShot < bulletsPerTap && bulletsLeft > 0)
-            Invoke("Shoot", timeBetweenShots);
+            Invoke(nameof(Shoot), timeBetweenShots);
     }
 
     private void ResetShot()
@@ -136,7 +135,7 @@ public class ProjectileGun : MonoBehaviourPun
     private void Reload()
     {
         reloading = true;
-        Invoke("ReloadFinished", reloadTime);
+        Invoke(nameof(ReloadFinished), reloadTime);
     }
 
     private void ReloadFinished()
