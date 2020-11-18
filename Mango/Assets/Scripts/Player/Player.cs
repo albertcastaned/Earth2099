@@ -30,7 +30,7 @@ public class Player : MonoBehaviourPun, IPunObservable
     public Text nameTag;
     public GameObject loadingPanel;
     public Image barraVida;
-    public Text lifeText;
+    public TMP_Text lifeText;
     public DamagePopupText popupTextPrefab;
     public ChatManager chatManager;
     public TrailRenderer trailRenderrer;
@@ -310,6 +310,19 @@ public class Player : MonoBehaviourPun, IPunObservable
     public void UpdateHealthUI()
     {
         barraVida.fillAmount = (float)health / maxHealth;
+        if(health <= 50 && health >= 31)
+        {
+            barraVida.color = new Color32(38, 143, 205, 255);
+        } else if(health <= 30 && health >= 16)
+        {
+            barraVida.color = new Color32(60, 166, 228, 255);
+        } else if(health <= 15 && health >= 6)
+        {
+            barraVida.color = new Color32(146, 213, 252, 255);
+        } else if(health <= 5)
+        {
+
+        }
         lifeText.text = health.ToString() + " / " + maxHealth.ToString();
     }
 
