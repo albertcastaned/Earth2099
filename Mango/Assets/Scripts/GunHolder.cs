@@ -23,17 +23,14 @@ public class GunHolder : MonoBehaviourPun
 
         if (Input.GetKeyDown(KeyCode.Alpha1))
         {
-            Debug.Log("Change event 1");
             selectedGunIndex = 0;
         } else if (Input.GetKeyDown(KeyCode.Alpha2))
         {
-            Debug.Log("Change event 2");
             selectedGunIndex = 1;
         }
 
         if (prevIndex != selectedGunIndex)
         {
-            Debug.Log("Call SelectGun()");
             SelectGun();
         }
     }
