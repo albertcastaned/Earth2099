@@ -312,7 +312,6 @@ public class Player : MonoBehaviourPun, IPunObservable
 
     public PlayerState State {  get { return state; } }
 
-    [PunRPC]
     public void Shoot()
     {
         var gun = _getSelectedGun();

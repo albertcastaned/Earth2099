@@ -109,7 +109,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 92cd3768e68b8174e8f4e84c1c43648e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damage: 10
+  damage: 25
+  collisionEffect: {fileID: 4000011450163336, guid: 02a509a7fa70ed740ba4197e20c5d32d,
+    type: 3}
+  collisionEnemyEffect: {fileID: 4000013252684874, guid: e5a3d6da48298a0458c1990f58c27069,
+    type: 3}
 --- !u!54 &1220836768118475221
 Rigidbody:
   m_ObjectHideFlags: 0

@@ -33,7 +33,7 @@ public class Enemy : MonoBehaviourPun
     public Player[] playersInSightRange;
     public Player[] playersInAttackRange;
 
-
+    public Transform deathAnimation;
 
     // Start is called before the first frame update
     void Start()
@@ -171,6 +171,7 @@ public class Enemy : MonoBehaviourPun
         CreateFloatingText("-" + amount);
         if (health <= 0 && photonView.IsMine)
         {
+            PhotonNetwork.Instantiate(deathAnimation.name, transform.position, Quaternion.identity);
             PhotonNetwork.Destroy(gameObject);
         }
     }

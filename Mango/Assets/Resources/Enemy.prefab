@@ -128,6 +128,8 @@ MonoBehaviour:
     m_Bits: 1024
   playersInSightRange: []
   playersInAttackRange: []
+  deathAnimation: {fileID: 4000011693693590, guid: 96730f8640590934eacb6f860058e7f9,
+    type: 3}
 --- !u!195 &2065600435316049358
 NavMeshAgent:
   m_ObjectHideFlags: 0
