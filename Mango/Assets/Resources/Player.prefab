@@ -4487,6 +4487,7 @@ MonoBehaviour:
   messagePrefab: {fileID: 1105470563249579681, guid: 93b8a7eef93787f4e9eb4f3f64261c4b,
     type: 3}
   scrollRect: {fileID: 6238927651302985824}
+  debugController: {fileID: 7523205291626943619}
 --- !u!225 &1016344835108430779
 CanvasGroup:
   m_ObjectHideFlags: 0
@@ -4666,7 +4667,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: 0.000030517578}
+  m_AnchoredPosition: {x: 0, y: 0.0000076293945}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 1}
 --- !u!114 &6238927651937059737
@@ -5048,7 +5049,6 @@ GameObject:
   - component: {fileID: 7824355909446858000}
   - component: {fileID: 7824355909446858004}
   - component: {fileID: 3657018973477295847}
-  - component: {fileID: 1561230768985728582}
   - component: {fileID: 2588825623405760121}
   - component: {fileID: 2495565947284655331}
   - component: {fileID: 4478204235442107708}
@@ -5056,6 +5056,7 @@ GameObject:
   - component: {fileID: 2827801892805125471}
   - component: {fileID: 8089977022492536507}
   - component: {fileID: 5876056560036840976}
+  - component: {fileID: 7523205291626943619}
   m_Layer: 10
   m_Name: PlayerHolder
   m_TagString: Player
@@ -5094,6 +5095,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxHealth: 100
+  health: 0
   speed: 10
   jumpSpeed: 3
   gravity: 9.81
@@ -5107,7 +5109,6 @@ MonoBehaviour:
     type: 3}
   chatManager: {fileID: 6238927651560556322}
   trailRenderrer: {fileID: 1457392216109032086}
-  DEBUG: 0
   gunHolder: {fileID: 8387594768095041706}
 --- !u!114 &3657018973477295847
 MonoBehaviour:
@@ -5126,21 +5127,10 @@ MonoBehaviour:
   - {fileID: 1932339761540891469}
   - {fileID: 7637419647303751779}
   - {fileID: 2205957758924071774}
+  - {fileID: 7523205291626943619}
   localObjects:
   - {fileID: 5578451398214372871}
   - {fileID: 805173685}
---- !u!114 &1561230768985728582
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7824355909446858007}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 38138860ac4b31149b7c7ca00223ffb2, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!143 &2588825623405760121
 CharacterController:
   m_ObjectHideFlags: 0
@@ -5276,6 +5266,19 @@ MonoBehaviour:
   defaultTexture: {fileID: 2800000, guid: 6f23319fc780cdc43a22d23a4136c778, type: 3}
   parent: {fileID: 5956353665532293835}
   trailRenderer: {fileID: 1457392216109032086}
+--- !u!114 &7523205291626943619
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7824355909446858007}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8698b42c70c25cc408db98a4b30b40b5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  showConsole: 0
 --- !u!1 &7886488294424628912
 GameObject:
   m_ObjectHideFlags: 0
