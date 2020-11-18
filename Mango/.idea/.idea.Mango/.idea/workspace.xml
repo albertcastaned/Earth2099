@@ -2,23 +2,10 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="63769529-5654-45a6-a890-c6dc06e39fab" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.Mango/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Mango/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/EffectExamples/Blood/Prefabs/BloodSprayEffect.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/EffectExamples/Blood/Prefabs/BloodSprayEffect.prefab" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/EffectExamples/FireExplosionEffects/Prefabs/PlasmaExplosionEffect.prefab" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/EffectExamples/FireExplosionEffects/Prefabs/PlasmaExplosionEffect.prefab.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/EffectExamples/WeaponEffects/Prefabs/BulletImpactFleshBigEffect.prefab" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/EffectExamples/WeaponEffects/Prefabs/BulletImpactFleshBigEffect.prefab.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/EffectExamples/WeaponEffects/Prefabs/BulletImpactMetalEffect.prefab" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/EffectExamples/WeaponEffects/Prefabs/BulletImpactMetalEffect.prefab.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/EffectExamples/WeaponEffects/Prefabs/MuzzleFlashEffect.prefab" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/EffectExamples/WeaponEffects/Prefabs/MuzzleFlashEffect.prefab.meta" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Resources/BlueGun.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Resources/BlueGun.prefab" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Resources/Bullet.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Resources/Bullet.prefab" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Resources/Bullet2.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Resources/Bullet2.prefab" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Resources/Enemy.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Resources/Enemy.prefab" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Resources/Gun.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Resources/Gun.prefab" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Resources/YellowGun.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Resources/YellowGun.prefab" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Bullet.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Bullet.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Enemy.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Enemy.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Player.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Player.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/ProjectileGun.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/ProjectileGun.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -36,11 +23,11 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/Assets/Scripts/ProjectileGun.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/GunHolder.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/Enemy.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/Bullet.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/Player.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/ProjectileGun.cs" />
       </list>
     </option>
   </component>
@@ -100,7 +87,7 @@
       <workItem from="1605489939303" duration="1075000" />
       <workItem from="1605491247780" duration="6032000" />
       <workItem from="1605582651617" duration="3277000" />
-      <workItem from="1605657209121" duration="2644000" />
+      <workItem from="1605657209121" duration="2977000" />
     </task>
     <task id="LOCAL-00001" summary="Add PunRPC to player to shoot">
       <created>1605585757170</created>
@@ -123,7 +110,14 @@
       <option name="project" value="LOCAL" />
       <updated>1605657784605</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="Add animations for bullet impacts">
+      <created>1605660161978</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1605660161978</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -146,12 +140,13 @@
     <MESSAGE value="Add PunRPC to player to shoot" />
     <MESSAGE value="Allow gun change" />
     <MESSAGE value="Remove log calls" />
-    <option name="LAST_COMMIT_MESSAGE" value="Remove log calls" />
+    <MESSAGE value="Add animations for bullet impacts" />
+    <option name="LAST_COMMIT_MESSAGE" value="Add animations for bullet impacts" />
   </component>
   <component name="WindowStateProjectService">
-    <state x="224" y="31" key="CommitChangelistDialog2" timestamp="1605657784280">
+    <state x="224" y="31" key="CommitChangelistDialog2" timestamp="1605660161626">
       <screen x="0" y="23" width="1440" height="820" />
     </state>
-    <state x="224" y="31" key="CommitChangelistDialog2/0.23.1440.820/1440.-157.1920.1057@0.23.1440.820" timestamp="1605657784280" />
+    <state x="224" y="31" key="CommitChangelistDialog2/0.23.1440.820/1440.-157.1920.1057@0.23.1440.820" timestamp="1605660161626" />
   </component>
 </project>
