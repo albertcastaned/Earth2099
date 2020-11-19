@@ -20,7 +20,14 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="109bf6b6-9ab5-4220-b47c-afb0e34a3fd8" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/../ColorSkies/Skies/Sky_5.mat" beforeDir="false" afterPath="$PROJECT_DIR$/../ColorSkies/Skies/Sky_5.mat" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Plugins/RPG Monster Duo PBR Polyart/Animators.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Plugins/SciFiWarriorPBRHPPolyart/Animators.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Resources/Player.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/../Resources/Player.prefab" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Scenes/DebugLevel.unity" beforeDir="false" afterPath="$PROJECT_DIR$/../Scenes/DebugLevel.unity" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.Scripts.dir/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Scripts.dir/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/PowerUpBehaviour.cs" beforeDir="false" afterPath="$PROJECT_DIR$/PowerUpBehaviour.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Packages/packages-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/../../Packages/packages-lock.json" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -33,14 +40,14 @@
   <component name="HighlightingSettingsPerFile">
     <setting file="file://$PROJECT_DIR$/Bullet.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/../../../../Tarea91/Assets/Scripts/Singleton.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/PowerUpActions.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/RoomController.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/../Plugins/Mapbox/Unity/Utilities/DontDestroyOnLoad.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/../Plugins/Mapbox/Unity/Utilities/DontDestroyOnLoad.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/PowerUpBehaviour.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/FaceCamera.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/CameraFollow.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/PowerUpController.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/PowerUpBehaviour.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/GameLobby.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/PowerUpActions.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/../../../../Tarea91/Assets/Scripts/GameController.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Dialog.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Player.cs" root0="SKIP_HIGHLIGHTING" />
@@ -94,6 +101,7 @@
       <workItem from="1605056500019" duration="2673000" />
       <workItem from="1605393684995" duration="2816000" />
       <workItem from="1605480315434" duration="858000" />
+      <workItem from="1605670611375" duration="791000" />
     </task>
     <servers />
   </component>

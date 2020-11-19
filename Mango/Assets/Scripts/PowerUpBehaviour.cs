@@ -18,15 +18,22 @@ public class PowerUpBehaviour : MonoBehaviour
 
     private void OnCollisionEnter(Collision other)
     {
-        if (other.gameObject.tag == "player")
+		Debug.Log("Hubo una colisión con " + other.gameObject.tag);
+        
+    }
+
+	public void OnTriggerEnter(Collider other){
+		Debug.Log("Hubo un trigger con " + other.tag);
+		if (other.gameObject.tag == "Player")
         {
+			Debug.Log("1.- Se activa el Power Up");
             ActivatePowerUp();
             gameObject.SetActive(false);
         }
-    }
-
+	}
     private void ActivatePowerUp()
     {
+		Debug.Log("2.- Mandar llamar al controler activar el PowerUp");
         controller.ActivatePowerUp(powerUp);
     }
 

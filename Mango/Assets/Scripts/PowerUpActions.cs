@@ -13,11 +13,13 @@ public class PowerUpActions : MonoBehaviour
     }
     public void HighSpeedStartAction()
     {
+		Debug.Log("Aumenta la velocidad");
         player.speed *= 2;
     }
 
     public void HighSpeedEndAction()
     {
+		Debug.Log("Disminuye la velocidad");
         player.speed /= 2;
     }
 }

@@ -26,6 +26,7 @@ public class PowerUp
 
 	public void Start()
 	{
+		Debug.Log("5.- Power Up start Invoke");
 		if(startAction != null)
 			startAction.Invoke();
 	}

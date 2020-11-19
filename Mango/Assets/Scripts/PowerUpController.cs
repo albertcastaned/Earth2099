@@ -54,11 +54,13 @@ public class PowerUpController : MonoBehaviour
     {
         if (!activatePowerUps.ContainsKey(powerup))
         {
+			Debug.Log("3.- Power Up start");
             powerup.Start();
             activatePowerUps.Add(powerup, powerup.duration);
         }
         else
         {
+        	Debug.Log("4.- Power Up duration");
             activatePowerUps[powerup] += powerup.duration;
         }
 

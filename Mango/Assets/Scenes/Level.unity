@@ -39,7 +39,7 @@ RenderSettings:
   m_ReflectionIntensity: 0.069
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 2938426574818789253}
-  m_IndirectSpecularColor: {r: 0.07451654, g: 0.08266691, b: 0.10450188, a: 0.069}
+  m_IndirectSpecularColor: {r: 0.12237885, g: 0.14497405, b: 0.18322238, a: 0.069}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -291,7 +291,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 75d68f24d60594cbb95bd12bca6efe4d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  prefabLife: {fileID: 6806986601065320563, guid: 553d653fed3d642688042343452fb0fc,
+  prefabLife: {fileID: 5425518092195050645, guid: 553d653fed3d642688042343452fb0fc,
     type: 3}
   spawnTime: 30
 --- !u!114 &350755465
@@ -306,7 +306,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 082527bc31ceb4a4082e60748f1e2ba4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  player: {fileID: 258158175723948133, guid: 1e1e9ddf71982884a8f45b578db04ba4, type: 3}
+  playerPrefab: {fileID: 258158175723948133, guid: 1e1e9ddf71982884a8f45b578db04ba4,
+    type: 3}
 --- !u!114 &350755466
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -319,7 +320,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c2d98037717cf4d0fa83c2ecdc3ee567, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  prefabPowerUp: {fileID: 6806986601065320563, guid: 553d653fed3d642688042343452fb0fc,
+  prefabPowerUp: {fileID: 5425518092195050645, guid: 553d653fed3d642688042343452fb0fc,
     type: 3}
   powerups: []
 --- !u!1 &513879994
