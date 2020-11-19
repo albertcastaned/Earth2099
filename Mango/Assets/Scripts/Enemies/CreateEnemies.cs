@@ -2,15 +2,23 @@
 using System.Collections;
 using UnityEngine;
 using Mango.Game;
+using UnityEngine.AI;
 
 
 public class CreateEnemies : MonoBehaviour
 {
     public float spawnTime = 30f;
     public EnemySpawn[] enemySpawn;
+    private Transform enemyParent;
+    private LayerMask buildings, ground;
 
+    public int enemyLimit;
     void Start()
     {
+        enemyParent = GameObject.Find("Enemies").transform;
+        buildings = LayerMask.GetMask("Buildings");
+        ground = LayerMask.GetMask("Floor");
+
         if (PhotonNetwork.IsMasterClient)
         {
             InvokeRepeating(nameof(Spawn), spawnTime, spawnTime);
@@ -19,19 +27,26 @@ public class CreateEnemies : MonoBehaviour
     // Update is called once per frame
     void Spawn()
     {
-        float numx = (Random.Range(-100,100));
-        float numy = Random.Range(-100,100);
-        
-        Vector3 posicion = new Vector3(numx,0f,numy);
+        if (RoomController.Instance.currentEnemies >= enemyLimit)
+            return;
+        // TODO: Get area of map
+        float numx = (Random.Range(-100, 100));
+        float numy = Random.Range(-100, 100);
         GameObject newEnemyPrefab = GetRandomEnemy().prefab;
-        RoomController.Instance.Spawn(newEnemyPrefab.name, posicion);
+
+        Vector3 posicion = new Vector3(numx, 0f, numy);
+
+        Vector3 randomNavMeshPos = Random.insideUnitSphere * 300f + posicion;
+
+
+        NavMesh.SamplePosition(randomNavMeshPos, out NavMeshHit hit, 300f, NavMesh.AllAreas);
+
+        GameObject newEnemy = RoomController.Instance.Spawn(newEnemyPrefab.name, hit.position);
+        newEnemy.transform.SetParent(enemyParent);
+        RoomController.Instance.IncreaseCurrentEnemiesCount();
+
     }
 
-    IEnumerator CreateObjectInValidPlace()
-    {
-        
-        yield return null;
-    }
 
     EnemySpawn GetRandomEnemy()
     {

@@ -46,6 +46,10 @@ MonoBehaviour:
   - SpawnEnemy
   - SendChat
   - UpdateColor
+  - UpdateCurrentEnemiesCount
+  - DecreaseCurrentEnemiesCount
+  - IncreaseCurrentEnemiesCount
+  - UpdateEnemyCount
   DisableAutoOpenWizard: 1
   ShowSettings: 1
   DevRegionSetOnce: 1

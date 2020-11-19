@@ -3,7 +3,6 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
-
 [RequireComponent(typeof(NavMeshSurface))]
 public class BakeRuntime : MonoBehaviour
 {
@@ -18,7 +17,6 @@ public class BakeRuntime : MonoBehaviour
 
     IEnumerator WaitForMap()
     {
-        Debug.Log(loaded);
         yield return new WaitUntil(() => map.MapVisualizer.State == ModuleState.Finished);
         print("Map loaded, baking navmesh...");
 
@@ -31,6 +29,7 @@ public class BakeRuntime : MonoBehaviour
         {
             surface.BuildNavMesh();
             Debug.Log("Navmesh succesfully baked.");
+
         }
         loaded = true;
     }

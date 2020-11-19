@@ -47,6 +47,10 @@ public class Player : MonoBehaviourPun, IPunObservable
 
     private DebugController debugController;
 
+    private bool invincible;
+
+
+
     // Valores que deben sincronizados
     private int latestSelectedGun;
     // Start is called beforz the first frame update
@@ -297,7 +301,10 @@ public class Player : MonoBehaviourPun, IPunObservable
     [PunRPC]
     public void ReduceHealth(int amount)
     {
+        if (invincible)
+            return;
         Debug.Log("Player receives damage");
+
         health -= amount;
         UpdateHealthUI();
         CreateFloatingText("-" + amount);
@@ -362,4 +369,9 @@ public class Player : MonoBehaviourPun, IPunObservable
     public PlayerState State {  get { return state; } }
 
     public void Revive() { state = PlayerState.Idle; }
+
+    public void ToggleInvincible()
+    {
+        invincible = !invincible;
+    }
 }

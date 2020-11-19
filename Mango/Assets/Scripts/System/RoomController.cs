@@ -27,6 +27,8 @@ namespace Mango.Game
         private string gameVersion;
         public bool isLoading = true;
 
+        public int currentEnemies = 0;
+
 
         void Awake()
         {
@@ -120,11 +122,20 @@ namespace Mango.Game
             base.OnPlayerLeftRoom(otherPlayer);
         }
 
-
-        public void Spawn(string prefabName, Vector3 position)
+        
+        public void IncreaseCurrentEnemiesCount()
         {
+            currentEnemies++;
+        }
 
-            PhotonNetwork.Instantiate(prefabName, position, Quaternion.identity);
+        public void DecreaseCurrentEnemiesCount()
+        {
+            currentEnemies--;
+        }
+
+        public GameObject Spawn(string prefabName, Vector3 position)
+        {
+            return PhotonNetwork.Instantiate(prefabName, position, Quaternion.identity);
         }
 
     }
