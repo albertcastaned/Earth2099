@@ -4955,7 +4955,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxHealth: 100
-  speed: 40
+  speed: 10
   jumpSpeed: 3
   gravity: 9.81
   maxDodgeTime: 3
