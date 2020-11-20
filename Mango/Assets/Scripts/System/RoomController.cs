@@ -90,27 +90,7 @@ namespace Mango.Game
             isLoading = value;
         }
 
-        void OnGUI()
-        {
-            if (isLoading)
-                return;
-            if (PhotonNetwork.CurrentRoom == null)
-                return;
 
-            if (GUI.Button(new Rect(5, 5, 125, 25), "Abandonar Partida"))
-            {
-                PhotonNetwork.LeaveRoom();
-            }
-
-            GUI.Label(new Rect(135, 5, 200, 25), PhotonNetwork.CurrentRoom.Name);
-            for (int i = 0; i < PhotonNetwork.PlayerList.Length; i++)
-            {
-                string isMasterClient = (PhotonNetwork.PlayerList[i].IsMasterClient ? ": Host" : "");
-                GUI.Label(new Rect(5, 35 + 30 * i, 200, 25), PhotonNetwork.PlayerList[i].NickName + isMasterClient);
-
-            }
-
-        }
         public override void OnLeftRoom()
         {
             UnityEngine.SceneManagement.SceneManager.LoadScene("Launcher");

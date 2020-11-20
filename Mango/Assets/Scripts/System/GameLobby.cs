@@ -122,6 +122,8 @@ public class GameLobby : MonoBehaviourPunCallbacks
         {
             for (int i = 0; i < createdRooms.Count; i++)
             {
+                if (createdRooms[i].MaxPlayers <= 0)
+                    continue;
                 GUILayout.BeginHorizontal("box");
                 GUILayout.Label(createdRooms[i].Name, GUILayout.Width(400));
                 GUILayout.Label(createdRooms[i].PlayerCount + "/" + createdRooms[i].MaxPlayers);

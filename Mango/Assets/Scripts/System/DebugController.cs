@@ -35,8 +35,10 @@ public class DebugController : MonoBehaviour
         GODMODE = new DebugCommand("godmode", "Toggles player god mode to become invincible", "godmode", () =>
         {
             player.ToggleInvincible();
-            player.health = player.maxHealth;
+            player.health = 999;
+            player.maxHealth = player.health;
             player.Revive();
+            player.UpdateHealthUI();
         });
 
         KILLENEMIES = new DebugCommand("killenemies", "Kills all enemies", "killenemies", () =>

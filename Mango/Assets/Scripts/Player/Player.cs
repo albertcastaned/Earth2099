@@ -29,6 +29,7 @@ public class Player : MonoBehaviourPun, IPunObservable
     [Header("HUD")]
     public Text nameTag;
     public GameObject loadingPanel;
+    public GameObject settingsMenu;
     public Image barraVida;
     public TMP_Text lifeText;
     public DamagePopupText popupTextPrefab;
@@ -65,6 +66,7 @@ public class Player : MonoBehaviourPun, IPunObservable
         animator = GetComponent<Animator>();
         SetAnimation("isIdle", true);
         StartCoroutine("WaitForLoad");
+        UpdateHealthUI();
     }
 
 
@@ -232,11 +234,12 @@ public class Player : MonoBehaviourPun, IPunObservable
     }
 
     public bool IsChatting { get { return chatManager.IsChatting; } }
-    public bool CanMove { get { return !isLoading && state != PlayerState.Dead && !IsChatting && !debugController.showConsole; } }
+    public bool CanMove { get { return !isLoading && state != PlayerState.Dead && !IsChatting && !debugController.showConsole && !settingsMenu.activeInHierarchy; } }
 
     // Update is called once per frame
     void Update()
     {
+        CheckSettingsPressed();
         Movement();
         CheckStillOnMap();
 
@@ -265,7 +268,13 @@ public class Player : MonoBehaviourPun, IPunObservable
         }
     }
 
-
+    void CheckSettingsPressed()
+    {
+        if(!IsChatting && Input.GetKeyDown(KeyCode.Escape))
+        {
+            settingsMenu.SetActive(!settingsMenu.activeInHierarchy);
+        }
+    }
     
     
     /**
@@ -344,14 +353,11 @@ public class Player : MonoBehaviourPun, IPunObservable
         }
         else
         {
-            int oldHealth = health;
-
             latestSelectedGun = (int)stream.ReceiveNext();
             health = (int)stream.ReceiveNext();
             state = (PlayerState)stream.ReceiveNext();
             trailRenderrer.emitting = (bool)stream.ReceiveNext();
-            if (health != oldHealth)
-                UpdateHealthUI();
+
         }
     }
 
