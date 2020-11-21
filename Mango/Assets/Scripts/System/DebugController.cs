@@ -26,8 +26,10 @@ public class DebugController : MonoBehaviour
         #region Commands
         SPAWN = new DebugCommand<string>("spawn", "Spawns a prefab", "spawn <prefabName>", (x) =>
         {
-            if(x.ToUpper() != "PLAYER")
-            RoomController.Instance.Spawn(x, transform.position);
+            if (x.ToUpper() != "PLAYER")
+            {
+                RoomController.Instance.Spawn(x, transform.position);
+            }
         });
 
 

@@ -30,6 +30,7 @@ public class Player : MonoBehaviourPun, IPunObservable
     public Text nameTag;
     public GameObject loadingPanel;
     public GameObject settingsMenu;
+    public PartyHealth partyHealth;
     public Image barraVida;
     public TMP_Text lifeText;
     public DamagePopupText popupTextPrefab;
@@ -67,6 +68,7 @@ public class Player : MonoBehaviourPun, IPunObservable
         SetAnimation("isIdle", true);
         StartCoroutine("WaitForLoad");
         UpdateHealthUI();
+        photonView.RPC(nameof(SetupPartyHealthBars), RpcTarget.AllBufferedViaServer);
     }
 
 
@@ -276,6 +278,14 @@ public class Player : MonoBehaviourPun, IPunObservable
         }
     }
     
+    void CheckDead()
+    {
+        if (health <= 0)
+        {
+            state = PlayerState.Dead;
+        }
+    }
+    
     
     /**
      * TODO: fix the starting position of the bullet, in order to look like going out of the gun.
@@ -307,16 +317,28 @@ public class Player : MonoBehaviourPun, IPunObservable
             transform.position = new Vector3(startPos.x, startPos.y + 5f, startPos.z);
         }
     }
+    private void CreateFloatingText(string text)
+    {
+        DamagePopupText instance = Instantiate(popupTextPrefab, transform);
+
+        instance.SetText(text);
+    }
+
+    [PunRPC]
+    void SetupPartyHealthBars()
+    {
+        partyHealth.UpdateHealth(photonView.Owner, health, maxHealth);
+    }
+
     [PunRPC]
     public void ReduceHealth(int amount)
     {
         if (invincible)
             return;
-        Debug.Log("Player receives damage");
-
         health -= amount;
         UpdateHealthUI();
         CreateFloatingText("-" + amount);
+        partyHealth.UpdateHealth(photonView.Owner, health, maxHealth);
         if (health <= 0)
         {
             state = PlayerState.Dead;
@@ -325,17 +347,21 @@ public class Player : MonoBehaviourPun, IPunObservable
 
     public void UpdateHealthUI()
     {
+        // Update my health
         barraVida.fillAmount = (float)health / maxHealth;
-        if(health <= 50 && health >= 31)
+        if (health <= 50 && health >= 31)
         {
             barraVida.color = new Color32(38, 143, 205, 255);
-        } else if(health <= 30 && health >= 16)
+        }
+        else if (health <= 30 && health >= 16)
         {
             barraVida.color = new Color32(60, 166, 228, 255);
-        } else if(health <= 15 && health >= 6)
+        }
+        else if (health <= 15 && health >= 6)
         {
             barraVida.color = new Color32(146, 213, 252, 255);
-        } else if(health <= 5)
+        }
+        else if (health <= 5)
         {
 
         }
@@ -346,18 +372,19 @@ public class Player : MonoBehaviourPun, IPunObservable
     {
         if (stream.IsWriting)
         {
-            stream.SendNext(gunHolder.GetComponent<GunHolder>().selectedGunIndex);
             stream.SendNext(health);
+            stream.SendNext(maxHealth);
+            stream.SendNext(gunHolder.GetComponent<GunHolder>().selectedGunIndex);
             stream.SendNext(state);
             stream.SendNext(trailRenderrer.emitting);
         }
         else
         {
-            latestSelectedGun = (int)stream.ReceiveNext();
             health = (int)stream.ReceiveNext();
+            maxHealth = (int)stream.ReceiveNext();
+            latestSelectedGun = (int)stream.ReceiveNext();
             state = (PlayerState)stream.ReceiveNext();
             trailRenderrer.emitting = (bool)stream.ReceiveNext();
-
         }
     }
 
@@ -365,12 +392,6 @@ public class Player : MonoBehaviourPun, IPunObservable
 
     public bool IsAlive { get { return state != PlayerState.Dead; } }
 
-    private void CreateFloatingText(string text)
-    {
-        DamagePopupText instance = Instantiate(popupTextPrefab, transform);
-
-        instance.SetText(text);
-    }
 
     public PlayerState State {  get { return state; } }
 

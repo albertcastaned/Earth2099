@@ -54,8 +54,7 @@ namespace Mango.Game
                 UnityEngine.SceneManagement.SceneManager.LoadScene("Launcher");
                 return;
             }
-            if (PhotonNetwork.PlayerList.Length > 1)
-                CheckDuplicateName();
+
 
             // Iniciar al jugador sincronizadamente
             GameObject player = PhotonNetwork.Instantiate(playerPrefab.name, spawnPoint, Quaternion.identity, 0);
@@ -74,17 +73,6 @@ namespace Mango.Game
             isLoading = false;
         }
 
-
-        private void CheckDuplicateName()
-        {
-
-            for (int i = 0; i < PhotonNetwork.PlayerList.Length; i++)
-            {
-                if (PhotonNetwork.PlayerList[i].NickName == PhotonNetwork.NickName)
-                    PhotonNetwork.NickName += i;
-
-            }
-        }
         public void SetLoading(bool value)
         {
             isLoading = value;
@@ -95,6 +83,7 @@ namespace Mango.Game
         {
             UnityEngine.SceneManagement.SceneManager.LoadScene("Launcher");
         }
+
         public override void OnPlayerLeftRoom(Photon.Realtime.Player otherPlayer)
         {
             PhotonView.Find(1).RPC("SendChat", RpcTarget.All, $"<b>{otherPlayer.NickName}</b> left the game.", ChatManager.ChatMessageType.NotificationMessage);
