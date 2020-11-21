@@ -5,35 +5,18 @@ using UnityEngine;
 public class PowerUpBehaviour : MonoBehaviour
 {
     
-    public PowerUpController controller;
     [SerializeField] private PowerUp powerUp;
-
-    private Transform transform_;
-
-    private void Awaker()
-    {
-        transform_ = transform;
-        
-    }
-
-    private void OnCollisionEnter(Collision other)
-    {
-		Debug.Log("Hubo una colisión con " + other.gameObject.tag);
-        
-    }
-
 	public void OnTriggerEnter(Collider other){
-		Debug.Log("Hubo un trigger con " + other.tag);
 		if (other.gameObject.tag == "Player")
         {
 			Debug.Log("1.- Se activa el Power Up");
-            ActivatePowerUp();
+            ActivatePowerUp(other.gameObject.GetComponent<PowerUpController>());
             gameObject.SetActive(false);
         }
 	}
-    private void ActivatePowerUp()
+
+    private void ActivatePowerUp(PowerUpController controller)
     {
-		Debug.Log("2.- Mandar llamar al controler activar el PowerUp");
         controller.ActivatePowerUp(powerUp);
     }
 

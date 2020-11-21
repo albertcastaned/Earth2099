@@ -5,20 +5,17 @@ using UnityEngine;
 public class PowerUpController : MonoBehaviour
 {
     public GameObject prefabPowerUp;
-
-    public List<PowerUp> powerups;
-    
+   
     public Dictionary<PowerUp, float> activatePowerUps = new Dictionary<PowerUp,float>();
     
     private List<PowerUp> keys = new List<PowerUp>();
-    void Start()
-    {
-        
-    }
+
+    private Player player;
 
     // Update is called once per frame
     void Update()
     {
+        player = GetComponent<Player>();
         HandleActivePowerUps();
     }
 
@@ -38,7 +35,7 @@ public class PowerUpController : MonoBehaviour
                 {
                     changed = true;
                     activatePowerUps.Remove(powerup);
-                    powerup.End();
+                    powerup.End(player);
                 }
             }
         }
@@ -55,7 +52,7 @@ public class PowerUpController : MonoBehaviour
         if (!activatePowerUps.ContainsKey(powerup))
         {
 			Debug.Log("3.- Power Up start");
-            powerup.Start();
+            powerup.Start(player);
             activatePowerUps.Add(powerup, powerup.duration);
         }
         else
@@ -71,7 +68,6 @@ public class PowerUpController : MonoBehaviour
     {
         GameObject powerupGameObject = Instantiate(prefabPowerUp);
         var powerUpBehaviour = powerupGameObject.GetComponent<PowerUpBehaviour>();
-        powerUpBehaviour.controller = this;
         powerUpBehaviour.SetPowerUp(powerup);
         powerupGameObject.transform.position = posicion;
 

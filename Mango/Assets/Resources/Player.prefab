@@ -4689,7 +4689,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 6238927652256821081}
   m_HandleRect: {fileID: 6238927652256821094}
   m_Direction: 2
-  m_Value: 1
+  m_Value: 0
   m_Size: 1
   m_NumberOfSteps: 0
   m_OnValueChanged:
@@ -4910,6 +4910,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7824355909446858000}
   - component: {fileID: 7824355909446858004}
+  - component: {fileID: 243135443}
   - component: {fileID: 3657018973477295847}
   - component: {fileID: 1561230768985728582}
   - component: {fileID: 2588825623405760121}
@@ -4969,6 +4970,20 @@ MonoBehaviour:
   chatManager: {fileID: 6238927651560556322}
   DEBUG: 0
   gunHolder: {fileID: 8387594768095041706}
+--- !u!114 &243135443
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7824355909446858007}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c2d98037717cf4d0fa83c2ecdc3ee567, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  prefabPowerUp: {fileID: 5425518092195050645, guid: 553d653fed3d642688042343452fb0fc,
+    type: 3}
 --- !u!114 &3657018973477295847
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4986,6 +5001,7 @@ MonoBehaviour:
   - {fileID: 1932339761540891469}
   - {fileID: 7637419647303751779}
   - {fileID: 2205957758924071774}
+  - {fileID: 243135443}
   localObjects:
   - {fileID: 5578451398214372871}
   - {fileID: 805173685}

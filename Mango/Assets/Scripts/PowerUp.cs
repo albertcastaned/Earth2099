@@ -4,6 +4,11 @@ using UnityEngine;
 using System; 
 using UnityEngine.Events;
 
+
+[System.Serializable]
+public class PlayerModifier : UnityEvent<Player>
+{ }
+
 [Serializable]
 public class PowerUp 
 {
@@ -14,20 +19,20 @@ public class PowerUp
 	public float duration;
 
 	[SerializeField]
-	public UnityEvent startAction;
+	public PlayerModifier startAction;
 
 	[SerializeField]
-	public UnityEvent endAction;
+	public PlayerModifier endAction;
    
-	public void End(){
+	public void End(Player player){
 		if(endAction != null)
-			endAction.Invoke();
+			endAction.Invoke(player);
 	}
 
-	public void Start()
+	public void Start(Player player)
 	{
 		Debug.Log("5.- Power Up start Invoke");
 		if(startAction != null)
-			startAction.Invoke();
+			startAction.Invoke(player);
 	}
 }

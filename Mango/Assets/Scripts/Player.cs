@@ -228,7 +228,6 @@ public class Player : MonoBehaviourPun, IPunObservable
     void Update()
     {
 
-		Debug.Log("La velocidad es " + speed);
         Movement();
         CheckStillOnMap();
 
