@@ -28,7 +28,7 @@ MonoBehaviour:
     EnableLobbyStatistics: 0
     NetworkLogging: 1
   DevRegion: us
-  PunLogging: 2
+  PunLogging: 0
   EnableSupportLogger: 0
   RunInBackground: 1
   StartInOfflineMode: 0
@@ -46,6 +46,12 @@ MonoBehaviour:
   - SpawnEnemy
   - SendChat
   - UpdateColor
+  - UpdateCurrentEnemiesCount
+  - DecreaseCurrentEnemiesCount
+  - IncreaseCurrentEnemiesCount
+  - UpdateEnemyCount
+  - CreateFloatingText
+  - SetupPartyHealthBars
   DisableAutoOpenWizard: 1
   ShowSettings: 1
   DevRegionSetOnce: 1

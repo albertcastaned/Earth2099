@@ -47,7 +47,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c55a2c216b937fb4abed2d2af60670ae, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  animator: {fileID: 0}
   maxHealth: 100
   speed: 2
   damage: 10
@@ -55,11 +54,11 @@ MonoBehaviour:
   attackRange: 1.85
   walkPointRange: 100
   timeBetweenAttacks: 5
+  stunnedByHits: 1
   barraVida: {fileID: 696902626736668936}
   lifeText: {fileID: 5881118789275208024}
   popupTextPrefab: {fileID: 3372425993928838701, guid: 37d4fadc287bd604c84ae0766f5b5a6a,
     type: 3}
-  debugText: {fileID: 445502403520718087}
 --- !u!195 &2065600435316049358
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -167,7 +166,7 @@ CanvasRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2112226040943280924}
-  m_CullTransparentMesh: 0
+  m_CullTransparentMesh: 1
 --- !u!114 &8654913823214769143
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -241,7 +240,7 @@ CanvasRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2225206351762122229}
-  m_CullTransparentMesh: 0
+  m_CullTransparentMesh: 1
 --- !u!114 &696902626736668936
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -315,7 +314,7 @@ CanvasRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3372563769139229697}
-  m_CullTransparentMesh: 0
+  m_CullTransparentMesh: 1
 --- !u!114 &445502403520718087
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -448,7 +447,7 @@ CanvasRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4634932397104130019}
-  m_CullTransparentMesh: 0
+  m_CullTransparentMesh: 1
 --- !u!114 &5881118789275208024
 MonoBehaviour:
   m_ObjectHideFlags: 0

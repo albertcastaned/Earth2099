@@ -14,6 +14,8 @@ public class DebugController : MonoBehaviour
 
     public static DebugCommand GODMODE;
 
+    public static DebugCommand KILLENEMIES;
+
     public List<object> commandList;
 
     private Player player;
@@ -24,26 +26,38 @@ public class DebugController : MonoBehaviour
         #region Commands
         SPAWN = new DebugCommand<string>("spawn", "Spawns a prefab", "spawn <prefabName>", (x) =>
         {
-            if(x.ToUpper() != "PLAYER")
-            RoomController.Instance.Spawn(x, transform.position);
+            if (x.ToUpper() != "PLAYER")
+            {
+                RoomController.Instance.Spawn(x, transform.position);
+            }
         });
 
 
 
-        GODMODE = new DebugCommand("godmode", "Gives player infinite health", "godmode", () =>
+        GODMODE = new DebugCommand("godmode", "Toggles player god mode to become invincible", "godmode", () =>
         {
-            player.health = 9999999;
-
-            player.maxHealth = 9999999;
-            player.UpdateHealthUI();
+            player.ToggleInvincible();
+            player.health = 999;
+            player.maxHealth = player.health;
             player.Revive();
+            player.UpdateHealthUI();
+        });
+
+        KILLENEMIES = new DebugCommand("killenemies", "Kills all enemies", "killenemies", () =>
+        {
+            GameObject enemyParent = GameObject.Find("Enemies");
+            foreach(Transform child in enemyParent.transform)
+            {
+                child.gameObject.GetComponent<Enemy>().Die();
+            }
         });
 
         #endregion
         commandList = new List<object>
         {
             SPAWN,
-            GODMODE
+            GODMODE,
+            KILLENEMIES
         };
     }
 

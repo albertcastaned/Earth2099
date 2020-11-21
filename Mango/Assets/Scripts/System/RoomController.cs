@@ -27,6 +27,8 @@ namespace Mango.Game
         private string gameVersion;
         public bool isLoading = true;
 
+        public int currentEnemies = 0;
+
 
         void Awake()
         {
@@ -52,8 +54,7 @@ namespace Mango.Game
                 UnityEngine.SceneManagement.SceneManager.LoadScene("Launcher");
                 return;
             }
-            if (PhotonNetwork.PlayerList.Length > 1)
-                CheckDuplicateName();
+
 
             // Iniciar al jugador sincronizadamente
             GameObject player = PhotonNetwork.Instantiate(playerPrefab.name, spawnPoint, Quaternion.identity, 0);
@@ -72,47 +73,17 @@ namespace Mango.Game
             isLoading = false;
         }
 
-
-        private void CheckDuplicateName()
-        {
-
-            for (int i = 0; i < PhotonNetwork.PlayerList.Length; i++)
-            {
-                if (PhotonNetwork.PlayerList[i].NickName == PhotonNetwork.NickName)
-                    PhotonNetwork.NickName += i;
-
-            }
-        }
         public void SetLoading(bool value)
         {
             isLoading = value;
         }
 
-        void OnGUI()
-        {
-            if (isLoading)
-                return;
-            if (PhotonNetwork.CurrentRoom == null)
-                return;
 
-            if (GUI.Button(new Rect(5, 5, 125, 25), "Abandonar Partida"))
-            {
-                PhotonNetwork.LeaveRoom();
-            }
-
-            GUI.Label(new Rect(135, 5, 200, 25), PhotonNetwork.CurrentRoom.Name);
-            for (int i = 0; i < PhotonNetwork.PlayerList.Length; i++)
-            {
-                string isMasterClient = (PhotonNetwork.PlayerList[i].IsMasterClient ? ": Host" : "");
-                GUI.Label(new Rect(5, 35 + 30 * i, 200, 25), PhotonNetwork.PlayerList[i].NickName + isMasterClient);
-
-            }
-
-        }
         public override void OnLeftRoom()
         {
             UnityEngine.SceneManagement.SceneManager.LoadScene("Launcher");
         }
+
         public override void OnPlayerLeftRoom(Photon.Realtime.Player otherPlayer)
         {
             PhotonView.Find(1).RPC("SendChat", RpcTarget.All, $"<b>{otherPlayer.NickName}</b> left the game.", ChatManager.ChatMessageType.NotificationMessage);
@@ -120,11 +91,20 @@ namespace Mango.Game
             base.OnPlayerLeftRoom(otherPlayer);
         }
 
-
-        public void Spawn(string prefabName, Vector3 position)
+        
+        public void IncreaseCurrentEnemiesCount()
         {
+            currentEnemies++;
+        }
 
-            PhotonNetwork.Instantiate(prefabName, position, Quaternion.identity);
+        public void DecreaseCurrentEnemiesCount()
+        {
+            currentEnemies--;
+        }
+
+        public GameObject Spawn(string prefabName, Vector3 position)
+        {
+            return PhotonNetwork.Instantiate(prefabName, position, Quaternion.identity);
         }
 
     }

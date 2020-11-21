@@ -33,6 +33,7 @@ public class Enemy : MonoBehaviourPun
     private int health;
     private NavMeshAgent agent;
     private Player target;
+    private Vector3 previousPlayerPos;
     private Vector3 walkPoint;
     private bool playerInSightRange, playerInAttackRange, walkPointSet, alreadyAttacked;
 
@@ -41,6 +42,8 @@ public class Enemy : MonoBehaviourPun
 
     private EnemyState currentState;
     delegate void OnAnimationFinished();
+
+    private List<Player> auxPlayers;
 
     enum EnemyState
     {
@@ -65,6 +68,9 @@ public class Enemy : MonoBehaviourPun
         UpdateAnimation("IsWalking", true);
 
         animator.SetFloat("MovementSpeed", 1.4f - 1f / speed);
+
+        // Called only twice per second to improve performance
+        InvokeRepeating(nameof(EnemyUpdate), 0.3f, 0.3f);
     }
 
     void UpdateAnimation(string parameter, bool value)
@@ -72,8 +78,8 @@ public class Enemy : MonoBehaviourPun
         animator.SetBool(parameter, value);
     }
 
-    // Update is called once per frame
-    void Update()
+
+    void EnemyUpdate()
     {
         // Might be performance heavy. Need testing to verify
         if (!PhotonNetwork.IsMasterClient)
@@ -96,7 +102,7 @@ public class Enemy : MonoBehaviourPun
         Collider[] totalPlayersColliders = 
             Physics.OverlapSphere(transform.position, range, isPlayer).Where(player => player.gameObject.GetComponent<Player>().IsAlive).ToArray();
 
-        List<Player> auxPlayers = new List<Player>();
+       auxPlayers = new List<Player>();
         foreach (Collider collider in totalPlayersColliders)
             auxPlayers.Add(collider.gameObject.GetComponent<Player>());
 
@@ -131,7 +137,14 @@ public class Enemy : MonoBehaviourPun
         UpdateAnimation();
         if (target == null)
             ChooseRandomTargetInList(ref playersInSightRange);
-        agent.SetDestination(target.transform.position);
+
+        Vector3 playerPos = target.transform.position;
+        // Update only when target has moved
+        if (Vector3.Distance(previousPlayerPos, playerPos) > attackRange)
+        {
+            agent.SetDestination(playerPos);
+            previousPlayerPos = playerPos;
+        }
     }
 
     private void AttackPlayer()
@@ -139,11 +152,11 @@ public class Enemy : MonoBehaviourPun
         currentState = EnemyState.Attacking;
         UpdateAnimation();
 
-        agent.SetDestination(transform.position);
         if (target == null)
         {
             ChooseRandomTargetInList(ref playersInAttackRange);
         }
+      // agent.SetDestination(transform.position);
 
         transform.LookAt(target.transform.position);
 
@@ -250,19 +263,26 @@ public class Enemy : MonoBehaviourPun
         }
         if (health <= 0)
         {
-            onAnimationFinished = delegate ()
-            {
-                UpdateAnimation("IsDead", true);
-                agent.isStopped = false;
-                if(photonView.IsMine)
-                    PhotonNetwork.Destroy(gameObject);
-            };
-            agent.isStopped = true;
-            animator.Play("Die", 0, 0);
-            StopCoroutine(nameof(WaitForAnimation));
-            StartCoroutine(nameof(WaitForAnimation), onAnimationFinished);
+            Die();
         }
         
+    }
+
+    public void Die()
+    {
+        OnAnimationFinished onAnimationFinished = delegate ()
+        {
+            UpdateAnimation("IsDead", true);
+            agent.isStopped = false;
+            if (photonView.IsMine)
+                PhotonNetwork.Destroy(gameObject);
+        };
+        agent.isStopped = true;
+        animator.Play("Die", 0, 0);
+        StopCoroutine(nameof(WaitForAnimation));
+        StartCoroutine(nameof(WaitForAnimation), onAnimationFinished);
+        RoomController.Instance.DecreaseCurrentEnemiesCount();
+
     }
 
     private void UpdateHealthUI()

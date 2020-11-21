@@ -66,7 +66,7 @@ MonoBehaviour:
     SynchronizeType: 1
     Name: AttackReady
   - Type: 1
-    SynchronizeType: 0
+    SynchronizeType: 1
     Name: MovementSpeed
   m_SynchronizeLayers:
   - SynchronizeType: 0
@@ -1153,7 +1153,12 @@ PrefabInstance:
     - target: {fileID: 2065600435316049353, guid: f37578f931d906d42b9daa7577aff4ba,
         type: 3}
       propertyPath: attackRange
-      value: 3.44
+      value: 5.08
+      objectReference: {fileID: 0}
+    - target: {fileID: 2065600435316049353, guid: f37578f931d906d42b9daa7577aff4ba,
+        type: 3}
+      propertyPath: sightRange
+      value: 31.96
       objectReference: {fileID: 0}
     - target: {fileID: 2065600435316049357, guid: f37578f931d906d42b9daa7577aff4ba,
         type: 3}

@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class ApplicationManager : MonoBehaviour {
+public class ApplicationManager : Singleton<ApplicationManager> {
 	
 
 	public void Quit () 
