@@ -15,12 +15,13 @@ public class AudioManager : MonoBehaviour
 			s.source = gameObject.AddComponent<AudioSource>();
 			s.source.clip = s.clip;
 			s.source.loop = s.loop;
-
+			s.source.outputAudioMixerGroup = s.mixerGroup;
 		}
 	}
 
 	public void Play(string sound)
 	{
+		Debug.Log("Audio playing");
 		Sound s = Array.Find(sounds, item => item.name == sound);
 		if (s == null)
 		{

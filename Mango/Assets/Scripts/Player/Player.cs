@@ -175,7 +175,6 @@ public class Player : MonoBehaviourPun, IPunObservable
                     moveDir.y = jumpSpeed;
                     state = PlayerState.Jumping;
                     SetAnimation("isJumping", true);
-                    audioManager.Stop("Step");
 
                 }
 
@@ -196,6 +195,7 @@ public class Player : MonoBehaviourPun, IPunObservable
                         trailRenderrer.emitting = true;
                         SetAnimation("isDashing", true);
                         audioManager.Play("Dodge");
+                        photonView.RPC(nameof(PlayAudioRPC), RpcTarget.Others, "Dodge");
                     }
                 }
                 break;
@@ -234,6 +234,12 @@ public class Player : MonoBehaviourPun, IPunObservable
         ApplyGravity();
 
         controller.Move(moveDir * speed * Time.deltaTime);
+    }
+
+    [PunRPC]
+    void PlayAudioRPC(string clipName)
+    {
+        audioManager.Play(clipName);
     }
 
     IEnumerator PlayRepeatingWalkSoundEffect(float time = 0.3f)
