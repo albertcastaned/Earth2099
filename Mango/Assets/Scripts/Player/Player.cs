@@ -137,7 +137,6 @@ public class Player : MonoBehaviourPun, IPunObservable
                     moveDir.y = jumpSpeed;
                     state = PlayerState.Jumping;
                     SetAnimation("isJumping", true);
-                    audioManager.Stop("Step");
                 }
 
 
@@ -257,6 +256,8 @@ public class Player : MonoBehaviourPun, IPunObservable
                     time = 0.3f;
                 }
                 audioManager.Play("Step");
+                photonView.RPC(nameof(PlayAudioRPC), RpcTarget.Others, "Step");
+
             }
             yield return new WaitForSeconds(time);
         }

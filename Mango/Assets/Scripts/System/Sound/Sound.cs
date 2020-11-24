@@ -18,8 +18,18 @@ public class Sound {
 	[Range(0f, 1f)]
 	public float pitchVariance = .1f;
 
+	[Range(0f, 1f)]
+	public float spatialBlend = 1f;
+
+	[Range(0, 500)]
+	public float minDistance = 10;
+
+	[Range(0, 500)]
+	public float maxDistance = 200;
+
 	public bool loop = false;
 
+	public AudioRolloffMode audioRolloffMode = AudioRolloffMode.Linear; 
 	public AudioMixerGroup mixerGroup;
 
 	[HideInInspector]

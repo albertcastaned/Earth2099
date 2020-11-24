@@ -27,6 +27,9 @@ public class ProjectileGun : MonoBehaviourPun
     public GameObject muzzleFlash;
     public TextMeshProUGUI ammunitionDisplay;
 
+    // Audio
+    private AudioManager audioManager;
+
     public bool allowInvoke = true;
 
     private void Awake()
@@ -34,6 +37,12 @@ public class ProjectileGun : MonoBehaviourPun
         // make sure magazine is full
         bulletsLeft = magazineSize;
         readyToShoot = true;
+    }
+
+    void Start()
+    {
+        audioManager = GetComponent<AudioManager>();
+
     }
 
     private void Update()
@@ -82,7 +91,7 @@ public class ProjectileGun : MonoBehaviourPun
             bulletsShot = 0;
             photonView.RPC(
                 nameof(Shoot),
-                RpcTarget.AllBuffered,
+                RpcTarget.All,
                 attackPosition,
                 directionWithoutSpread
             );
@@ -92,6 +101,9 @@ public class ProjectileGun : MonoBehaviourPun
     [PunRPC]
     public void Shoot(Vector3 from, Vector3 to)
     {
+
+        audioManager.Play("Shoot");
+
         readyToShoot = false;
 
         // Calculate spread

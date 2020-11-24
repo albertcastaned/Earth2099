@@ -15,7 +15,11 @@ public class AudioManager : MonoBehaviour
 			s.source = gameObject.AddComponent<AudioSource>();
 			s.source.clip = s.clip;
 			s.source.loop = s.loop;
+			s.source.spatialBlend = s.spatialBlend;
 			s.source.outputAudioMixerGroup = s.mixerGroup;
+			s.source.minDistance = s.minDistance;
+			s.source.maxDistance = s.maxDistance;
+			s.source.rolloffMode = s.audioRolloffMode;
 		}
 	}
 
@@ -31,7 +35,10 @@ public class AudioManager : MonoBehaviour
 
 		s.source.volume = s.volume * (1f + UnityEngine.Random.Range(-s.volumeVariance / 2f, s.volumeVariance / 2f));
 		s.source.pitch = s.pitch * (1f + UnityEngine.Random.Range(-s.pitchVariance / 2f, s.pitchVariance / 2f));
-
+		s.source.spatialBlend = s.spatialBlend;
+		s.source.minDistance = s.minDistance;
+		s.source.maxDistance = s.maxDistance;
+		s.source.rolloffMode = s.audioRolloffMode;
 		s.source.Play();
 	}
 

@@ -142,7 +142,7 @@ MonoBehaviour:
     pitch: 1
     pitchVariance: 0.404
     loop: 0
-    mixerGroup: {fileID: 0}
+    mixerGroup: {fileID: 24300002, guid: 76ab6064d8cb9b141838fbb24a714081, type: 2}
     source: {fileID: 0}
 --- !u!1 &2112226040943280924
 GameObject:

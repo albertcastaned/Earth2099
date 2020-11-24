@@ -272,7 +272,8 @@ public class Enemy : MonoBehaviourPun
         {
             Die();
         }
-        
+        RoomController.Instance.DecreaseCurrentEnemiesCount();
+
     }
 
     public void Die()
@@ -281,7 +282,8 @@ public class Enemy : MonoBehaviourPun
         {
             UpdateAnimation("IsDead", true);
             agent.isStopped = false;
-            PhotonNetwork.Instantiate(deathAnimation.name, transform.position, Quaternion.identity);
+            GameObject deathAnimationObj = Instantiate(deathAnimation.gameObject);
+            deathAnimationObj.transform.position = transform.position;
             if (photonView.IsMine)
                 PhotonNetwork.Destroy(gameObject);
         };
@@ -289,7 +291,6 @@ public class Enemy : MonoBehaviourPun
         animator.Play("Die", 0, 0);
         StopCoroutine(nameof(WaitForAnimation));
         StartCoroutine(nameof(WaitForAnimation), onAnimationFinished);
-        RoomController.Instance.DecreaseCurrentEnemiesCount();
 
     }
 
