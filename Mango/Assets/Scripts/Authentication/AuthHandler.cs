@@ -45,9 +45,9 @@ public class AuthHandler : MonoBehaviour
         passwordErrorText.text = "";
         isLogin = !isLogin;
         confirmPasswordTextBox.gameObject.SetActive(!isLogin);
-        title.text = isLogin ? "Inicar Sesion" : "Registrar Usuario";
+        title.text = isLogin ? "Iniciar Sesión" : "Registrar Usuario";
         submitText.text = isLogin ? "Ingresar" : "Registrar";
-        changeAuthTypeButtonText.text = isLogin ? "Registrar Usuario" : "Iniciar Sesion";
+        changeAuthTypeButtonText.text = isLogin ? "Registrar Usuario" : "Iniciar Sesión";
         changeAuthTypeLabelText.text = isLogin ? "¿No tienes cuenta?" : "¿Ya tienes cuenta?";
     }
     public void Submit()
@@ -58,21 +58,21 @@ public class AuthHandler : MonoBehaviour
 
         if (string.IsNullOrEmpty(emailTextBox.text))
         {
-            emailErrorText.text = "Este campo no puede estar vacio.";
+            emailErrorText.text = "Este campo no puede estar vacío.";
             emailErrorText.enabled = true;
             valid = false;
         }
 
         if(!ValidateEmail(emailTextBox.text))
         {
-            emailErrorText.text = "Este campo debe tener un correo valido.";
+            emailErrorText.text = "Este campo debe tener un correo válido.";
             emailErrorText.enabled = true;
             valid = false;
         }
 
         if (string.IsNullOrEmpty(passwordTextBox.text) || (!isLogin && string.IsNullOrEmpty(confirmPasswordTextBox.text)))
         {
-            passwordErrorText.text = "Este campo no puede estar vacio.";
+            passwordErrorText.text = "Este campo no puede estar vacío.";
             passwordErrorText.enabled = true;
             valid = false;
 
@@ -99,7 +99,7 @@ public class AuthHandler : MonoBehaviour
         var loadingObj = GameManager.Instance.CreateLoadingDialog();
         string email = emailTextBox.text;
         string password = passwordTextBox.text;
-        Debug.Log("Iniciando sesion con autenticacion de Firebase...");
+        Debug.Log("Iniciando sesión con autenticación de Firebase...");
         User user = new User(email);
         Firebase.LoginUser(user, password);
         Destroy(loadingObj);
@@ -110,7 +110,7 @@ public class AuthHandler : MonoBehaviour
     {
         loading = true;
         var loadingObj = GameManager.Instance.CreateLoadingDialog();
-        Debug.Log("Iniciando sesion anonimamente...");
+        Debug.Log("Iniciando sesión anónimamente...");
         Firebase.LoginAnonymous();
         Destroy(loadingObj);
         loading = false;
@@ -123,7 +123,7 @@ public class AuthHandler : MonoBehaviour
         var loadingObj = GameManager.Instance.CreateLoadingDialog();
         string email = emailTextBox.text;
         string password = passwordTextBox.text;
-        Debug.Log("Creando usuario en autenticacion de Firebase...");
+        Debug.Log("Creando usuario en autenticación de Firebase...");
         User user = new User(email);
         Firebase.CreateUser(user, password);
         Destroy(loadingObj);
