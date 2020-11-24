@@ -64,13 +64,27 @@ public class ProjectileGun : MonoBehaviourPun
         // Shooting
         if (readyToShoot && shooting && !reloading && bulletsLeft > 0)
         {
-            var shootingPosition = new Vector3(Input.mousePosition.x, Input.mousePosition.y, Input.mousePosition.z);
+            Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+            RaycastHit hit;
+
+            // Check if ray hits something
+            Vector3 targetPoint;
+            if (Physics.Raycast(ray, out hit))
+                targetPoint = hit.point;
+            else
+                targetPoint = ray.GetPoint(75);
+
+            var attackPosition = attackPoint.position;
+
+            // Calculate direction from attackPoint to targetPoint
+            Vector3 directionWithoutSpread = targetPoint - attackPosition;
+            
             bulletsShot = 0;
             photonView.RPC(
                 nameof(Shoot),
                 RpcTarget.AllBuffered,
-                attackPoint.position,
-                shootingPosition
+                attackPosition,
+                directionWithoutSpread
             );
         }
     }
@@ -80,25 +94,12 @@ public class ProjectileGun : MonoBehaviourPun
     {
         readyToShoot = false;
 
-        Ray ray = Camera.main.ScreenPointToRay(to);
-        RaycastHit hit;
-
-        // Check if ray hits something
-        Vector3 targetPoint;
-        if (Physics.Raycast(ray, out hit))
-            targetPoint = hit.point;
-        else
-            targetPoint = ray.GetPoint(75);
-
-        // Calculate direction from attackPoint to targetPoint
-        Vector3 directionWithoutSpread = targetPoint - from;
-
         // Calculate spread
         float x = Random.Range(-spread, spread);
         float y = Random.Range(-spread, spread);
 
         // Calculate new direction with spread
-        Vector3 directionSpread = directionWithoutSpread + new Vector3(x, y, 0);
+        Vector3 directionSpread = to + new Vector3(x, y, 0);
 
         // Instantiate bullet/projectile
         GameObject currentBullet = Instantiate(bullet, from, Quaternion.identity);
