@@ -3,16 +3,10 @@
   <component name="ContentModelStore">
     <e p="$PROJECT_DIR$" t="IncludeRecursive">
       <e p="Assembly-CSharp-Editor-firstpass.csproj" t="IncludeRecursive" />
-      <e p="Assembly-CSharp-Editor.csproj" t="IncludeRecursive" />
       <e p="Assembly-CSharp-firstpass.csproj" t="IncludeRecursive" />
       <e p="Assembly-CSharp.csproj" t="IncludeRecursive" />
       <e p="Assets" t="Include">
         <e p="EffectExamples" t="Include">
-          <e p="Editor" t="Include">
-            <e p="PackageManagerAssembly" t="Include">
-              <e p="PackageImportList.txt" t="Include" />
-            </e>
-          </e>
           <e p="Shared" t="Include">
             <e p="Scripts" t="Include">
               <e p="DecalDestroyer.cs" t="Include" />
@@ -27,17 +21,57 @@
               <e p="SurfaceShader_VC.shader" t="Include" />
             </e>
           </e>
-          <e p="TutorialInfo" t="Include">
-            <e p="Scripts" t="Include">
-              <e p="Editor" t="Include">
-                <e p="ReadmeEditor.cs" t="Include" />
-              </e>
-              <e p="Readme.cs" t="Include" />
+        </e>
+        <e p="Materials" t="Include">
+          <e p="UI Particles Shaders" t="Include">
+            <e p="UI Particle Add.shader" t="Include" />
+            <e p="UI Particle AddMultiply.shader" t="Include" />
+            <e p="UI Particle AddSmooth.shader" t="Include" />
+            <e p="UI Particle Alpha Blend.shader" t="Include" />
+            <e p="UI Particle Blend.shader" t="Include" />
+            <e p="UI Particle Multiply.shader" t="Include" />
+            <e p="UI Particle MultiplyDouble.shader" t="Include" />
+            <e p="UI Particle Premultiply Blend.shader" t="Include" />
+            <e p="UI Particle VertexLit Blended.shader" t="Include" />
+          </e>
+          <e p="UI-Default-No-Alpha.shader" t="Include" />
+        </e>
+        <e p="Plugins" t="Include">
+          <e p="HSVPicker" t="Include">
+            <e p="Editor" t="Include">
+              <e p="BoxSliderEditor.cs" t="Include" />
+              <e p="HSVPicker.Editors.asmdef" t="Include" />
+            </e>
+            <e p="Enums" t="Include">
+              <e p="ColorValues.cs" t="Include" />
+            </e>
+            <e p="Events" t="Include">
+              <e p="ColorChangedEvent.cs" t="Include" />
+              <e p="HSVChangedEvent.cs" t="Include" />
+            </e>
+            <e p="ExampleScripts" t="Include">
+              <e p="ColorPickerTester.cs" t="Include" />
+              <e p="TiltWindow.cs" t="Include" />
+            </e>
+            <e p="HSVPicker.asmdef" t="Include" />
+            <e p="README.txt" t="Include" />
+            <e p="UI" t="Include">
+              <e p="ColorImage.cs" t="Include" />
+              <e p="ColorLabel.cs" t="Include" />
+              <e p="ColorPicker.cs" t="Include" />
+              <e p="ColorPickerSetup.cs" t="Include" />
+              <e p="ColorPresetManager.cs" t="Include" />
+              <e p="ColorPresets.cs" t="Include" />
+              <e p="ColorSlider.cs" t="Include" />
+              <e p="ColorSliderImage.cs" t="Include" />
+              <e p="HexColorField.cs" t="Include" />
+              <e p="SVBoxSlider.cs" t="Include" />
+            </e>
+            <e p="UtilityScripts" t="Include">
+              <e p="BoxSlider.cs" t="Include" />
+              <e p="HSVUtil.cs" t="Include" />
             </e>
           </e>
-        </e>
-        <e p="GameManager.cs" t="Include" />
-        <e p="Plugins" t="Include">
           <e p="Mapbox" t="Include">
             <e p="Core" t="Include">
               <e p="cheap-ruler-cs" t="Include">
@@ -884,34 +918,65 @@
             <e p="Firebase.cs" t="Include" />
             <e p="User.cs" t="Include" />
           </e>
-          <e p="BakeRuntime.cs" t="Include" />
-          <e p="Bullet.cs" t="Include" />
-          <e p="CameraFollow.cs" t="Include" />
-          <e p="createEnemies.cs" t="Include" />
-          <e p="DamagePopupText.cs" t="Include" />
-          <e p="Dialog.cs" t="Include" />
-          <e p="Enemy.cs" t="Include" />
-          <e p="FaceCamera.cs" t="Include" />
-          <e p="FPSCounter.cs" t="Include" />
-          <e p="GameLobby.cs" t="Include" />
-          <e p="Gun.cs" t="Include" />
-          <e p="GunHolder.cs" t="Include" />
-          <e p="LocationSelector.cs" t="Include" />
-          <e p="Player.cs" t="Include" />
-          <e p="PlayerAnimator.cs" t="Include" />
-          <e p="PlayerNameInput.cs" t="Include" />
-          <e p="PlayerSync.cs" t="Include" />
+          <e p="ChangeColor.cs" t="Include" />
+          <e p="Enemies" t="Include">
+            <e p="createEnemies.cs" t="Include" />
+            <e p="Enemy.cs" t="Include" />
+          </e>
+          <e p="Map" t="Include">
+            <e p="BakeRuntime.cs" t="Include" />
+            <e p="LocationSelector.cs" t="Include" />
+            <e p="Sun.cs" t="Include" />
+          </e>
+          <e p="PartyHealth.cs" t="Include" />
+          <e p="Player" t="Include">
+            <e p="Bullet.cs" t="Include" />
+            <e p="CameraFollow.cs" t="Include" />
+            <e p="FaceCamera.cs" t="Include" />
+            <e p="Gun.cs" t="Include" />
+            <e p="GunHolder.cs" t="Include" />
+            <e p="Player.cs" t="Include" />
+            <e p="PlayerColorModifier.cs" t="Include" />
+            <e p="PlayerSync.cs" t="Include" />
+            <e p="RotateCameraColorConfig.cs" t="Include" />
+          </e>
           <e p="ProjectileGun.cs" t="Include" />
-          <e p="RoomController.cs" t="Include" />
-          <e p="Sun.cs" t="Include" />
+          <e p="SettingsMenu.cs" t="Include" />
+          <e p="System" t="Include">
+            <e p="ApplicationManager.cs" t="Include" />
+            <e p="DebugCommand.cs" t="Include" />
+            <e p="DebugController.cs" t="Include" />
+            <e p="GameLobby.cs" t="Include" />
+            <e p="GameManager.cs" t="Include" />
+            <e p="RoomController.cs" t="Include" />
+            <e p="Singleton.cs" t="Include" />
+          </e>
+          <e p="TiltWindow.cs" t="Include" />
           <e p="UI" t="Include">
+            <e p="ActiveStateToggler.cs" t="Include" />
+            <e p="ChatManager.cs" t="Include" />
+            <e p="ColorController.cs" t="Include" />
+            <e p="DamagePopupText.cs" t="Include" />
+            <e p="Dialog.cs" t="Include" />
+            <e p="DragMe.cs" t="Include" />
+            <e p="DragPanel.cs" t="Include" />
+            <e p="DropMe.cs" t="Include" />
             <e p="FieldTabController.cs" t="Include" />
+            <e p="FPSCounter.cs" t="Include" />
             <e p="MessageDialog.cs" t="Include" />
+            <e p="PanelManager.cs" t="Include" />
+            <e p="PlayerNameInput.cs" t="Include" />
+            <e p="ResizePanel.cs" t="Include" />
+            <e p="ScrollDetailTexture.cs" t="Include" />
+            <e p="ShowSliderValue.cs" t="Include" />
             <e p="UIGradient.cs" t="Include" />
             <e p="UIGradientUtils.cs" t="Include" />
+            <e p="UIParticleRenderer.cs" t="Include" />
           </e>
         </e>
       </e>
+      <e p="HSVPicker.csproj" t="IncludeRecursive" />
+      <e p="HSVPicker.Editors.csproj" t="IncludeRecursive" />
       <e p="Mango.sln" t="IncludeFlat" />
       <e p="NavMeshComponents.csproj" t="IncludeRecursive" />
       <e p="NavMeshComponentsEditor.csproj" t="IncludeRecursive" />

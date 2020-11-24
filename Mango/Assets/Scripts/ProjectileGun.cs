@@ -64,18 +64,23 @@ public class ProjectileGun : MonoBehaviourPun
         // Shooting
         if (readyToShoot && shooting && !reloading && bulletsLeft > 0)
         {
+            var shootingPosition = new Vector3(Input.mousePosition.x, Input.mousePosition.y, Input.mousePosition.z);
             bulletsShot = 0;
-            photonView.RPC(nameof(Shoot), RpcTarget.AllBuffered);
-            // Shoot();
+            photonView.RPC(
+                nameof(Shoot),
+                RpcTarget.AllBuffered,
+                attackPoint.position,
+                shootingPosition
+            );
         }
     }
 
     [PunRPC]
-    public void Shoot()
+    public void Shoot(Vector3 from, Vector3 to)
     {
         readyToShoot = false;
 
-        Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+        Ray ray = Camera.main.ScreenPointToRay(to);
         RaycastHit hit;
 
         // Check if ray hits something
@@ -85,9 +90,8 @@ public class ProjectileGun : MonoBehaviourPun
         else
             targetPoint = ray.GetPoint(75);
 
-        // Calculate direction from attackPoint to targetPoint    
-        var position = attackPoint.position;
-        Vector3 directionWithoutSpread = targetPoint - position;
+        // Calculate direction from attackPoint to targetPoint
+        Vector3 directionWithoutSpread = targetPoint - from;
 
         // Calculate spread
         float x = Random.Range(-spread, spread);
@@ -97,7 +101,7 @@ public class ProjectileGun : MonoBehaviourPun
         Vector3 directionSpread = directionWithoutSpread + new Vector3(x, y, 0);
 
         // Instantiate bullet/projectile
-        GameObject currentBullet = Instantiate(bullet, position, Quaternion.identity);
+        GameObject currentBullet = Instantiate(bullet, from, Quaternion.identity);
         // Rotate bullet to shoot direction
         currentBullet.transform.forward = directionSpread.normalized;
 
@@ -105,11 +109,10 @@ public class ProjectileGun : MonoBehaviourPun
         currentBullet.GetComponent<Rigidbody>().AddForce(directionSpread.normalized * shootForce, ForceMode.Impulse);
         // TODO: Check how to add up force with MousePosition
         // currentBullet.GetComponent<Rigidbody>().AddForce(directionSpread.normalized * shootForce, ForceMode.Impulse);
-
-
+        
         if (muzzleFlash != null)
         {
-            Instantiate(muzzleFlash, position, Quaternion.identity);
+            Instantiate(muzzleFlash, from, Quaternion.identity);
         }
         
         bulletsLeft--;

@@ -2,10 +2,16 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="63769529-5654-45a6-a890-c6dc06e39fab" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/Assets/EffectExamples/WeaponEffects/Prefabs/MuzzleFlashEffect.prefab" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/EffectExamples/WeaponEffects/Prefabs/MuzzleFlashEffect.prefab.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Resources/BlueGun.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Resources/BlueGun.prefab" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.Mango/.idea/contentModel.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Mango/.idea/contentModel.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.Mango/.idea/indexLayout.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Mango/.idea/indexLayout.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.Mango/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Mango/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Plugins/ColorSkies/Skies/Sky_5.mat" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Plugins/ColorSkies/Skies/Sky_5.mat" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Resources/Orc.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Resources/Orc.prefab" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Resources/Player.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Resources/Player.prefab" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Resources/Spiny.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Resources/Spiny.prefab" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Player/Player.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Player/Player.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scripts/ProjectileGun.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/ProjectileGun.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ProjectSettings/GraphicsSettings.asset" beforeDir="false" afterPath="$PROJECT_DIR$/ProjectSettings/GraphicsSettings.asset" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -16,9 +22,7 @@
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
   </component>
   <component name="HighlightingSettingsPerFile">
-    <setting file="file://$PROJECT_DIR$/Assets/Scripts/Bullet.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Plugins/Photon/PhotonUnityNetworking/Code/PunClasses.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock:///Users/topihdez/Documents/tec/Gráficas Computacionales/Earth2099/Mango/Assets/Scripts/GunHolder.cs" root0="SKIP_HIGHLIGHTING" />
   </component>
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
@@ -27,6 +31,7 @@
         <option value="$PROJECT_DIR$/Assets/Scripts/Enemy.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/Bullet.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/Player.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/Player/Player.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/ProjectileGun.cs" />
       </list>
     </option>
@@ -88,6 +93,7 @@
       <workItem from="1605491247780" duration="6032000" />
       <workItem from="1605582651617" duration="3277000" />
       <workItem from="1605657209121" duration="2977000" />
+      <workItem from="1606194258630" duration="1946000" />
     </task>
     <task id="LOCAL-00001" summary="Add PunRPC to player to shoot">
       <created>1605585757170</created>
