@@ -163,6 +163,7 @@ public class Player : MonoBehaviourPun, IPunObservable
                         SetAnimation("isRunning", true);
                         trailRenderrer.emitting = false;
                     }
+                    audioManager.Play("Step");
                 }
                 break;
 
@@ -194,6 +195,7 @@ public class Player : MonoBehaviourPun, IPunObservable
                         moveDir.y = 0;
                         trailRenderrer.emitting = true;
                         SetAnimation("isDashing", true);
+                        audioManager.Play("Dodge");
                     }
                 }
                 break;

@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 2065600435316049358}
   - component: {fileID: 441645260}
   - component: {fileID: 3397632230520522197}
+  - component: {fileID: 269092071877558431}
   m_Layer: 0
   m_Name: EnemyParent
   m_TagString: Enemy
@@ -119,6 +120,28 @@ MonoBehaviour:
   viewIdField: 0
   InstantiationId: 0
   isRuntimeInstantiated: 0
+--- !u!114 &269092071877558431
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2065600435316049352}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 66e2cf47f2391b74d8cbce6a54b7c0f6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sounds:
+  - name: Damage
+    clip: {fileID: 8300000, guid: c55e7805482e70845a9db1f703c74a22, type: 3}
+    volume: 0.223
+    volumeVariance: 0.391
+    pitch: 1
+    pitchVariance: 0.404
+    loop: 0
+    mixerGroup: {fileID: 0}
+    source: {fileID: 0}
 --- !u!1 &2112226040943280924
 GameObject:
   m_ObjectHideFlags: 0

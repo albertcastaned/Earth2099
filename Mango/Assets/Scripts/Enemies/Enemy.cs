@@ -44,7 +44,7 @@ public class Enemy : MonoBehaviourPun
     delegate void OnAnimationFinished();
 
     private List<Player> auxPlayers;
-
+    private AudioManager audioManager;
     enum EnemyState
     {
         AttackIdle,
@@ -58,6 +58,7 @@ public class Enemy : MonoBehaviourPun
     void Start()
     {
         animator = GetComponent<Animator>();
+        audioManager = GetComponent<AudioManager>();
         currentState = EnemyState.Patrolling;
         isGround = LayerMask.GetMask("Floor");
         isPlayer = LayerMask.GetMask("Player");
@@ -245,8 +246,9 @@ public class Enemy : MonoBehaviourPun
         }
         health -= amount;
         UpdateHealthUI();
+        audioManager.Play("Damage");
         CreateFloatingText("-" + amount);
-  OnAnimationFinished onAnimationFinished;
+          OnAnimationFinished onAnimationFinished;
 
         if (stunnedByHits)
         {

@@ -1559,6 +1559,8 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 5b4a740de789c5b46bba1517ed3f6868, type: 3}
   - {fileID: 8300000, guid: 57817c5c600424d4996d20f5ede8d379, type: 3}
   - {fileID: 8300000, guid: 5334725e349f7d646bac5d8a958174df, type: 3}
+  - {fileID: 8300000, guid: 0d0003fcb4af6aa458149b55804acbf8, type: 3}
+  - {fileID: 8300000, guid: 5e455cebeb325f841b57f6981f523101, type: 3}
 --- !u!82 &8128455090857939092
 AudioSource:
   m_ObjectHideFlags: 0
@@ -14785,6 +14787,15 @@ MonoBehaviour:
     volumeVariance: 0.076
     pitch: 0.63
     pitchVariance: 0.108
+    loop: 0
+    mixerGroup: {fileID: 0}
+    source: {fileID: 0}
+  - name: Dodge
+    clip: {fileID: 8300000, guid: e549447a7b4c4b74ebbc6c5d5a49aaca, type: 3}
+    volume: 0.14
+    volumeVariance: 0.236
+    pitch: 1.66
+    pitchVariance: 0.369
     loop: 0
     mixerGroup: {fileID: 0}
     source: {fileID: 0}
