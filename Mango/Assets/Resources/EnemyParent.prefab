@@ -44,20 +44,22 @@ MonoBehaviour:
   m_GameObject: {fileID: 2065600435316049352}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c55a2c216b937fb4abed2d2af60670ae, type: 3}
+  m_Script: {fileID: 11500000, guid: 0e0e80f8cbfeb6b4f82d794e2ec920d3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   maxHealth: 100
   speed: 2
   damage: 10
-  sightRange: 35
-  attackRange: 1.85
-  walkPointRange: 100
+  sightRange: 10
+  attackRange: 5
+  walkPointRange: 10
   timeBetweenAttacks: 5
   stunnedByHits: 1
   barraVida: {fileID: 696902626736668936}
   lifeText: {fileID: 5881118789275208024}
   popupTextPrefab: {fileID: 3372425993928838701, guid: 37d4fadc287bd604c84ae0766f5b5a6a,
+    type: 3}
+  deathAnimation: {fileID: 4000011693693590, guid: 96730f8640590934eacb6f860058e7f9,
     type: 3}
 --- !u!195 &2065600435316049358
 NavMeshAgent:

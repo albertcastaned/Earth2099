@@ -7,6 +7,21 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1646230156795598219, guid: d55dbc834826644af87c21f004f60ae1,
+        type: 3}
+      propertyPath: magazineSize
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 1646230156795598219, guid: d55dbc834826644af87c21f004f60ae1,
+        type: 3}
+      propertyPath: bulletsPerTap
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1646230156795598219, guid: d55dbc834826644af87c21f004f60ae1,
+        type: 3}
+      propertyPath: reloadTime
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 2537711716827926857, guid: d55dbc834826644af87c21f004f60ae1,
         type: 3}
       propertyPath: m_Name
