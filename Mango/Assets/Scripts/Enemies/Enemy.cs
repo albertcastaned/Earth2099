@@ -26,7 +26,10 @@ public class Enemy : MonoBehaviourPun
     [Header("HUD")]
     public Image barraVida;
     public TextMeshProUGUI lifeText;
+
+    [Header("Prefabs")]
     public DamagePopupText popupTextPrefab;
+    public Transform deathAnimation;
 
     private LayerMask isGround, isPlayer;
 
@@ -44,7 +47,9 @@ public class Enemy : MonoBehaviourPun
     delegate void OnAnimationFinished();
 
     private List<Player> auxPlayers;
+
     private AudioManager audioManager;
+
     enum EnemyState
     {
         AttackIdle,
@@ -276,6 +281,7 @@ public class Enemy : MonoBehaviourPun
         {
             UpdateAnimation("IsDead", true);
             agent.isStopped = false;
+            PhotonNetwork.Instantiate(deathAnimation.name, transform.position, Quaternion.identity);
             if (photonView.IsMine)
                 PhotonNetwork.Destroy(gameObject);
         };

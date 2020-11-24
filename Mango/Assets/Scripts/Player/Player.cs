@@ -313,24 +313,8 @@ public class Player : MonoBehaviourPun, IPunObservable
             state = PlayerState.Dead;
         }
     }
-    
-    
-    /**
-     * TODO: fix the starting position of the bullet, in order to look like going out of the gun.
-     */
-    [PunRPC]
-    private void FireProjectile()
-    {
-        var gun = _getSelectedGun();
-        try
-        {
-            Instantiate(gun.GetComponent<Gun>().bullet, gun.transform.position, transform.rotation);
-        }
-        catch
-        {
-            // ignored
-        }
-    }
+
+
 
     private GameObject _getSelectedGun()
     {

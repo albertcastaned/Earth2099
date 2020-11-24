@@ -7,6 +7,38 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1646230156795598219, guid: d55dbc834826644af87c21f004f60ae1,
+        type: 3}
+      propertyPath: bullet
+      value: 
+      objectReference: {fileID: 4316944969416228886, guid: d763b5234022e40eb9c2834554c1bb58,
+        type: 3}
+    - target: {fileID: 1646230156795598219, guid: d55dbc834826644af87c21f004f60ae1,
+        type: 3}
+      propertyPath: shootForce
+      value: 150
+      objectReference: {fileID: 0}
+    - target: {fileID: 1646230156795598219, guid: d55dbc834826644af87c21f004f60ae1,
+        type: 3}
+      propertyPath: magazineSize
+      value: 50
+      objectReference: {fileID: 0}
+    - target: {fileID: 1646230156795598219, guid: d55dbc834826644af87c21f004f60ae1,
+        type: 3}
+      propertyPath: spread
+      value: 1.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1646230156795598219, guid: d55dbc834826644af87c21f004f60ae1,
+        type: 3}
+      propertyPath: reloadTime
+      value: 1.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1646230156795598219, guid: d55dbc834826644af87c21f004f60ae1,
+        type: 3}
+      propertyPath: muzzleFlash
+      value: 
+      objectReference: {fileID: 1000010254994808, guid: 9defeac88977c0d448aa4541073ee9e4,
+        type: 3}
     - target: {fileID: 2537711716827926857, guid: d55dbc834826644af87c21f004f60ae1,
         type: 3}
       propertyPath: m_Name

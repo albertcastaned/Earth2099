@@ -52,6 +52,7 @@ MonoBehaviour:
   - UpdateEnemyCount
   - CreateFloatingText
   - SetupPartyHealthBars
+  - Shoot
   - PlayAudioRPC
   DisableAutoOpenWizard: 1
   ShowSettings: 1
