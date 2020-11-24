@@ -1350,6 +1350,11 @@ PrefabInstance:
       propertyPath: powerUp.endAction.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
       value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
+    - target: {fileID: 464360394783674748, guid: 553d653fed3d642688042343452fb0fc,
+        type: 3}
+      propertyPath: powerUp.name
+      value: PowerUpL
+      objectReference: {fileID: 0}
     - target: {fileID: 5425518092195050645, guid: 553d653fed3d642688042343452fb0fc,
         type: 3}
       propertyPath: m_Name

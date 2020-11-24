@@ -33,6 +33,7 @@ public class PowerUpController : MonoBehaviour
                 }
                 else
                 {
+					
                     changed = true;
                     activatePowerUps.Remove(powerup);
                     powerup.End(player);
@@ -51,6 +52,7 @@ public class PowerUpController : MonoBehaviour
     {
         if (!activatePowerUps.ContainsKey(powerup))
         {
+			
 			Debug.Log("3.- Power Up start");
             powerup.Start(player);
             activatePowerUps.Add(powerup, powerup.duration);

@@ -107,5 +107,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   powerUp:
+    playerF: {fileID: 0}
     name: PowerUp
     duration: 20
+    startAction:
+      m_PersistentCalls:
+        m_Calls: []
+    endAction:
+      m_PersistentCalls:
+        m_Calls: []

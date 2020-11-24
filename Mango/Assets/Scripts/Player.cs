@@ -345,6 +345,7 @@ public class Player : MonoBehaviourPun, IPunObservable
 
     void OnTriggerEnter(Collider other)
     {
+        /*
         if (other.tag == "Life")
         {
             if (health > 90)
@@ -359,5 +360,6 @@ public class Player : MonoBehaviourPun, IPunObservable
             UpdateHealthUI();
             Destroy(other.gameObject);
         }
+        */
     }
 }

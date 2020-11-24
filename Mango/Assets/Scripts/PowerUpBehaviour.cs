@@ -6,12 +6,16 @@ public class PowerUpBehaviour : MonoBehaviour
 {
     
     [SerializeField] private PowerUp powerUp;
+
 	public void OnTriggerEnter(Collider other){
 		if (other.gameObject.tag == "Player")
         {
+			
 			Debug.Log("1.- Se activa el Power Up");
+			Renderer ren = gameObject.GetComponent<Renderer>();
+			ren.enabled = false;
             ActivatePowerUp(other.gameObject.GetComponent<PowerUpController>());
-            gameObject.SetActive(false);
+            
         }
 	}
 

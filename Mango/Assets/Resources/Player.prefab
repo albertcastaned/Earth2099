@@ -4689,7 +4689,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 6238927652256821081}
   m_HandleRect: {fileID: 6238927652256821094}
   m_Direction: 2
-  m_Value: 0
+  m_Value: 1
   m_Size: 1
   m_NumberOfSteps: 0
   m_OnValueChanged:
@@ -4968,7 +4968,7 @@ MonoBehaviour:
   popupTextPrefab: {fileID: 3372425993928838701, guid: 37d4fadc287bd604c84ae0766f5b5a6a,
     type: 3}
   chatManager: {fileID: 6238927651560556322}
-  DEBUG: 0
+  DEBUG: 1
   gunHolder: {fileID: 8387594768095041706}
 --- !u!114 &243135443
 MonoBehaviour:
