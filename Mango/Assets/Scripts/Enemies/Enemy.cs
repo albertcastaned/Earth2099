@@ -88,7 +88,7 @@ public class Enemy : MonoBehaviourPun
     void EnemyUpdate()
     {
         // Might be performance heavy. Need testing to verify
-        if (!PhotonNetwork.IsMasterClient)
+        if (!PhotonNetwork.IsMasterClient || currentState == EnemyState.Dead)
             return;
 
         // Check sight and attack range
@@ -245,15 +245,18 @@ public class Enemy : MonoBehaviourPun
     [PunRPC]
     public void ReduceHealth(int amount)
     {
-        if(health - amount < 0)
-        {
+        if (currentState == EnemyState.Dead)
             return;
-        }
         health -= amount;
+        if (health < 0)
+        {
+            health = 0;
+        }
         UpdateHealthUI();
         audioManager.Play("Damage");
         CreateFloatingText("-" + amount);
-          OnAnimationFinished onAnimationFinished;
+
+        OnAnimationFinished onAnimationFinished;
 
         if (stunnedByHits)
         {
@@ -270,9 +273,9 @@ public class Enemy : MonoBehaviourPun
         }
         if (health <= 0)
         {
+            currentState = EnemyState.Dead;
             Die();
         }
-        RoomController.Instance.DecreaseCurrentEnemiesCount();
 
     }
 
@@ -284,6 +287,8 @@ public class Enemy : MonoBehaviourPun
             agent.isStopped = false;
             GameObject deathAnimationObj = Instantiate(deathAnimation.gameObject);
             deathAnimationObj.transform.position = transform.position;
+            RoomController.Instance.DecreaseCurrentEnemiesCount();
+
             if (photonView.IsMine)
                 PhotonNetwork.Destroy(gameObject);
         };

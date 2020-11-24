@@ -1472,7 +1472,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -0.0000038146973, y: -20}
+  m_AnchoredPosition: {x: 19, y: 15}
   m_SizeDelta: {x: 247.35248, y: 324.96448}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &5890553866840535514
@@ -18945,7 +18945,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: 0.000039238283}
+  m_AnchoredPosition: {x: 0, y: 0.000064218504}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 1}
 --- !u!114 &6238927651937059737
@@ -25570,7 +25570,7 @@ MonoBehaviour:
     pitchVariance: 0.369
     spatialBlend: 1
     minDistance: 5
-    maxDistance: 60
+    maxDistance: 90
     loop: 0
     audioRolloffMode: 1
     mixerGroup: {fileID: 24300002, guid: 76ab6064d8cb9b141838fbb24a714081, type: 2}
@@ -26275,7 +26275,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: 0.00011921261}
+  m_AnchoredPosition: {x: 0, y: 0.000028525641}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 1}
 --- !u!114 &7649224546834721744
@@ -31755,6 +31755,11 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 4316944969416228886, guid: d763b5234022e40eb9c2834554c1bb58,
         type: 3}
+    - target: {fileID: 8057118742464245583, guid: e794a86a30e45435cae703fae0b56b11,
+        type: 3}
+      propertyPath: ammunitionDisplay
+      value: 
+      objectReference: {fileID: 3234825444448144858}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e794a86a30e45435cae703fae0b56b11, type: 3}
 --- !u!4 &2634206015117616469 stripped
@@ -31817,6 +31822,11 @@ PrefabInstance:
       propertyPath: bulletsPerTap
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 6289744820228628819, guid: 10ef02deccbb24e8799bffc6c79017b2,
+        type: 3}
+      propertyPath: ammunitionDisplay
+      value: 
+      objectReference: {fileID: 3234825444448144858}
     - target: {fileID: 7108649787425219985, guid: 10ef02deccbb24e8799bffc6c79017b2,
         type: 3}
       propertyPath: m_Name

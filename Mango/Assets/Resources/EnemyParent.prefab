@@ -137,11 +137,15 @@ MonoBehaviour:
   sounds:
   - name: Damage
     clip: {fileID: 8300000, guid: c55e7805482e70845a9db1f703c74a22, type: 3}
-    volume: 0.223
+    volume: 0.34
     volumeVariance: 0.391
     pitch: 1
     pitchVariance: 0.404
+    spatialBlend: 1
+    minDistance: 10
+    maxDistance: 70
     loop: 0
+    audioRolloffMode: 1
     mixerGroup: {fileID: 24300002, guid: 76ab6064d8cb9b141838fbb24a714081, type: 2}
     source: {fileID: 0}
 --- !u!1 &2112226040943280924
