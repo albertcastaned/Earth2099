@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using UnityEngine.SceneManagement;
 
 public class ApplicationManager : Singleton<ApplicationManager> {
 	
@@ -11,5 +12,10 @@ public class ApplicationManager : Singleton<ApplicationManager> {
 		#else
 		Application.Quit();
 		#endif
+	}
+
+	public void LoadingScene ()
+	{
+		SceneManager.LoadScene(1, LoadSceneMode.Single);
 	}
 }
