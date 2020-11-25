@@ -45,7 +45,7 @@ public class Player : MonoBehaviourPun, IPunObservable
     private PlayerState state = PlayerState.Idle;
     private Camera m_camera;
     private Animator animator;
-    private int health;
+    public int health;
     private bool isLoading = false;
     public GameObject gunHolder;
 
@@ -302,7 +302,7 @@ public class Player : MonoBehaviourPun, IPunObservable
         }
     }
 
-    private void UpdateHealthUI()
+    public void UpdateHealthUI()
     {
         barraVida.fillAmount = (float)health / maxHealth;
         lifeText.text = health.ToString() + " / " + maxHealth.ToString();

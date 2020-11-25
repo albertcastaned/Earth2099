@@ -4969,6 +4969,7 @@ MonoBehaviour:
     type: 3}
   chatManager: {fileID: 6238927651560556322}
   DEBUG: 1
+  health: 0
   gunHolder: {fileID: 8387594768095041706}
 --- !u!114 &243135443
 MonoBehaviour:

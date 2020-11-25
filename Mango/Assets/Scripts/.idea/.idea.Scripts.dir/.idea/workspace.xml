@@ -21,14 +21,9 @@
   <component name="ChangeListManager">
     <list default="true" id="109bf6b6-9ab5-4220-b47c-afb0e34a3fd8" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/../ColorSkies/Skies/Sky_5.mat" beforeDir="false" afterPath="$PROJECT_DIR$/../ColorSkies/Skies/Sky_5.mat" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Scenes/Level.unity" beforeDir="false" afterPath="$PROJECT_DIR$/../Scenes/Level.unity" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.Scripts.dir/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Scripts.dir/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Player.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Player.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/PowerUp.cs" beforeDir="false" afterPath="$PROJECT_DIR$/PowerUp.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/PowerUpActions.cs" beforeDir="false" afterPath="$PROJECT_DIR$/PowerUpActions.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/PowerUpBehaviour.cs" beforeDir="false" afterPath="$PROJECT_DIR$/PowerUpBehaviour.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/PowerUpController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/PowerUpController.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../Packages/packages-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/../../Packages/packages-lock.json" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -51,6 +46,7 @@
     <setting file="file://$PROJECT_DIR$/PowerUpController.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/GameLobby.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/../../../../Tarea91/Assets/Scripts/GameController.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/GunHolder.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Dialog.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Player.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/createPowerups.cs" root0="SKIP_HIGHLIGHTING" />
@@ -69,11 +65,11 @@
         <option value="$PROJECT_DIR$/createPowerups.cs" />
         <option value="$PROJECT_DIR$/../../../../Tarea91/Assets/Scripts/Singleton.cs" />
         <option value="$PROJECT_DIR$/../../../../Tarea91/Assets/Scripts/Player.cs" />
-        <option value="$PROJECT_DIR$/PowerUpActions.cs" />
         <option value="$PROJECT_DIR$/PowerUp.cs" />
-        <option value="$PROJECT_DIR$/Player.cs" />
         <option value="$PROJECT_DIR$/PowerUpController.cs" />
         <option value="$PROJECT_DIR$/PowerUpBehaviour.cs" />
+        <option value="$PROJECT_DIR$/PowerUpActions.cs" />
+        <option value="$PROJECT_DIR$/Player.cs" />
       </list>
     </option>
   </component>
@@ -106,7 +102,7 @@
       <workItem from="1605670611375" duration="2098000" />
       <workItem from="1605747468304" duration="1168000" />
       <workItem from="1606172428156" duration="2725000" />
-      <workItem from="1606177681812" duration="5047000" />
+      <workItem from="1606177681812" duration="7131000" />
     </task>
     <servers />
   </component>
@@ -129,5 +125,11 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="true" />
+  </component>
+  <component name="WindowStateProjectService">
+    <state x="100" y="100" width="1080" height="600" key="VCS.FileHistoryDialog" timestamp="1606263100530">
+      <screen x="0" y="23" width="1280" height="777" />
+    </state>
+    <state x="100" y="100" width="1080" height="600" key="VCS.FileHistoryDialog/0.23.1280.777@0.23.1280.777" timestamp="1606263100530" />
   </component>
 </project>

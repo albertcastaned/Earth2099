@@ -16,4 +16,19 @@ public class PowerUpActions : MonoBehaviour
 		Debug.Log("Disminuye la velocidad");
         player.speed /= 2;
     }
+
+	public void IncreaseLifeStartAction(Player player)
+    {
+		Debug.Log("Incrementará la vida....");
+		if(player.health < 90)
+        	player.health += 10;
+		else 
+			player.health = 100;
+		player.UpdateHealthUI();
+    }
+
+	public void IncreaseLifeEndAction(Player player)
+    {
+		Debug.Log("Ya pasarón los 20 segundos");
+    }
 }
