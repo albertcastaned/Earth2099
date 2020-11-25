@@ -9,9 +9,19 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 464360394783674748, guid: 553d653fed3d642688042343452fb0fc,
         type: 3}
+      propertyPath: powerUp.startAction.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 464360394783674748, guid: 553d653fed3d642688042343452fb0fc,
+        type: 3}
+      propertyPath: powerUp.endAction.m_PersistentCalls.m_Calls.Array.size
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 464360394783674748, guid: 553d653fed3d642688042343452fb0fc,
+        type: 3}
       propertyPath: powerUp.startAction.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 2945147523404190577}
+      objectReference: {fileID: 148054028623469428}
     - target: {fileID: 464360394783674748, guid: 553d653fed3d642688042343452fb0fc,
         type: 3}
       propertyPath: powerUp.startAction.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
@@ -21,11 +31,41 @@ PrefabInstance:
         type: 3}
       propertyPath: powerUp.endAction.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 2945147523404190577}
+      objectReference: {fileID: 148054028623469428}
     - target: {fileID: 464360394783674748, guid: 553d653fed3d642688042343452fb0fc,
         type: 3}
       propertyPath: powerUp.endAction.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
       value: IncreaseLifeEndAction
+      objectReference: {fileID: 0}
+    - target: {fileID: 464360394783674748, guid: 553d653fed3d642688042343452fb0fc,
+        type: 3}
+      propertyPath: powerUp.name
+      value: Health
+      objectReference: {fileID: 0}
+    - target: {fileID: 464360394783674748, guid: 553d653fed3d642688042343452fb0fc,
+        type: 3}
+      propertyPath: powerUp.startAction.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
+    - target: {fileID: 464360394783674748, guid: 553d653fed3d642688042343452fb0fc,
+        type: 3}
+      propertyPath: powerUp.startAction.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 464360394783674748, guid: 553d653fed3d642688042343452fb0fc,
+        type: 3}
+      propertyPath: powerUp.endAction.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
+    - target: {fileID: 464360394783674748, guid: 553d653fed3d642688042343452fb0fc,
+        type: 3}
+      propertyPath: powerUp.endAction.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 464360394783674748, guid: 553d653fed3d642688042343452fb0fc,
+        type: 3}
+      propertyPath: powerUp.duration
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5425518092195050645, guid: 553d653fed3d642688042343452fb0fc,
         type: 3}
@@ -89,9 +129,9 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 553d653fed3d642688042343452fb0fc, type: 3}
---- !u!114 &2945147523404190577 stripped
+--- !u!114 &148054028623469428 stripped
 MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: -817970178395458223, guid: 553d653fed3d642688042343452fb0fc,
+  m_CorrespondingSourceObject: {fileID: 6806986600873606484, guid: 553d653fed3d642688042343452fb0fc,
     type: 3}
   m_PrefabInstance: {fileID: 6663841344059926048}
   m_PrefabAsset: {fileID: 0}

@@ -1,16 +1,32 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class PowerUpController : MonoBehaviour
 {
     public GameObject prefabPowerUp;
-   
-    public Dictionary<PowerUp, float> activatePowerUps = new Dictionary<PowerUp,float>();
+
+    public GameObject powerupHudPrefab;
+    public GameObject hudPowerUpDisplayParent;
+
+    public Dictionary<string, float> activatePowerUps = new Dictionary<string, float>();
+
+    private Dictionary<PowerUp, PowerupHudDisplay> activePowerUpsDisplayHud = new Dictionary<PowerUp, PowerupHudDisplay>();
     
     private List<PowerUp> keys = new List<PowerUp>();
 
     private Player player;
+
+
+    class PowerupHudDisplay
+    {
+        public GameObject gameObject;
+        public Text displayName;
+        public Text countdown;
+
+        public PowerupHudDisplay() { }
+    }
 
     // Update is called once per frame
     void Update()
@@ -21,49 +37,70 @@ public class PowerUpController : MonoBehaviour
 
     public void HandleActivePowerUps()
     {
-        bool changed = false;
-
         if (activatePowerUps.Count > 0)
         {
+            List<PowerUp> tempPowerupList = new List<PowerUp>();
             foreach (PowerUp powerup in keys)
             {
-                if (activatePowerUps[powerup] > 0)
+                if (activatePowerUps[powerup.name] > 0)
                 {
-                    activatePowerUps[powerup] -= Time.deltaTime;
+                    activatePowerUps[powerup.name] -= Time.deltaTime;
+                    activePowerUpsDisplayHud[powerup].countdown.text = Mathf.FloorToInt(activatePowerUps[powerup.name]).ToString();
                 }
                 else
                 {
 					
-                    changed = true;
-                    activatePowerUps.Remove(powerup);
+                    activatePowerUps.Remove(powerup.name);
+                    activePowerUpsDisplayHud[powerup].gameObject.Destroy();
+                    activePowerUpsDisplayHud.Remove(powerup);
                     powerup.End(player);
+
+                    tempPowerupList.Add(powerup);
+                    
                 }
             }
-        }
 
-        if (changed)
-        {
-            keys = new List<PowerUp>(activatePowerUps.Keys);
-                
+            keys.RemoveAll(item => tempPowerupList.Contains(item));
         }
     }
 
     public void ActivatePowerUp(PowerUp powerup)
     {
-        if (!activatePowerUps.ContainsKey(powerup))
+        if (!IsPowerupActive(powerup))
         {
 			
-			Debug.Log("3.- Power Up start");
             powerup.Start(player);
-            activatePowerUps.Add(powerup, powerup.duration);
+
+            if (powerup.duration > 0)
+            {
+                // Update Hud
+                PowerupHudDisplay newDisplay = new PowerupHudDisplay
+                {
+                    gameObject = Instantiate(powerupHudPrefab, hudPowerUpDisplayParent.transform)
+                };
+                newDisplay.displayName = newDisplay.gameObject.transform.Find("PowerLabel").GetComponent<Text>();
+                newDisplay.countdown = newDisplay.gameObject.transform.Find("Effect/TimerLabel").GetComponent<Text>();
+                newDisplay.displayName.text = powerup.name;
+                activePowerUpsDisplayHud.Add(powerup, newDisplay);
+
+                activatePowerUps.Add(powerup.name, powerup.duration);
+                keys.Add(powerup);
+            }
         }
         else
         {
-        	Debug.Log("4.- Power Up duration");
-            activatePowerUps[powerup] += powerup.duration;
+            activatePowerUps[powerup.name] += powerup.duration;
         }
+    }
 
-        keys = new List<PowerUp>(activatePowerUps.Keys);
+    bool IsPowerupActive(PowerUp powerup)
+    {
+        foreach(string p in activatePowerUps.Keys)
+        {
+            if (p == powerup.name)
+                return true;
+        }
+        return false;
     }
 
     public GameObject SpawnPowerUp(PowerUp powerup, Vector3 posicion)
