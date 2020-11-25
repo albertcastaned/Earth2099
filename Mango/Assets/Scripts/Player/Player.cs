@@ -44,6 +44,7 @@ public class Player : MonoBehaviourPun, IPunObservable
     private PlayerState state = PlayerState.Idle;
     private Camera m_camera;
     private Animator animator;
+
     private bool isLoading = false;
     public GameObject gunHolder;
     private AudioManager audioManager;
@@ -270,6 +271,7 @@ public class Player : MonoBehaviourPun, IPunObservable
     // Update is called once per frame
     void Update()
     {
+
         CheckSettingsPressed();
         Movement();
         CheckStillOnMap();
@@ -407,7 +409,6 @@ public class Player : MonoBehaviourPun, IPunObservable
 
 
     public PlayerState State {  get { return state; } }
-
     public void Revive() { state = PlayerState.Idle; }
 
     public void ToggleInvincible()
