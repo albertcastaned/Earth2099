@@ -9,25 +9,54 @@ public class Bullet : MonoBehaviourPun
     public float damage = 10;
     public Transform collisionEffect;
     public Transform collisionEnemyEffect;
+    private AudioManager audioManager;
+    private bool hit = false;
+    private Renderer m_renderer;
 
+
+    void Awake()
+    {
+        m_renderer = GetComponent<Renderer>();
+
+    }
     void Start()
     {
+        audioManager = GetComponent<AudioManager>();
+        audioManager.Play("Shoot");
         Destroy(gameObject, 5.0f);
+    }
+
+    void Update()
+    {
+        if(hit)
+        {
+            if(!audioManager.GetSource("Shoot").isPlaying)
+            {
+                Destroy(gameObject);
+            }
+        }
     }
 
     void OnCollisionEnter(Collision collision)
     {
+        if (hit)
+            return;
         //TODO: Different damage per bullet
         if (collision.gameObject.CompareTag("Enemy"))
         {
-            collision.gameObject.GetComponent<Enemy>().photonView.RPC("ReduceHealth", RpcTarget.AllBufferedViaServer, 10);
-            PhotonNetwork.Instantiate(collisionEnemyEffect.name, transform.position, Quaternion.identity);
-            Destroy(gameObject);
+            hit = true;
+            if(m_renderer != null)
+                m_renderer.enabled = false;
+            collision.gameObject.GetComponent<Enemy>().photonView.RPC("ReduceHealth", RpcTarget.AllBufferedViaServer, (int)Random.Range(damage -2, damage + 2));
+            Instantiate(collisionEnemyEffect, transform.position, Quaternion.identity);
         }
         else if (!collision.gameObject.CompareTag("Player") || !collision.gameObject.CompareTag("Bullet"))
         {
-            PhotonNetwork.Instantiate(collisionEffect.name, transform.position, Quaternion.identity);
-            Destroy(gameObject);
+            Instantiate(collisionEffect, transform.position, Quaternion.identity);
+            if (m_renderer != null)
+                m_renderer.enabled = false;
+            hit = true;
+
         }
     }
 }

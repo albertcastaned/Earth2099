@@ -2,17 +2,23 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.Audio;
 using TMPro;
 using Photon.Pun;
 using UnityEngine.Rendering.PostProcessing;
 
 public class SettingsMenu : MonoBehaviour
 {
+
     public TMP_Dropdown resolutionDropdown;
     public Toggle fullscreenToggle;
     public Toggle postProcessingToggle;
     public TMP_Dropdown qualityDropdown;
     public PostProcessLayer postProcessingLayer;
+    public AudioMixer musicMixer;
+    public AudioMixer soundEffectMixer;
+    public Slider musicSlider;
+    public Slider soundFxSlider;
 
     Resolution[] resolutions;
 
@@ -40,6 +46,18 @@ public class SettingsMenu : MonoBehaviour
             bool postProcessing = PlayerPrefs.GetInt("postprocessing") == 1;
             postProcessingToggle.isOn = postProcessing;
             SetPostProcessing(postProcessing);
+        }
+        if(PlayerPrefs.HasKey("musicVolume"))
+        {
+
+            SetMusicVolume(PlayerPrefs.GetFloat("musicVolume"));
+            musicSlider.value = PlayerPrefs.GetFloat("musicVolume");
+        }
+        if (PlayerPrefs.HasKey("sfxVolume"))
+        {
+
+            SetSoundEffectsVolume(PlayerPrefs.GetFloat("sfxVolume"));
+            soundFxSlider.value = PlayerPrefs.GetFloat("sfxVolume");
         }
     }
 
@@ -107,5 +125,17 @@ public class SettingsMenu : MonoBehaviour
     {
         Screen.fullScreen = isFullscreen;
         PlayerPrefs.SetInt("fullscreen", isFullscreen ? 1 : 0);
+    }
+
+    public void SetMusicVolume(float volume)
+    {
+        musicMixer.SetFloat("musicVolume", volume);
+        PlayerPrefs.SetFloat("musicVolume", volume);
+    }
+    public void SetSoundEffectsVolume(float volume)
+    {
+        soundEffectMixer.SetFloat("sfxVolume", volume);
+        PlayerPrefs.SetFloat("sfxVolume", volume);
+
     }
 }

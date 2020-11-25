@@ -479,6 +479,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 269092071877558431, guid: f37578f931d906d42b9daa7577aff4ba,
+        type: 3}
+      propertyPath: sounds.Array.data[0].maxDistance
+      value: 200
+      objectReference: {fileID: 0}
     - target: {fileID: 2065600435316049352, guid: f37578f931d906d42b9daa7577aff4ba,
         type: 3}
       propertyPath: m_Name
@@ -622,7 +627,7 @@ PrefabInstance:
     - target: {fileID: 2065600435316049358, guid: f37578f931d906d42b9daa7577aff4ba,
         type: 3}
       propertyPath: m_Acceleration
-      value: 6
+      value: 14.46
       objectReference: {fileID: 0}
     - target: {fileID: 3397632230520522197, guid: f37578f931d906d42b9daa7577aff4ba,
         type: 3}

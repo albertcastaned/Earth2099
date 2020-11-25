@@ -7,6 +7,21 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: -5086370052200933964, guid: d55dbc834826644af87c21f004f60ae1,
+        type: 3}
+      propertyPath: sounds.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: -5086370052200933964, guid: d55dbc834826644af87c21f004f60ae1,
+        type: 3}
+      propertyPath: sounds.Array.data[0].volume
+      value: 0.2
+      objectReference: {fileID: 0}
+    - target: {fileID: -5086370052200933964, guid: d55dbc834826644af87c21f004f60ae1,
+        type: 3}
+      propertyPath: sounds.Array.data[0].pitch
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 1646230156795598219, guid: d55dbc834826644af87c21f004f60ae1,
         type: 3}
       propertyPath: bullet
@@ -37,8 +52,7 @@ PrefabInstance:
         type: 3}
       propertyPath: muzzleFlash
       value: 
-      objectReference: {fileID: 1000010254994808, guid: 9defeac88977c0d448aa4541073ee9e4,
-        type: 3}
+      objectReference: {fileID: 0}
     - target: {fileID: 2537711716827926857, guid: d55dbc834826644af87c21f004f60ae1,
         type: 3}
       propertyPath: m_Name

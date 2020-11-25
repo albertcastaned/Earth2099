@@ -46,12 +46,14 @@ public class Player : MonoBehaviourPun, IPunObservable
     private Animator animator;
     private bool isLoading = false;
     public GameObject gunHolder;
+    private AudioManager audioManager;
 
     private DebugController debugController;
 
     private bool invincible;
 
 
+    private Coroutine walkSoundCoroutine;
 
     // Valores que deben sincronizados
     private int latestSelectedGun;
@@ -63,12 +65,14 @@ public class Player : MonoBehaviourPun, IPunObservable
         nameTag.text = photonView.Owner.NickName;
         controller = GetComponent<CharacterController>();
         debugController = GetComponent<DebugController>();
+        audioManager = GetComponent<AudioManager>();
         m_camera = Camera.main;
         animator = GetComponent<Animator>();
         SetAnimation("isIdle", true);
         StartCoroutine("WaitForLoad");
         UpdateHealthUI();
         photonView.RPC(nameof(SetupPartyHealthBars), RpcTarget.AllBufferedViaServer);
+        StartCoroutine(PlayRepeatingWalkSoundEffect());
     }
 
 
@@ -133,7 +137,6 @@ public class Player : MonoBehaviourPun, IPunObservable
                     moveDir.y = jumpSpeed;
                     state = PlayerState.Jumping;
                     SetAnimation("isJumping", true);
-
                 }
 
 
@@ -142,7 +145,6 @@ public class Player : MonoBehaviourPun, IPunObservable
                 {
                     state = PlayerState.Moving;
                     SetAnimation("isRunning", true);
-
                 }
                 break;
             case PlayerState.Jumping:
@@ -153,21 +155,20 @@ public class Player : MonoBehaviourPun, IPunObservable
                         state = PlayerState.Idle;
                         SetAnimation("isIdle", true);
                         trailRenderrer.emitting = false;
-
-
                     }
                     else
                     {
                         state = PlayerState.Moving;
                         SetAnimation("isRunning", true);
                         trailRenderrer.emitting = false;
-
                     }
+                    audioManager.Play("Step");
                 }
                 break;
 
             case PlayerState.Moving:
                 SetDirection();
+
                 if (CanMove && controller.isGrounded && Input.GetButton("Jump"))
                 {
                     moveDir.y = jumpSpeed;
@@ -181,7 +182,6 @@ public class Player : MonoBehaviourPun, IPunObservable
                 {
                     state = PlayerState.Idle;
                     SetAnimation("isIdle", true);
-
                 }
                 else
                 {
@@ -193,7 +193,8 @@ public class Player : MonoBehaviourPun, IPunObservable
                         moveDir.y = 0;
                         trailRenderrer.emitting = true;
                         SetAnimation("isDashing", true);
-
+                        audioManager.Play("Dodge");
+                        photonView.RPC(nameof(PlayAudioRPC), RpcTarget.Others, "Dodge");
                     }
                 }
                 break;
@@ -203,7 +204,7 @@ public class Player : MonoBehaviourPun, IPunObservable
                     moveDir.y = jumpSpeed;
                     state = PlayerState.Jumping;
                     SetAnimation("isJumping", true);
-
+                    audioManager.Stop("Step");
                 }
 
 
@@ -223,16 +224,44 @@ public class Player : MonoBehaviourPun, IPunObservable
                     {
                         state = PlayerState.Idle;
                         SetAnimation("isIdle", true);
+
                     }
                     trailRenderrer.emitting = false;
-
                 }
                 break;
         }
         ApplyGravity();
 
-        
         controller.Move(moveDir * speed * Time.deltaTime);
+    }
+
+    [PunRPC]
+    void PlayAudioRPC(string clipName)
+    {
+        audioManager.Play(clipName);
+    }
+
+    IEnumerator PlayRepeatingWalkSoundEffect(float time = 0.3f)
+    {
+        while (true)
+        {
+            if ((moveDir.x != 0 || moveDir.z != 0) && controller.isGrounded)
+            {
+                if(state == PlayerState.Dodging)
+                {
+                    time = 0.1f;
+                }
+                else
+                {
+                    time = 0.3f;
+                }
+                audioManager.Play("Step");
+                photonView.RPC(nameof(PlayAudioRPC), RpcTarget.Others, "Step");
+
+            }
+            yield return new WaitForSeconds(time);
+        }
+
     }
 
     public bool IsChatting { get { return chatManager.IsChatting; } }

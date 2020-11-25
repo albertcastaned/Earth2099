@@ -1,6 +1,6 @@
 ﻿using Photon.Pun;
 using UnityEngine;
-using TMPro;
+using UnityEngine.UI;
 
 public class ProjectileGun : MonoBehaviourPun
 {
@@ -25,7 +25,10 @@ public class ProjectileGun : MonoBehaviourPun
     
     // UI
     public GameObject muzzleFlash;
-    public TextMeshProUGUI ammunitionDisplay;
+    public Text ammunitionDisplay;
+
+    private LineRenderer lineRenderer;
+
 
     public bool allowInvoke = true;
 
@@ -34,19 +37,44 @@ public class ProjectileGun : MonoBehaviourPun
         // make sure magazine is full
         bulletsLeft = magazineSize;
         readyToShoot = true;
+        lineRenderer = GetComponent<LineRenderer>();
+        if(!photonView.IsMine)
+        {
+            lineRenderer.enabled = false;
+        }
     }
 
     private void Update()
     {
         EventInput();
+
+        UpdatePointer();
         
         // Set ammo display
         if (ammunitionDisplay != null)
         {
-            ammunitionDisplay.SetText(
+            ammunitionDisplay.text = 
                 bulletsLeft / bulletsPerTap + " / " + magazineSize / bulletsPerTap
-            );
+            ;
         }
+    }
+
+
+    void UpdatePointer()
+    {
+        Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+        RaycastHit hit;
+
+        // Check if ray hits something
+        Vector3 targetPoint;
+        if (Physics.Raycast(ray, out hit))
+            targetPoint = hit.point;
+        else
+            targetPoint = ray.GetPoint(75);
+
+        lineRenderer.SetPosition(0, attackPoint.position);
+
+        lineRenderer.SetPosition(1, targetPoint);
     }
 
     private void EventInput()
@@ -82,7 +110,7 @@ public class ProjectileGun : MonoBehaviourPun
             bulletsShot = 0;
             photonView.RPC(
                 nameof(Shoot),
-                RpcTarget.AllBuffered,
+                RpcTarget.All,
                 attackPosition,
                 directionWithoutSpread
             );
@@ -92,6 +120,7 @@ public class ProjectileGun : MonoBehaviourPun
     [PunRPC]
     public void Shoot(Vector3 from, Vector3 to)
     {
+
         readyToShoot = false;
 
         // Calculate spread

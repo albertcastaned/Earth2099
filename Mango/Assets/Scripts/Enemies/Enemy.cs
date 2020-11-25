@@ -29,6 +29,7 @@ public class Enemy : MonoBehaviourPun
 
     [Header("Prefabs")]
     public DamagePopupText popupTextPrefab;
+    public Transform deathAnimation;
 
     private LayerMask isGround, isPlayer;
 
@@ -46,7 +47,8 @@ public class Enemy : MonoBehaviourPun
     delegate void OnAnimationFinished();
 
     private List<Player> auxPlayers;
-    public Transform deathAnimation;
+
+    private AudioManager audioManager;
 
     enum EnemyState
     {
@@ -61,6 +63,7 @@ public class Enemy : MonoBehaviourPun
     void Start()
     {
         animator = GetComponent<Animator>();
+        audioManager = GetComponent<AudioManager>();
         currentState = EnemyState.Patrolling;
         isGround = LayerMask.GetMask("Floor");
         isPlayer = LayerMask.GetMask("Player");
@@ -85,7 +88,7 @@ public class Enemy : MonoBehaviourPun
     void EnemyUpdate()
     {
         // Might be performance heavy. Need testing to verify
-        if (!PhotonNetwork.IsMasterClient)
+        if (!PhotonNetwork.IsMasterClient || currentState == EnemyState.Dead)
             return;
 
         // Check sight and attack range
@@ -242,14 +245,18 @@ public class Enemy : MonoBehaviourPun
     [PunRPC]
     public void ReduceHealth(int amount)
     {
-        if(health - amount < 0)
-        {
+        if (currentState == EnemyState.Dead)
             return;
-        }
         health -= amount;
+        if (health < 0)
+        {
+            health = 0;
+        }
         UpdateHealthUI();
+        audioManager.Play("Damage");
         CreateFloatingText("-" + amount);
-  OnAnimationFinished onAnimationFinished;
+
+        OnAnimationFinished onAnimationFinished;
 
         if (stunnedByHits)
         {
@@ -266,9 +273,10 @@ public class Enemy : MonoBehaviourPun
         }
         if (health <= 0)
         {
+            currentState = EnemyState.Dead;
             Die();
         }
-        
+
     }
 
     public void Die()
@@ -277,7 +285,10 @@ public class Enemy : MonoBehaviourPun
         {
             UpdateAnimation("IsDead", true);
             agent.isStopped = false;
-            PhotonNetwork.Instantiate(deathAnimation.name, transform.position, Quaternion.identity);
+            GameObject deathAnimationObj = Instantiate(deathAnimation.gameObject);
+            deathAnimationObj.transform.position = transform.position;
+            RoomController.Instance.DecreaseCurrentEnemiesCount();
+
             if (photonView.IsMine)
                 PhotonNetwork.Destroy(gameObject);
         };
@@ -285,7 +296,6 @@ public class Enemy : MonoBehaviourPun
         animator.Play("Die", 0, 0);
         StopCoroutine(nameof(WaitForAnimation));
         StartCoroutine(nameof(WaitForAnimation), onAnimationFinished);
-        RoomController.Instance.DecreaseCurrentEnemiesCount();
 
     }
 

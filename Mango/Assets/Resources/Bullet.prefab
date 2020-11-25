@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 1220836768118475217}
   - component: {fileID: 1220836768118475218}
   - component: {fileID: 1220836768118475221}
-  - component: {fileID: -2667750997433125778}
+  - component: {fileID: 4437460532301919284}
   m_Layer: 0
   m_Name: Bullet
   m_TagString: Bullet
@@ -130,7 +130,7 @@ Rigidbody:
   m_Interpolate: 1
   m_Constraints: 112
   m_CollisionDetection: 1
---- !u!114 &-2667750997433125778
+--- !u!114 &4437460532301919284
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -139,19 +139,23 @@ MonoBehaviour:
   m_GameObject: {fileID: 1220836768118475219}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: aa584fbee541324448dd18d8409c7a41, type: 3}
+  m_Script: {fileID: 11500000, guid: 66e2cf47f2391b74d8cbce6a54b7c0f6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ObservedComponentsFoldoutOpen: 1
-  Group: 0
-  prefixField: -1
-  observableSearch: 2
-  Synchronization: 3
-  OwnershipTransfer: 0
-  ObservedComponents: []
-  viewIdField: 0
-  InstantiationId: 0
-  isRuntimeInstantiated: 0
+  sounds:
+  - name: Shoot
+    clip: {fileID: 8300000, guid: 1b145bcffd767854fb0c71c37678ebaa, type: 3}
+    volume: 0.4
+    volumeVariance: 0.265
+    pitch: 1
+    pitchVariance: 0.26
+    spatialBlend: 1
+    minDistance: 5
+    maxDistance: 100
+    loop: 0
+    audioRolloffMode: 1
+    mixerGroup: {fileID: 24300002, guid: 76ab6064d8cb9b141838fbb24a714081, type: 2}
+    source: {fileID: 0}
 --- !u!1 &8435850617189361251
 GameObject:
   m_ObjectHideFlags: 0
