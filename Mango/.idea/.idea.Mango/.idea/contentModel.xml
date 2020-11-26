@@ -919,6 +919,7 @@
             <e p="User.cs" t="Include" />
           </e>
           <e p="ChangeColor.cs" t="Include" />
+          <e p="createPowerups.cs" t="Include" />
           <e p="Enemies" t="Include">
             <e p="createEnemies.cs" t="Include" />
             <e p="Enemy.cs" t="Include" />
@@ -930,6 +931,7 @@
           </e>
           <e p="PartyHealth.cs" t="Include" />
           <e p="Player" t="Include">
+            <e p="Audio.cs" t="Include" />
             <e p="Bullet.cs" t="Include" />
             <e p="CameraFollow.cs" t="Include" />
             <e p="FaceCamera.cs" t="Include" />
@@ -940,6 +942,10 @@
             <e p="PlayerSync.cs" t="Include" />
             <e p="RotateCameraColorConfig.cs" t="Include" />
           </e>
+          <e p="PowerUp.cs" t="Include" />
+          <e p="PowerUpActions.cs" t="Include" />
+          <e p="PowerUpBehaviour.cs" t="Include" />
+          <e p="PowerUpController.cs" t="Include" />
           <e p="ProjectileGun.cs" t="Include" />
           <e p="SettingsMenu.cs" t="Include" />
           <e p="System" t="Include">
@@ -950,6 +956,12 @@
             <e p="GameManager.cs" t="Include" />
             <e p="RoomController.cs" t="Include" />
             <e p="Singleton.cs" t="Include" />
+            <e p="Sound" t="Include">
+              <e p="AudioManager.cs" t="Include" />
+              <e p="MusicPlayer.cs" t="Include" />
+              <e p="RandomAudioPlayer.cs" t="Include" />
+              <e p="Sound.cs" t="Include" />
+            </e>
           </e>
           <e p="TiltWindow.cs" t="Include" />
           <e p="UI" t="Include">
@@ -963,6 +975,7 @@
             <e p="DropMe.cs" t="Include" />
             <e p="FieldTabController.cs" t="Include" />
             <e p="FPSCounter.cs" t="Include" />
+            <e p="LoadingScene.cs" t="Include" />
             <e p="MessageDialog.cs" t="Include" />
             <e p="PanelManager.cs" t="Include" />
             <e p="PlayerNameInput.cs" t="Include" />

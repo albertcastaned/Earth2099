@@ -1,12 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="63769529-5654-45a6-a890-c6dc06e39fab" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.Mango/.idea/indexLayout.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Mango/.idea/indexLayout.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.Mango/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Mango/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Plugins/ColorSkies/Skies/Sky_5.mat" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Plugins/ColorSkies/Skies/Sky_5.mat" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/ProjectileGun.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/ProjectileGun.cs" afterDir="false" />
-    </list>
+    <list default="true" id="63769529-5654-45a6-a890-c6dc06e39fab" name="Default Changelist" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -16,6 +11,8 @@
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
   </component>
   <component name="HighlightingSettingsPerFile">
+    <setting file="mock:///Users/topihdez/Documents/tec/Gráficas Computacionales/Earth2099/Mango/Assets/Scripts/Enemies/Enemy.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///Users/topihdez/Documents/tec/Gráficas Computacionales/Earth2099/Mango/Assets/Scripts/Enemies/Enemy.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Plugins/Photon/PhotonUnityNetworking/Code/PunClasses.cs" root0="SKIP_HIGHLIGHTING" />
   </component>
   <component name="IdeDocumentHistory">
@@ -27,6 +24,7 @@
         <option value="$PROJECT_DIR$/Assets/Scripts/Player.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/Player/Player.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/ProjectileGun.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/Enemies/Enemy.cs" />
       </list>
     </option>
   </component>
@@ -89,6 +87,7 @@
       <workItem from="1605657209121" duration="2977000" />
       <workItem from="1606194258630" duration="1946000" />
       <workItem from="1606231241014" duration="1088000" />
+      <workItem from="1606409237519" duration="3967000" />
     </task>
     <task id="LOCAL-00001" summary="Add PunRPC to player to shoot">
       <created>1605585757170</created>
@@ -118,7 +117,21 @@
       <option name="project" value="LOCAL" />
       <updated>1605660161978</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="Add maximum number of bullets">
+      <created>1606411560736</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1606411560736</updated>
+    </task>
+    <task id="LOCAL-00006" summary="Increase audio effects volume">
+      <created>1606413612251</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1606413612251</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -142,12 +155,22 @@
     <MESSAGE value="Allow gun change" />
     <MESSAGE value="Remove log calls" />
     <MESSAGE value="Add animations for bullet impacts" />
-    <option name="LAST_COMMIT_MESSAGE" value="Add animations for bullet impacts" />
+    <MESSAGE value="Add maximum number of bullets" />
+    <MESSAGE value="Increase audio effects volume" />
+    <option name="LAST_COMMIT_MESSAGE" value="Increase audio effects volume" />
   </component>
   <component name="WindowStateProjectService">
-    <state x="224" y="31" key="CommitChangelistDialog2" timestamp="1605660161626">
+    <state x="224" y="31" key="CommitChangelistDialog2" timestamp="1606413611933">
       <screen x="0" y="23" width="1440" height="820" />
     </state>
-    <state x="224" y="31" key="CommitChangelistDialog2/0.23.1440.820/1440.-157.1920.1057@0.23.1440.820" timestamp="1605660161626" />
+    <state x="224" y="31" key="CommitChangelistDialog2/0.23.1440.820/1440.-157.1920.1057@0.23.1440.820" timestamp="1606413611933" />
+    <state x="100" y="123" width="1240" height="620" key="VCS.FileHistoryDialog" timestamp="1606414069198">
+      <screen x="0" y="23" width="1440" height="820" />
+    </state>
+    <state x="100" y="123" width="1240" height="620" key="VCS.FileHistoryDialog/0.23.1440.820/1440.-157.1920.1057@0.23.1440.820" timestamp="1606414069198" />
+    <state x="320" y="173" key="Vcs.Push.Dialog.v2" timestamp="1606414068195">
+      <screen x="0" y="23" width="1440" height="820" />
+    </state>
+    <state x="320" y="173" key="Vcs.Push.Dialog.v2/0.23.1440.820/1440.-157.1920.1057@0.23.1440.820" timestamp="1606414068195" />
   </component>
 </project>
