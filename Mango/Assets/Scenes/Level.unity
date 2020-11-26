@@ -39,7 +39,7 @@ RenderSettings:
   m_ReflectionIntensity: 0.069
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 2938426574818789253}
-  m_IndirectSpecularColor: {r: 0.07527936, g: 0.08346274, b: 0.10542194, a: 0.069}
+  m_IndirectSpecularColor: {r: 0.1150252, g: 0.13597009, b: 0.17208692, a: 0.069}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -227,6 +227,7 @@ MonoBehaviour:
   bakeRuntime: {fileID: 8219162262033242812}
   isLoading: 1
   currentEnemies: 0
+  score: 0
 --- !u!4 &350755461
 Transform:
   m_ObjectHideFlags: 0
@@ -329,6 +330,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   prefabPowerUp: {fileID: 5425518092195050645, guid: 553d653fed3d642688042343452fb0fc,
     type: 3}
+  powerupHudPrefab: {fileID: 0}
+  hudPowerUpDisplayParent: {fileID: 0}
 --- !u!1 &712111739
 GameObject:
   m_ObjectHideFlags: 0
