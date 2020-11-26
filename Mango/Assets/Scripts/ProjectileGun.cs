@@ -12,7 +12,7 @@ public class ProjectileGun : MonoBehaviourPun
 
     // Gun stats
     public float timeBetweenShooting, spread, reloadTime, timeBetweenShots;
-    public int magazineSize, bulletsPerTap;
+    public int magazineSize, bulletsPerTap, numberOfMagazines;
     public bool allowButtonHold;
 
     int bulletsLeft, bulletsShot;
@@ -54,7 +54,7 @@ public class ProjectileGun : MonoBehaviourPun
         if (ammunitionDisplay != null)
         {
             ammunitionDisplay.text = 
-                bulletsLeft / bulletsPerTap + " / " + magazineSize / bulletsPerTap
+                bulletsLeft / bulletsPerTap + " / " + (magazineSize / bulletsPerTap) * numberOfMagazines
             ;
         }
     }
@@ -167,6 +167,7 @@ public class ProjectileGun : MonoBehaviourPun
 
     private void Reload()
     {
+        if (numberOfMagazines == 0) return;
         reloading = true;
         Invoke(nameof(ReloadFinished), reloadTime);
     }
@@ -174,6 +175,7 @@ public class ProjectileGun : MonoBehaviourPun
     private void ReloadFinished()
     {
         bulletsLeft = magazineSize;
+        numberOfMagazines -= 1;
         reloading = false;
     }
 }

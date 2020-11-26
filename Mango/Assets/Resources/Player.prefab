@@ -21917,6 +21917,26 @@ PrefabInstance:
       propertyPath: ammunitionDisplay
       value: 
       objectReference: {fileID: 3234825444448144858}
+    - target: {fileID: 8057118742464245583, guid: e794a86a30e45435cae703fae0b56b11,
+        type: 3}
+      propertyPath: spread
+      value: 1.35
+      objectReference: {fileID: 0}
+    - target: {fileID: 8057118742464245583, guid: e794a86a30e45435cae703fae0b56b11,
+        type: 3}
+      propertyPath: magazineSize
+      value: 50
+      objectReference: {fileID: 0}
+    - target: {fileID: 8057118742464245583, guid: e794a86a30e45435cae703fae0b56b11,
+        type: 3}
+      propertyPath: timeBetweenShooting
+      value: 0.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8057118742464245583, guid: e794a86a30e45435cae703fae0b56b11,
+        type: 3}
+      propertyPath: numberOfMagazines
+      value: 7
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e794a86a30e45435cae703fae0b56b11, type: 3}
 --- !u!114 &64550500916657879 stripped
@@ -21962,12 +21982,12 @@ PrefabInstance:
     - target: {fileID: 6289744820228628819, guid: 10ef02deccbb24e8799bffc6c79017b2,
         type: 3}
       propertyPath: shootForce
-      value: 50
+      value: 270
       objectReference: {fileID: 0}
     - target: {fileID: 6289744820228628819, guid: 10ef02deccbb24e8799bffc6c79017b2,
         type: 3}
       propertyPath: magazineSize
-      value: 50
+      value: 20
       objectReference: {fileID: 0}
     - target: {fileID: 6289744820228628819, guid: 10ef02deccbb24e8799bffc6c79017b2,
         type: 3}
@@ -21984,6 +22004,16 @@ PrefabInstance:
       propertyPath: ammunitionDisplay
       value: 
       objectReference: {fileID: 3234825444448144858}
+    - target: {fileID: 6289744820228628819, guid: 10ef02deccbb24e8799bffc6c79017b2,
+        type: 3}
+      propertyPath: numberOfMagazines
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 6289744820228628819, guid: 10ef02deccbb24e8799bffc6c79017b2,
+        type: 3}
+      propertyPath: timeBetweenShooting
+      value: 1.2
+      objectReference: {fileID: 0}
     - target: {fileID: 7108649787425219985, guid: 10ef02deccbb24e8799bffc6c79017b2,
         type: 3}
       propertyPath: m_Name
