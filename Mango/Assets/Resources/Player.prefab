@@ -20571,7 +20571,7 @@ MonoBehaviour:
   sounds:
   - name: Step
     clip: {fileID: 8300000, guid: 719d01b70292baa449c387db7442f747, type: 3}
-    volume: 0.6
+    volume: 1
     volumeVariance: 0.076
     pitch: 0.63
     pitchVariance: 0.108
@@ -20584,7 +20584,7 @@ MonoBehaviour:
     source: {fileID: 0}
   - name: Dodge
     clip: {fileID: 8300000, guid: e549447a7b4c4b74ebbc6c5d5a49aaca, type: 3}
-    volume: 0.8
+    volume: 1
     volumeVariance: 0.236
     pitch: 1.66
     pitchVariance: 0.369
@@ -21841,6 +21841,11 @@ PrefabInstance:
       propertyPath: m_Enabled
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4639167449039613808, guid: e794a86a30e45435cae703fae0b56b11,
+        type: 3}
+      propertyPath: sounds.Array.data[0].volume
+      value: 0.71
+      objectReference: {fileID: 0}
     - target: {fileID: 5457064166701708493, guid: e794a86a30e45435cae703fae0b56b11,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -22078,6 +22083,11 @@ PrefabInstance:
         type: 3}
       propertyPath: sounds.Array.data[0].maxDistance
       value: 60
+      objectReference: {fileID: 0}
+    - target: {fileID: 8716903373143679340, guid: 10ef02deccbb24e8799bffc6c79017b2,
+        type: 3}
+      propertyPath: sounds.Array.data[0].volume
+      value: 0.9
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 1575532849651846432, guid: 10ef02deccbb24e8799bffc6c79017b2, type: 3}

@@ -162,7 +162,7 @@ public class Enemy : MonoBehaviourPun
         {
             ChooseRandomTargetInList(ref playersInAttackRange);
         }
-      // agent.SetDestination(transform.position);
+        // agent.SetDestination(transform.position);
 
         transform.LookAt(target.transform.position);
 

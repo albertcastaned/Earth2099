@@ -145,7 +145,7 @@ MonoBehaviour:
   sounds:
   - name: Shoot
     clip: {fileID: 8300000, guid: 1b145bcffd767854fb0c71c37678ebaa, type: 3}
-    volume: 0.4
+    volume: 1
     volumeVariance: 0.265
     pitch: 1
     pitchVariance: 0.26
