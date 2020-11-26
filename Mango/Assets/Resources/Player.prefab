@@ -14023,7 +14023,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: 0.000064218504}
+  m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 1}
 --- !u!114 &6238927651937059737
@@ -14828,7 +14828,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 3226015962652225976}
   m_HandleRect: {fileID: 0}
   m_Direction: 2
-  m_Value: 0
+  m_Value: 1
   m_Size: 1
   m_NumberOfSteps: 0
   m_OnValueChanged:
@@ -20511,6 +20511,7 @@ MonoBehaviour:
   partyHealth: {fileID: 8279084793822966030}
   barraVida: {fileID: 1841624446906512351}
   lifeText: {fileID: 5669437021674853998}
+  scoreLabel: {fileID: 5089232341176403096}
   popupTextPrefab: {fileID: 3372425993928838701, guid: 37d4fadc287bd604c84ae0766f5b5a6a,
     type: 3}
   chatManager: {fileID: 6238927651560556322}
@@ -21295,7 +21296,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: 0.000028525641}
+  m_AnchoredPosition: {x: 0, y: -0.000030517578}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 1}
 --- !u!114 &7649224546834721744
@@ -21736,7 +21737,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 'Score: 00'
+  m_Text: 'Score: 108'
 --- !u!1 &9189076469576592078
 GameObject:
   m_ObjectHideFlags: 0

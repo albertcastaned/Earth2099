@@ -950,6 +950,11 @@ PrefabInstance:
       propertyPath: walkPointRange
       value: 258.6
       objectReference: {fileID: 0}
+    - target: {fileID: 2065600435316049353, guid: f37578f931d906d42b9daa7577aff4ba,
+        type: 3}
+      propertyPath: points
+      value: 20
+      objectReference: {fileID: 0}
     - target: {fileID: 2065600435316049357, guid: f37578f931d906d42b9daa7577aff4ba,
         type: 3}
       propertyPath: m_LocalPosition.x

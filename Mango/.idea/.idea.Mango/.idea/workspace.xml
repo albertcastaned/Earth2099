@@ -2,8 +2,18 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="63769529-5654-45a6-a890-c6dc06e39fab" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.Mango/.idea/indexLayout.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Mango/.idea/indexLayout.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.Mango/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Mango/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Plugins/ColorSkies/Skies/Sky_5.mat" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Plugins/ColorSkies/Skies/Sky_5.mat" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Plugins/Photon/PhotonUnityNetworking/Resources/PhotonServerSettings.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Plugins/Photon/PhotonUnityNetworking/Resources/PhotonServerSettings.asset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Resources/Orc.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Resources/Orc.prefab" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Resources/Player.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Resources/Player.prefab" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Resources/Slime.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Resources/Slime.prefab" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Resources/Spiny.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Resources/Spiny.prefab" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Enemies/Enemy.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Enemies/Enemy.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Player/Player.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Player/Player.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scripts/System/RoomController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/System/RoomController.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ProjectSettings/GraphicsSettings.asset" beforeDir="false" afterPath="$PROJECT_DIR$/ProjectSettings/GraphicsSettings.asset" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -14,8 +24,6 @@
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
   </component>
   <component name="HighlightingSettingsPerFile">
-    <setting file="mock:///Users/topihdez/Documents/tec/Gráficas Computacionales/Earth2099/Mango/Assets/Scripts/Enemies/Enemy.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock:///Users/topihdez/Documents/tec/Gráficas Computacionales/Earth2099/Mango/Assets/Scripts/Enemies/Enemy.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Plugins/Photon/PhotonUnityNetworking/Code/PunClasses.cs" root0="SKIP_HIGHLIGHTING" />
   </component>
   <component name="IdeDocumentHistory">
@@ -25,13 +33,14 @@
         <option value="$PROJECT_DIR$/Assets/Scripts/Enemy.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/Bullet.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/Player.cs" />
-        <option value="$PROJECT_DIR$/Assets/Scripts/Player/Player.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/ProjectileGun.cs" />
-        <option value="$PROJECT_DIR$/Assets/Scripts/Enemies/Enemy.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/Player/Bullet.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/PartyHealth.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/createPowerups.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/ScoreController.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/Player/Player.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/System/RoomController.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/Enemies/Enemy.cs" />
       </list>
     </option>
   </component>
@@ -94,7 +103,8 @@
       <workItem from="1605657209121" duration="2977000" />
       <workItem from="1606194258630" duration="1946000" />
       <workItem from="1606231241014" duration="1088000" />
-      <workItem from="1606409237519" duration="5847000" />
+      <workItem from="1606409237519" duration="6785000" />
+      <workItem from="1606419292181" duration="4886000" />
     </task>
     <task id="LOCAL-00001" summary="Add PunRPC to player to shoot">
       <created>1605585757170</created>
@@ -145,7 +155,14 @@
       <option name="project" value="LOCAL" />
       <updated>1606415928329</updated>
     </task>
-    <option name="localTasksCounter" value="8" />
+    <task id="LOCAL-00008" summary="Fix typo">
+      <created>1606418477852</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1606418477852</updated>
+    </task>
+    <option name="localTasksCounter" value="9" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -172,13 +189,14 @@
     <MESSAGE value="Add maximum number of bullets" />
     <MESSAGE value="Increase audio effects volume" />
     <MESSAGE value="Fix format issues" />
-    <option name="LAST_COMMIT_MESSAGE" value="Fix format issues" />
+    <MESSAGE value="Fix typo" />
+    <option name="LAST_COMMIT_MESSAGE" value="Fix typo" />
   </component>
   <component name="WindowStateProjectService">
-    <state x="224" y="31" key="CommitChangelistDialog2" timestamp="1606415928036">
+    <state x="224" y="31" key="CommitChangelistDialog2" timestamp="1606418477516">
       <screen x="0" y="23" width="1440" height="820" />
     </state>
-    <state x="224" y="31" key="CommitChangelistDialog2/0.23.1440.820/1440.-157.1920.1057@0.23.1440.820" timestamp="1606415928036" />
+    <state x="224" y="31" key="CommitChangelistDialog2/0.23.1440.820/1440.-157.1920.1057@0.23.1440.820" timestamp="1606418477516" />
     <state x="391" y="150" key="RollbackChangesDialog" timestamp="1606415895844">
       <screen x="0" y="23" width="1440" height="820" />
     </state>
@@ -191,9 +209,9 @@
       <screen x="0" y="23" width="1440" height="820" />
     </state>
     <state x="320" y="173" key="Vcs.Push.Dialog.v2/0.23.1440.820/1440.-157.1920.1057@0.23.1440.820" timestamp="1606414150704" />
-    <state x="383" y="164" key="search.everywhere.popup" timestamp="1606414476870">
+    <state x="383" y="164" width="672" height="678" key="search.everywhere.popup" timestamp="1606418741895">
       <screen x="0" y="23" width="1440" height="820" />
     </state>
-    <state x="383" y="164" key="search.everywhere.popup/0.23.1440.820/1440.-157.1920.1057@0.23.1440.820" timestamp="1606414476870" />
+    <state x="383" y="164" width="672" height="678" key="search.everywhere.popup/0.23.1440.820/1440.-157.1920.1057@0.23.1440.820" timestamp="1606418741895" />
   </component>
 </project>

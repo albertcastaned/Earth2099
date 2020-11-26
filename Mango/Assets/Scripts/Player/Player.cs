@@ -33,6 +33,7 @@ public class Player : MonoBehaviourPun, IPunObservable
     public PartyHealth partyHealth;
     public Image barraVida;
     public TMP_Text lifeText;
+    public Text scoreLabel;
     public DamagePopupText popupTextPrefab;
     public ChatManager chatManager;
     public TrailRenderer trailRenderrer;
