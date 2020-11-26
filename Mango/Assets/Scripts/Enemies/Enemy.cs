@@ -22,6 +22,7 @@ public class Enemy : MonoBehaviourPun
     public float walkPointRange = 10f;
     public float timeBetweenAttacks = 5f;
     public bool stunnedByHits = true;
+    public int points;
 
     [Header("HUD")]
     public Image barraVida;
@@ -281,6 +282,7 @@ public class Enemy : MonoBehaviourPun
 
     public void Die()
     {
+        IncreaseScore(points);
         OnAnimationFinished onAnimationFinished = delegate ()
         {
             UpdateAnimation("IsDead", true);
@@ -297,6 +299,11 @@ public class Enemy : MonoBehaviourPun
         StopCoroutine(nameof(WaitForAnimation));
         StartCoroutine(nameof(WaitForAnimation), onAnimationFinished);
 
+    }
+    
+    public void IncreaseScore(int increase)
+    {
+        RoomController.Instance.IncreaseScore(increase);
     }
 
     private void UpdateHealthUI()
