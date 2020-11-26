@@ -1,7 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="63769529-5654-45a6-a890-c6dc06e39fab" name="Default Changelist" comment="" />
+    <list default="true" id="63769529-5654-45a6-a890-c6dc06e39fab" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.Mango/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Mango/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/PartyHealth.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/PartyHealth.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Player/Bullet.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Player/Bullet.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/createPowerups.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/createPowerups.cs" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -25,6 +30,9 @@
         <option value="$PROJECT_DIR$/Assets/Scripts/Player/Player.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/ProjectileGun.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/Enemies/Enemy.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/Player/Bullet.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/PartyHealth.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/createPowerups.cs" />
       </list>
     </option>
   </component>
@@ -87,7 +95,7 @@
       <workItem from="1605657209121" duration="2977000" />
       <workItem from="1606194258630" duration="1946000" />
       <workItem from="1606231241014" duration="1088000" />
-      <workItem from="1606409237519" duration="3967000" />
+      <workItem from="1606409237519" duration="4959000" />
     </task>
     <task id="LOCAL-00001" summary="Add PunRPC to player to shoot">
       <created>1605585757170</created>
@@ -168,9 +176,13 @@
       <screen x="0" y="23" width="1440" height="820" />
     </state>
     <state x="100" y="123" width="1240" height="620" key="VCS.FileHistoryDialog/0.23.1440.820/1440.-157.1920.1057@0.23.1440.820" timestamp="1606414069198" />
-    <state x="320" y="173" key="Vcs.Push.Dialog.v2" timestamp="1606414068195">
+    <state x="320" y="173" key="Vcs.Push.Dialog.v2" timestamp="1606414150704">
       <screen x="0" y="23" width="1440" height="820" />
     </state>
-    <state x="320" y="173" key="Vcs.Push.Dialog.v2/0.23.1440.820/1440.-157.1920.1057@0.23.1440.820" timestamp="1606414068195" />
+    <state x="320" y="173" key="Vcs.Push.Dialog.v2/0.23.1440.820/1440.-157.1920.1057@0.23.1440.820" timestamp="1606414150704" />
+    <state x="383" y="164" key="search.everywhere.popup" timestamp="1606414476870">
+      <screen x="0" y="23" width="1440" height="820" />
+    </state>
+    <state x="383" y="164" key="search.everywhere.popup/0.23.1440.820/1440.-157.1920.1057@0.23.1440.820" timestamp="1606414476870" />
   </component>
 </project>
