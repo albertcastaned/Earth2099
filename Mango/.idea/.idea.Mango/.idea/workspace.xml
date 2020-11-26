@@ -3,9 +3,7 @@
   <component name="ChangeListManager">
     <list default="true" id="63769529-5654-45a6-a890-c6dc06e39fab" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.Mango/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Mango/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/PartyHealth.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/PartyHealth.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Player/Bullet.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Player/Bullet.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/createPowerups.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/createPowerups.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/System/RoomController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/System/RoomController.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -33,6 +31,7 @@
         <option value="$PROJECT_DIR$/Assets/Scripts/Player/Bullet.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/PartyHealth.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/createPowerups.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/System/RoomController.cs" />
       </list>
     </option>
   </component>
@@ -95,7 +94,7 @@
       <workItem from="1605657209121" duration="2977000" />
       <workItem from="1606194258630" duration="1946000" />
       <workItem from="1606231241014" duration="1088000" />
-      <workItem from="1606409237519" duration="4959000" />
+      <workItem from="1606409237519" duration="5847000" />
     </task>
     <task id="LOCAL-00001" summary="Add PunRPC to player to shoot">
       <created>1605585757170</created>
@@ -139,7 +138,14 @@
       <option name="project" value="LOCAL" />
       <updated>1606413612251</updated>
     </task>
-    <option name="localTasksCounter" value="7" />
+    <task id="LOCAL-00007" summary="Fix format issues">
+      <created>1606415928329</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1606415928329</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -165,17 +171,22 @@
     <MESSAGE value="Add animations for bullet impacts" />
     <MESSAGE value="Add maximum number of bullets" />
     <MESSAGE value="Increase audio effects volume" />
-    <option name="LAST_COMMIT_MESSAGE" value="Increase audio effects volume" />
+    <MESSAGE value="Fix format issues" />
+    <option name="LAST_COMMIT_MESSAGE" value="Fix format issues" />
   </component>
   <component name="WindowStateProjectService">
-    <state x="224" y="31" key="CommitChangelistDialog2" timestamp="1606413611933">
+    <state x="224" y="31" key="CommitChangelistDialog2" timestamp="1606415928036">
       <screen x="0" y="23" width="1440" height="820" />
     </state>
-    <state x="224" y="31" key="CommitChangelistDialog2/0.23.1440.820/1440.-157.1920.1057@0.23.1440.820" timestamp="1606413611933" />
-    <state x="100" y="123" width="1240" height="620" key="VCS.FileHistoryDialog" timestamp="1606414069198">
+    <state x="224" y="31" key="CommitChangelistDialog2/0.23.1440.820/1440.-157.1920.1057@0.23.1440.820" timestamp="1606415928036" />
+    <state x="391" y="150" key="RollbackChangesDialog" timestamp="1606415895844">
       <screen x="0" y="23" width="1440" height="820" />
     </state>
-    <state x="100" y="123" width="1240" height="620" key="VCS.FileHistoryDialog/0.23.1440.820/1440.-157.1920.1057@0.23.1440.820" timestamp="1606414069198" />
+    <state x="391" y="150" key="RollbackChangesDialog/0.23.1440.820/1440.-157.1920.1057@0.23.1440.820" timestamp="1606415895844" />
+    <state x="100" y="123" width="1240" height="620" key="VCS.FileHistoryDialog" timestamp="1606416766138">
+      <screen x="0" y="23" width="1440" height="820" />
+    </state>
+    <state x="100" y="123" width="1240" height="620" key="VCS.FileHistoryDialog/0.23.1440.820/1440.-157.1920.1057@0.23.1440.820" timestamp="1606416766138" />
     <state x="320" y="173" key="Vcs.Push.Dialog.v2" timestamp="1606414150704">
       <screen x="0" y="23" width="1440" height="820" />
     </state>

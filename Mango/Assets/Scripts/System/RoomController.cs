@@ -28,6 +28,7 @@ namespace Mango.Game
         public bool isLoading = true;
 
         public int currentEnemies = 0;
+        public int points = 0;
 
 
         void Awake()
@@ -50,7 +51,7 @@ namespace Mango.Game
 
             if (PhotonNetwork.CurrentRoom == null)
             {
-                Debug.Log("Ocurrio un error al cargar la escena, volviendo a lobby.");
+                Debug.Log("Ocurrió un error al cargar la escena, volviendo a lobby.");
                 UnityEngine.SceneManagement.SceneManager.LoadScene("Launcher");
                 return;
             }
