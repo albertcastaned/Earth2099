@@ -19,4 +19,9 @@ public class PowerUpActions : MonoBehaviour
     {
         player.photonView.RPC("IncreaseHealth", RpcTarget.All, 50);
     }
+    
+    public void IncreaseBulletsGun(Player player)
+    {
+        player.aumentarBalas();
+    }
 }

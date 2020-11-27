@@ -52,6 +52,7 @@ MonoBehaviour:
   walkPointRange: 50
   timeBetweenAttacks: 1.5
   stunnedByHits: 1
+  points: 0
   barraVida: {fileID: 1233073371105874743}
   lifeText: {fileID: 5272249431233698663}
   popupTextPrefab: {fileID: 3372425993928838701, guid: 37d4fadc287bd604c84ae0766f5b5a6a,
@@ -1214,6 +1215,16 @@ PrefabInstance:
         type: 3}
       propertyPath: sightRange
       value: 31.96
+      objectReference: {fileID: 0}
+    - target: {fileID: 2065600435316049353, guid: f37578f931d906d42b9daa7577aff4ba,
+        type: 3}
+      propertyPath: stunnedByHits
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2065600435316049353, guid: f37578f931d906d42b9daa7577aff4ba,
+        type: 3}
+      propertyPath: points
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 2065600435316049357, guid: f37578f931d906d42b9daa7577aff4ba,
         type: 3}

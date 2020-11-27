@@ -22,6 +22,7 @@ public class Enemy : MonoBehaviourPun
     public float walkPointRange = 10f;
     public float timeBetweenAttacks = 5f;
     public bool stunnedByHits = true;
+    public int points;
 
     [Header("HUD")]
     public Image barraVida;
@@ -165,6 +166,7 @@ public class Enemy : MonoBehaviourPun
         {
             ChooseRandomTargetInList(ref playersInAttackRange);
         }
+      // agent.SetDestination(transform.position);
 
         transform.LookAt(target.transform.position);
 
@@ -287,6 +289,7 @@ public class Enemy : MonoBehaviourPun
 
     public virtual void Die()
     {
+        IncreaseScore(points);
         OnAnimationFinished onAnimationFinished = delegate ()
         {
             UpdateAnimation("IsDead", true);
@@ -303,8 +306,12 @@ public class Enemy : MonoBehaviourPun
         StartCoroutine(nameof(WaitForAnimation), onAnimationFinished);
 
     }
+    public void IncreaseScore(int increase)
+    {
+        RoomController.Instance.IncreaseScore(increase);
+    }
 
-    protected void UpdateHealthUI()
+    private void UpdateHealthUI()
     {
         barraVida.fillAmount = (float)health / maxHealth;
         lifeText.text = health.ToString() + " / " + maxHealth.ToString();

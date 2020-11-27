@@ -130,11 +130,12 @@ MonoBehaviour:
   shootForce: 100
   upwardForce: 0
   timeBetweenShooting: 0.1
-  spread: 0.1
+  spread: 0.25
   reloadTime: 1.5
   timeBetweenShots: 0
   magazineSize: 100
   bulletsPerTap: 1
+  numberOfMagazines: 7
   allowButtonHold: 1
   attackPoint: {fileID: 9178172838372113889}
   muzzleFlash: {fileID: 0}

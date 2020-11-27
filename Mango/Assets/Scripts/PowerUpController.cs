@@ -68,7 +68,7 @@ public class PowerUpController : MonoBehaviour
     {
         if (!IsPowerupActive(powerup))
         {
-			
+            Debug.Log("Es momento de reaccionar el power up");
             powerup.Start(player);
 
             if (powerup.duration > 0)

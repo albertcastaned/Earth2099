@@ -9,8 +9,6 @@ public class createPowerups : MonoBehaviour
 {
     public float spawnTime = 15f;
     public PowerupSpawn[] powerupSpawn;
-
-    public GameObject prefabLife;
     
     
     void Start()
@@ -30,7 +28,7 @@ public class createPowerups : MonoBehaviour
         Vector3 posicion = new Vector3(numx, 0f, numy);
         Vector3 resultPos = GetRandomPoint(posicion, 50f);
 
-        GameObject newEnemy = RoomController.Instance.Spawn(newPowerupPrefab.name, resultPos);
+        RoomController.Instance.Spawn("Powerups/" + newPowerupPrefab.name, resultPos);
         RoomController.Instance.IncreaseCurrentEnemiesCount();
     }
 

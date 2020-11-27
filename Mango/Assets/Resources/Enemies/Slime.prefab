@@ -484,6 +484,11 @@ PrefabInstance:
       propertyPath: sounds.Array.data[0].maxDistance
       value: 200
       objectReference: {fileID: 0}
+    - target: {fileID: 269092071877558431, guid: f37578f931d906d42b9daa7577aff4ba,
+        type: 3}
+      propertyPath: sounds.Array.data[0].volume
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2065600435316049352, guid: f37578f931d906d42b9daa7577aff4ba,
         type: 3}
       propertyPath: m_Name
@@ -528,6 +533,11 @@ PrefabInstance:
         type: 3}
       propertyPath: damage
       value: 30
+      objectReference: {fileID: 0}
+    - target: {fileID: 2065600435316049353, guid: f37578f931d906d42b9daa7577aff4ba,
+        type: 3}
+      propertyPath: points
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 2065600435316049357, guid: f37578f931d906d42b9daa7577aff4ba,
         type: 3}

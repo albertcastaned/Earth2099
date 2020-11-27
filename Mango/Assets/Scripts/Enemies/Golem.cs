@@ -56,13 +56,13 @@ public class Golem : Enemy
             agent.isStopped = true;
             throwing = true;
             animator.Play("ThrowRock", 0, 0);
-            //UpdateAnimation("IsThrowing", true);
+            UpdateAnimation("IsThrowing", true);
 
             OnAnimationFinished onAnimationFinished = delegate ()
             {
 
                 agent.isStopped = false;
-                //UpdateAnimation("IsThrowing", false);
+                UpdateAnimation("IsThrowing", false);
                 throwing = false;
                 photonView.RPC(nameof(EnemyGolemThrowRock), RpcTarget.All);
             };

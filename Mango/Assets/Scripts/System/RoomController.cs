@@ -1,9 +1,11 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Photon.Pun;
 using Photon.Realtime;
 using UnityEditor;
+using UnityEngine.UI;
 
 namespace Mango.Game
 {
@@ -18,6 +20,7 @@ namespace Mango.Game
         // Objeto de jugador
         public GameObject playerPrefab;
 
+
         // Donde aparece el jugador
         public Vector3 spawnPoint = Vector3.zero;
 
@@ -28,6 +31,10 @@ namespace Mango.Game
         public bool isLoading = true;
 
         public int currentEnemies = 0;
+        
+        public int score = 0;
+        private Text _scoreLabel;
+        private GameObject _playerHolder;
 
 
         void Awake()
@@ -50,7 +57,7 @@ namespace Mango.Game
 
             if (PhotonNetwork.CurrentRoom == null)
             {
-                Debug.Log("Ocurrio un error al cargar la escena, volviendo a lobby.");
+                Debug.Log("Ocurrió un error al cargar la escena, volviendo a lobby.");
                 UnityEngine.SceneManagement.SceneManager.LoadScene("Launcher");
                 return;
             }
@@ -59,6 +66,8 @@ namespace Mango.Game
             // Iniciar al jugador sincronizadamente
             GameObject player = PhotonNetwork.Instantiate(playerPrefab.name, spawnPoint, Quaternion.identity, 0);
             player.name = PhotonNetwork.NickName;
+            _playerHolder = player.transform.Find("PlayerHolder").gameObject;
+            _scoreLabel = _playerHolder.GetComponent<Player>().scoreLabel;
 
             if (!PhotonNetwork.CurrentRoom.Name.StartsWith("DEBUG-"))
                 StartCoroutine(nameof(Load));
@@ -107,6 +116,17 @@ namespace Mango.Game
             return PhotonNetwork.Instantiate(prefabName, position, Quaternion.identity);
         }
 
+        public void IncreaseScore(int points)
+        {
+            if (_playerHolder.GetPhotonView().IsMine)
+            {
+                score += points;  
+            }
+            if (_scoreLabel != null)
+            {
+                _scoreLabel.text = $"Score: {score:000}";   
+            }
+        }
     }
 }
 

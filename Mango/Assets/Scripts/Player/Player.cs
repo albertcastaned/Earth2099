@@ -30,9 +30,11 @@ public class Player : MonoBehaviourPun, IPunObservable
     public Text nameTag;
     public GameObject loadingPanel;
     public GameObject settingsMenu;
+    public GameObject gameOverPanel;
     public PartyHealth partyHealth;
     public Image barraVida;
     public TMP_Text lifeText;
+    public Text scoreLabel;
     public DamagePopupText popupTextPrefab;
     public ChatManager chatManager;
     public TrailRenderer trailRenderrer;
@@ -273,6 +275,11 @@ public class Player : MonoBehaviourPun, IPunObservable
     {
 
         CheckSettingsPressed();
+        if (state == PlayerState.Dead)
+        {
+            moveDir = Vector3.zero;
+            return;
+        }
         Movement();
         CheckStillOnMap();
 
@@ -360,6 +367,7 @@ public class Player : MonoBehaviourPun, IPunObservable
         if (health <= 0)
         {
             state = PlayerState.Dead;
+            animator.Play("Dead");
         }
     }
 
@@ -379,7 +387,6 @@ public class Player : MonoBehaviourPun, IPunObservable
 
     public void UpdateHealthUI()
     {
-        // Update my health
         barraVida.fillAmount = (float)health / maxHealth;
         if (health <= 50 && health >= 31)
         {
@@ -393,9 +400,13 @@ public class Player : MonoBehaviourPun, IPunObservable
         {
             barraVida.color = new Color32(146, 213, 252, 255);
         }
-        else if (health <= 5)
+        else if (health <= 5 && health > 0)
         {
-
+            barraVida.color = new Color32(177, 223, 250, 255);
+        }
+        else if (health <= 0)
+        {
+            gameOverPanel.SetActive(true);
         }
         lifeText.text = health.ToString() + " / " + maxHealth.ToString();
     }
@@ -433,5 +444,10 @@ public class Player : MonoBehaviourPun, IPunObservable
         invincible = !invincible;
     }
 
-
+    public void aumentarBalas()
+    {
+        GameObject gun = _getSelectedGun();
+        ProjectileGun scriptGun = gun.GetComponent<ProjectileGun>();
+        scriptGun.moreBullets();
+    }
 }

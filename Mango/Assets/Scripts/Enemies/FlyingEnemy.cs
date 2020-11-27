@@ -39,6 +39,8 @@ public class FlyingEnemy : Enemy
     }
     public override void Die()
     {
+        IncreaseScore(points);
+
         OnAnimationFinished onAnimationFinished = delegate ()
         {
             UpdateAnimation("IsDead", true);

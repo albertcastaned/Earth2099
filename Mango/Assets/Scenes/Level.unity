@@ -39,7 +39,7 @@ RenderSettings:
   m_ReflectionIntensity: 0.069
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 2938426574818789253}
-  m_IndirectSpecularColor: {r: 0.09096543, g: 0.104872845, b: 0.13282216, a: 0.069}
+  m_IndirectSpecularColor: {r: 0.10675477, g: 0.12557992, b: 0.15919155, a: 0.069}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -329,6 +329,7 @@ MonoBehaviour:
   bakeRuntime: {fileID: 8219162262033242812}
   isLoading: 1
   currentEnemies: 0
+  score: 0
 --- !u!4 &350755461
 Transform:
   m_ObjectHideFlags: 0
@@ -360,7 +361,7 @@ MonoBehaviour:
   enemySpawn:
   - prefab: {fileID: 5033682344200921895, guid: a2baa07109cb9a0429ac440108d783ec,
       type: 3}
-    spawnChance: 25
+    spawnChance: 30
   - prefab: {fileID: 296490094020827127, guid: 9e5293167e4092346a26638828adf85d, type: 3}
     spawnChance: 25
   - prefab: {fileID: 1287586124191260493, guid: 0ff51670ba1bad04981e20a5c9974574,
@@ -374,7 +375,7 @@ MonoBehaviour:
     spawnChance: 20
   - prefab: {fileID: 1484038572079293132, guid: 3e43c4ee4f8297e48a6b84b09773884a,
       type: 3}
-    spawnChance: 10
+    spawnChance: 5
   enemyLimit: 50
 --- !u!114 &350755463
 MonoBehaviour:
@@ -412,15 +413,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 75d68f24d60594cbb95bd12bca6efe4d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  spawnTime: 5
+  spawnTime: 30
   powerupSpawn:
-  - prefab: {fileID: 440507547604644632, guid: 817e61c886f51ad42bcb82ea55cdf429, type: 3}
-    spawnChance: 40
-  - prefab: {fileID: 1671389138202219189, guid: e63c18d5e6e144fada03ae7f09535fa8,
-      type: 3}
-    spawnChance: 60
-  prefabLife: {fileID: 5425518092195050645, guid: 553d653fed3d642688042343452fb0fc,
-    type: 3}
+  - prefab: {fileID: 100008, guid: 879451a5e2214f143a7edf5dd3e32020, type: 3}
+    spawnChance: 35
+  - prefab: {fileID: 100002, guid: 0c6c6a0e9df04f341be96e061ddbf145, type: 3}
+    spawnChance: 10
+  - prefab: {fileID: 100012, guid: f9f38f77edcc4364bbe69808863d0c83, type: 3}
+    spawnChance: 30
 --- !u!114 &350755465
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -797,89 +797,6 @@ Transform:
   - {fileID: 1686673729}
   m_Father: {fileID: 0}
   m_RootOrder: 4
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &1503326372
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1503326375}
-  - component: {fileID: 1503326374}
-  - component: {fileID: 1503326373}
-  m_Layer: 0
-  m_Name: Camera
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!81 &1503326373
-AudioListener:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1503326372}
-  m_Enabled: 1
---- !u!20 &1503326374
-Camera:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1503326372}
-  m_Enabled: 1
-  serializedVersion: 2
-  m_ClearFlags: 1
-  m_BackGroundColor: {r: 0.19215687, g: 0.3019608, b: 0.4745098, a: 0}
-  m_projectionMatrixMode: 1
-  m_GateFitMode: 2
-  m_FOVAxisMode: 0
-  m_SensorSize: {x: 36, y: 24}
-  m_LensShift: {x: 0, y: 0}
-  m_FocalLength: 50
-  m_NormalizedViewPortRect:
-    serializedVersion: 2
-    x: 0
-    y: 0
-    width: 1
-    height: 1
-  near clip plane: 0.3
-  far clip plane: 1000
-  field of view: 60
-  orthographic: 0
-  orthographic size: 5
-  m_Depth: 0
-  m_CullingMask:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_RenderingPath: -1
-  m_TargetTexture: {fileID: 0}
-  m_TargetDisplay: 0
-  m_TargetEye: 3
-  m_HDR: 1
-  m_AllowMSAA: 1
-  m_AllowDynamicResolution: 0
-  m_ForceIntoRT: 0
-  m_OcclusionCulling: 1
-  m_StereoConvergence: 10
-  m_StereoSeparation: 0.022
---- !u!4 &1503326375
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1503326372}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.08871448, y: 13.436204, z: -0.0880667}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!21 &1626784441
 Material:

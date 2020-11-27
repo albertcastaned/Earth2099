@@ -15,12 +15,14 @@ public class PowerUpBehaviour : MonoBehaviourPun
 	public void OnTriggerEnter(Collider other){
 		if (other.gameObject.tag == "Player")
         {
+            Debug.Log("1. Mandar activar");
             ActivatePowerUp(other.gameObject.GetComponent<PowerUpController>());
         }
 	}
 
     private void ActivatePowerUp(PowerUpController controller)
     {
+        Debug.Log("Es hora de llamar al controller del player");
         controller.ActivatePowerUp(powerUp);
         photonView.RPC(nameof(DeactivatePowerup), RpcTarget.All);
     }
@@ -28,8 +30,8 @@ public class PowerUpBehaviour : MonoBehaviourPun
     [PunRPC]
     void DeactivatePowerup()
     {
-        gameObject.SetActive(false);
-        Destroy(gameObject, powerUp.duration + 1f);
+        transform.parent.gameObject.SetActive(false);
+        Destroy(transform.parent.gameObject, powerUp.duration + 1f);
     }
 
     public void SetPowerUp(PowerUp powerUp)

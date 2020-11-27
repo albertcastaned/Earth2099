@@ -30,109 +30,6 @@ Transform:
   m_Father: {fileID: 2451131287596160960}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!135 &1418230003368928725
-SphereCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1484038572079293132}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Radius: 0.72
-  m_Center: {x: 0, y: 9.56, z: 0}
---- !u!95 &2322699205638263598
-Animator:
-  serializedVersion: 3
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1484038572079293132}
-  m_Enabled: 1
-  m_Avatar: {fileID: 9000000, guid: 508a4bc4f3fb8b242b65c276ab61a344, type: 3}
-  m_Controller: {fileID: 22100000, guid: 5f4a5d46c3c7f3b4a8378b1c9ec6d472, type: 2}
-  m_CullingMode: 2
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorControllerStateOnDisable: 0
---- !u!114 &2279825277613962774
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1484038572079293132}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9b8c4a61274f60b4ea5fb4299cfdbf14, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  ShowLayerWeightsInspector: 1
-  ShowParameterInspector: 1
-  m_SynchronizeParameters:
-  - Type: 4
-    SynchronizeType: 1
-    Name: IsAttacking
-  - Type: 4
-    SynchronizeType: 1
-    Name: IsDead
-  - Type: 4
-    SynchronizeType: 1
-    Name: IsChasing
-  - Type: 4
-    SynchronizeType: 1
-    Name: IsWalking
-  - Type: 4
-    SynchronizeType: 1
-    Name: GotHit
-  - Type: 4
-    SynchronizeType: 1
-    Name: AttackReady
-  - Type: 1
-    SynchronizeType: 1
-    Name: MovementSpeed
-  m_SynchronizeLayers:
-  - SynchronizeType: 0
-    LayerIndex: 0
---- !u!114 &2785520182225136992
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1484038572079293132}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f03b48253aa209740908a77e2e75f15c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  maxHealth: 100
-  speed: 12
-  damage: 10
-  sightRange: 48.6
-  attackRange: 0
-  walkPointRange: 56.3
-  timeBetweenAttacks: 2
-  stunnedByHits: 1
-  barraVida: {fileID: 115339517992986124}
-  lifeText: {fileID: 6462612620263009884}
-  popupTextPrefab: {fileID: 3372425993928838701, guid: 37d4fadc287bd604c84ae0766f5b5a6a,
-    type: 3}
-  deathAnimation: {fileID: 4000011693693590, guid: 96730f8640590934eacb6f860058e7f9,
-    type: 3}
-  modelTransform: {fileID: 3663148123833133097}
-  offsetVertical: 0
-  enemyFireIntervalTime: 2
-  projectileSpeed: 40
-  enemyProjectile: {fileID: 1736066568599838499, guid: 263d9ab5158ab4443b9be0634b60a085,
-    type: 3}
 --- !u!1 &735214183816501004
 GameObject:
   m_ObjectHideFlags: 0
@@ -287,6 +184,111 @@ Transform:
   m_Father: {fileID: 1972334279342079717}
   m_RootOrder: 9
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!135 &1418230003368928725
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1484038572079293132}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.72
+  m_Center: {x: 0, y: 9.56, z: 0}
+--- !u!95 &2322699205638263598
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1484038572079293132}
+  m_Enabled: 1
+  m_Avatar: {fileID: 9000000, guid: 508a4bc4f3fb8b242b65c276ab61a344, type: 3}
+  m_Controller: {fileID: 22100000, guid: 5f4a5d46c3c7f3b4a8378b1c9ec6d472, type: 2}
+  m_CullingMode: 2
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &2279825277613962774
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1484038572079293132}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9b8c4a61274f60b4ea5fb4299cfdbf14, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ShowLayerWeightsInspector: 1
+  ShowParameterInspector: 1
+  m_SynchronizeParameters:
+  - Type: 4
+    SynchronizeType: 1
+    Name: IsAttacking
+  - Type: 4
+    SynchronizeType: 1
+    Name: IsDead
+  - Type: 4
+    SynchronizeType: 1
+    Name: IsChasing
+  - Type: 4
+    SynchronizeType: 1
+    Name: IsWalking
+  - Type: 4
+    SynchronizeType: 1
+    Name: GotHit
+  - Type: 4
+    SynchronizeType: 1
+    Name: AttackReady
+  - Type: 1
+    SynchronizeType: 1
+    Name: MovementSpeed
+  m_SynchronizeLayers:
+  - SynchronizeType: 0
+    LayerIndex: 0
+--- !u!114 &2785520182225136992
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1484038572079293132}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f03b48253aa209740908a77e2e75f15c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxHealth: 100
+  speed: 12
+  damage: 10
+  sightRange: 48.6
+  attackRange: 0
+  walkPointRange: 56.3
+  timeBetweenAttacks: 2
+  stunnedByHits: 1
+  points: 0
+  barraVida: {fileID: 115339517992986124}
+  lifeText: {fileID: 6462612620263009884}
+  popupTextPrefab: {fileID: 3372425993928838701, guid: 37d4fadc287bd604c84ae0766f5b5a6a,
+    type: 3}
+  deathAnimation: {fileID: 4000011693693590, guid: 96730f8640590934eacb6f860058e7f9,
+    type: 3}
+  modelTransform: {fileID: 3663148123833133097}
+  offsetVertical: 0
+  offsetHorizontal: 0
+  enemyFireIntervalTime: 2
+  projectileSpeed: 40
+  enemyProjectile: {fileID: 1736066568599838499, guid: 263d9ab5158ab4443b9be0634b60a085,
+    type: 3}
 --- !u!1 &1489597029585783702
 GameObject:
   m_ObjectHideFlags: 0
