@@ -224,7 +224,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 719e688e2b69d454d8fb245492023a4f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maximosJugadores: 4
+  skin: {fileID: 11400000, guid: 1f31d22d12d9ccc47b8ad49e084d0859, type: 2}
 --- !u!4 &916252921
 Transform:
   m_ObjectHideFlags: 0
