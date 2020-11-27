@@ -78,7 +78,7 @@ jobs:
         if: ${{ matrix.targetPlatform != 'WebGL' }}
         run: |
           mv build/${{ matrix.targetPlatform}} Earth2099
-          zip Earth2099-${{ matrix.targetPlatform }}-${{ needs.createRelease.outputs.latest_tag }}.zip Earth2099
+          zip -r Earth2099-${{ matrix.targetPlatform }}-${{ needs.createRelease.outputs.latest_tag }}.zip Earth2099/
 
       # Output
       - uses: actions/upload-artifact@v2
