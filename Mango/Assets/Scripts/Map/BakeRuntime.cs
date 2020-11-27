@@ -9,8 +9,10 @@ public class BakeRuntime : MonoBehaviour
 
     private AbstractMap map;
     public bool loaded = false;
+    public int navmeshIterationsPerFrame = 400;
     void Start()
     {
+        transform.localScale = new Vector3(1.4f, 1.4f, 1.4f);
         map = GetComponent<AbstractMap>();
         StartCoroutine("WaitForMap");
     }
@@ -31,6 +33,7 @@ public class BakeRuntime : MonoBehaviour
             Debug.Log("Navmesh succesfully baked.");
 
         }
+        NavMesh.pathfindingIterationsPerFrame = navmeshIterationsPerFrame;
         loaded = true;
     }
 }

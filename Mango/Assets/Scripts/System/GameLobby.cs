@@ -7,7 +7,7 @@ using UnityEngine.SceneManagement;
 
 public class GameLobby : MonoBehaviourPunCallbacks
 {
-    public int maximosJugadores = 8;
+    public int maximosJugadores;
 
     string playerName = "Player";
 
@@ -96,6 +96,8 @@ public class GameLobby : MonoBehaviourPunCallbacks
                 PhotonNetwork.JoinOrCreateRoom(roomName, roomOptions, TypedLobby.Default);
             }
         }
+
+        # if UNITY_EDITOR
         if (GUILayout.Button("Entrar a debug"))
         {
 
@@ -110,6 +112,7 @@ public class GameLobby : MonoBehaviourPunCallbacks
                 PhotonNetwork.JoinOrCreateRoom("DEBUG-" + CreateRandomString(), roomOptions, TypedLobby.Default);
             
         }
+        #endif
         GUILayout.EndHorizontal();
 
         roomListScroll = GUILayout.BeginScrollView(roomListScroll, true, true);

@@ -1,7 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using Photon.Pun;
 public class PowerUpActions : MonoBehaviour
 {
     public void HighSpeedStartAction(Player player)
@@ -17,12 +17,7 @@ public class PowerUpActions : MonoBehaviour
 
 	public void IncreaseLifeStartAction(Player player)
     {
-        Debug.Log("Ahora si se activo el power");
-        player.health += 10;
-        if (player.maxHealth < player.health)
-            player.health = player.maxHealth;
-
-		player.UpdateHealthUI();
+        player.photonView.RPC("IncreaseHealth", RpcTarget.All, 50);
     }
     
     public void IncreaseBulletsGun(Player player)

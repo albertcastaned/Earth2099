@@ -364,16 +364,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d78099550f5204850846b49785a84fdf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  enemiesPerSpawn: 3
   spawnTime: 20
   enemySpawn:
   - prefab: {fileID: 5033682344200921895, guid: a2baa07109cb9a0429ac440108d783ec,
       type: 3}
-    spawnChance: 20
+    spawnChance: 0
   - prefab: {fileID: 296490094020827127, guid: 9e5293167e4092346a26638828adf85d, type: 3}
-    spawnChance: 20
+    spawnChance: 0
   - prefab: {fileID: 1287586124191260493, guid: 0ff51670ba1bad04981e20a5c9974574,
       type: 3}
-    spawnChance: 60
+    spawnChance: 0
+  - prefab: {fileID: 1484038572079293132, guid: d8f8a054707f35a49bc9bb6fc5081ad1,
+      type: 3}
+    spawnChance: 100
   enemyLimit: 0
 --- !u!21 &416593496
 Material:
@@ -1720,6 +1724,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   loaded: 0
+  navmeshIterationsPerFrame: 400
 --- !u!114 &6652728400253034690
 MonoBehaviour:
   m_ObjectHideFlags: 0

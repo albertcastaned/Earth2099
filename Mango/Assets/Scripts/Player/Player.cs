@@ -275,6 +275,11 @@ public class Player : MonoBehaviourPun, IPunObservable
     {
 
         CheckSettingsPressed();
+        if (state == PlayerState.Dead)
+        {
+            moveDir = Vector3.zero;
+            return;
+        }
         Movement();
         CheckStillOnMap();
 
@@ -334,10 +339,13 @@ public class Player : MonoBehaviourPun, IPunObservable
             transform.position = new Vector3(startPos.x, startPos.y + 5f, startPos.z);
         }
     }
-    private void CreateFloatingText(string text)
+    private void CreateFloatingText(string text, bool heal = false)
     {
         DamagePopupText instance = Instantiate(popupTextPrefab, transform);
-
+        if(heal)
+        {
+            instance.damageText.color = Color.green;
+        }
         instance.SetText(text);
     }
 
@@ -359,7 +367,22 @@ public class Player : MonoBehaviourPun, IPunObservable
         if (health <= 0)
         {
             state = PlayerState.Dead;
+            animator.Play("Dead");
         }
+    }
+
+    [PunRPC]
+    public void IncreaseHealth(int amount)
+    {
+        health += amount;
+
+        if (maxHealth < health)
+            health = maxHealth;
+
+        UpdateHealthUI();
+        CreateFloatingText("+" + amount, true);
+
+        partyHealth.UpdateHealth(photonView.Owner, health, maxHealth);
     }
 
     public void UpdateHealthUI()

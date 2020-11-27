@@ -14394,7 +14394,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 6238927652256821081}
   m_HandleRect: {fileID: 6238927652256821094}
   m_Direction: 2
-  m_Value: 1
+  m_Value: 0
   m_Size: 1
   m_NumberOfSteps: 0
   m_OnValueChanged:
@@ -20897,6 +20897,9 @@ MonoBehaviour:
   - Type: 4
     SynchronizeType: 1
     Name: isDashing
+  - Type: 4
+    SynchronizeType: 1
+    Name: IsDead
   m_SynchronizeLayers:
   - SynchronizeType: 0
     LayerIndex: 0

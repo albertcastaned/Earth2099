@@ -55,6 +55,12 @@ MonoBehaviour:
   - Shoot
   - PlayAudioRPC
   - DeactivatePowerup
+  - ShootProjectile
+  - EnemyShootProjectiles
+  - EnemyFlyingShootProjectile
+  - SpinyShootProjectiles
+  - IncreaseHealth
+  - EnemyGolemThrowRock
   - IncreasePoints
   DisableAutoOpenWizard: 1
   ShowSettings: 1

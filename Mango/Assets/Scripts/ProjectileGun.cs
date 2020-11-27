@@ -181,6 +181,7 @@ public class ProjectileGun : MonoBehaviourPun
 
     public void moreBullets()
     {
-        numberOfMagazines += 1;       
+        numberOfMagazines += 1;
+        bulletsLeft = magazineSize;
     }
 }
