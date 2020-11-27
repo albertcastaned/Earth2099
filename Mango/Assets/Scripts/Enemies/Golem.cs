@@ -76,9 +76,10 @@ public class Golem : Enemy
     IEnumerator WaitForRockThrow(OnAnimationFinished onAnimationFinished)
     {
         yield return null;
-        while (animator.GetCurrentAnimatorStateInfo(0).IsName("ThrowRock") && animator.GetCurrentAnimatorStateInfo(0).normalizedTime < 0.7)
+        while (target != null && animator.GetCurrentAnimatorStateInfo(0).IsName("ThrowRock") && animator.GetCurrentAnimatorStateInfo(0).normalizedTime < 0.7)
         {
-            transform.LookAt(target.transform.position);
+            if(target != null)
+                transform.LookAt(target.transform.position);
             yield return null;
         }
         onAnimationFinished();
@@ -105,6 +106,8 @@ public class Golem : Enemy
     [PunRPC]
     protected virtual void EnemyGolemThrowRock()
     {
+        if (target == null)
+            return;
         Vector3 targetPos = target.transform.position + Vector3.up * verticalOffset;
         transform.LookAt(targetPos);
         Vector3 createPos = transform.position + Vector3.up * verticalOffset + transform.forward * horizontalOffset;

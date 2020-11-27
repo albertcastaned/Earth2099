@@ -4,6 +4,12 @@ using UnityEngine.UI;
 
 public class ProjectileGun : MonoBehaviourPun
 {
+    public string gunName;
+    public Text gunNameDisplay;
+
+    public Sprite gunIcon;
+    public Image gunImageDisplay;
+
     // Bullet
     public GameObject bullet;
 
@@ -56,6 +62,19 @@ public class ProjectileGun : MonoBehaviourPun
             ammunitionDisplay.text = 
                 bulletsLeft / bulletsPerTap + " / " + (magazineSize / bulletsPerTap) * numberOfMagazines
             ;
+        }
+
+        // Set weapon name
+        if(gunNameDisplay != null)
+        {
+            gunNameDisplay.text = gunName;
+        }
+
+        // Set weapon icon
+
+        if (gunIcon != null && gunImageDisplay != null)
+        {
+            gunImageDisplay.sprite = gunIcon;
         }
     }
 
