@@ -30,6 +30,7 @@ public class Player : MonoBehaviourPun, IPunObservable
     public Text nameTag;
     public GameObject loadingPanel;
     public GameObject settingsMenu;
+    public GameObject gameOverPanel;
     public PartyHealth partyHealth;
     public Image barraVida;
     public TMP_Text lifeText;
@@ -363,7 +364,6 @@ public class Player : MonoBehaviourPun, IPunObservable
 
     public void UpdateHealthUI()
     {
-        // Update my health
         barraVida.fillAmount = (float)health / maxHealth;
         if (health <= 50 && health >= 31)
         {
@@ -377,9 +377,13 @@ public class Player : MonoBehaviourPun, IPunObservable
         {
             barraVida.color = new Color32(146, 213, 252, 255);
         }
-        else if (health <= 5)
+        else if (health <= 5 && health > 0)
         {
-
+            barraVida.color = new Color32(177, 223, 250, 255);
+        }
+        else if (health <= 0)
+        {
+            gameOverPanel.SetActive(true);
         }
         lifeText.text = health.ToString() + " / " + maxHealth.ToString();
     }
