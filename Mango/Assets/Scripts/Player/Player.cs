@@ -406,6 +406,7 @@ public class Player : MonoBehaviourPun, IPunObservable
     public void UpdateHealthUI()
     {
         barraVida.fillAmount = (float)health / maxHealth;
+        lifeText.text = health.ToString() + " / " + maxHealth.ToString();
         if (health <= 50 && health >= 31)
         {
             barraVida.color = new Color32(38, 143, 205, 255);
@@ -425,8 +426,9 @@ public class Player : MonoBehaviourPun, IPunObservable
         else if (health <= 0)
         {
             gameOverPanel.SetActive(true);
+            lifeText.text = "";
         }
-        lifeText.text = health.ToString() + " / " + maxHealth.ToString();
+        
     }
 
     public void OnPhotonSerializeView(PhotonStream stream, PhotonMessageInfo info)
