@@ -332,10 +332,13 @@ public class Player : MonoBehaviourPun, IPunObservable
             transform.position = new Vector3(startPos.x, startPos.y + 5f, startPos.z);
         }
     }
-    private void CreateFloatingText(string text)
+    private void CreateFloatingText(string text, bool heal = false)
     {
         DamagePopupText instance = Instantiate(popupTextPrefab, transform);
-
+        if(heal)
+        {
+            instance.damageText.color = Color.green;
+        }
         instance.SetText(text);
     }
 
@@ -358,6 +361,20 @@ public class Player : MonoBehaviourPun, IPunObservable
         {
             state = PlayerState.Dead;
         }
+    }
+
+    [PunRPC]
+    public void IncreaseHealth(int amount)
+    {
+        health += amount;
+
+        if (maxHealth < health)
+            health = maxHealth;
+
+        UpdateHealthUI();
+        CreateFloatingText("+" + amount, true);
+
+        partyHealth.UpdateHealth(photonView.Owner, health, maxHealth);
     }
 
     public void UpdateHealthUI()
@@ -415,4 +432,6 @@ public class Player : MonoBehaviourPun, IPunObservable
     {
         invincible = !invincible;
     }
+
+
 }

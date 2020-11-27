@@ -11,7 +11,7 @@ using UnityEngine.UI;
 
 public class Enemy : MonoBehaviourPun
 {
-    private Animator animator;
+    protected Animator animator;
 
     [Header("Stats")]
     public int maxHealth = 100;
@@ -31,26 +31,26 @@ public class Enemy : MonoBehaviourPun
     public DamagePopupText popupTextPrefab;
     public Transform deathAnimation;
 
-    private LayerMask isGround, isPlayer;
+    protected LayerMask isGround, isPlayer;
 
-    private int health;
-    private NavMeshAgent agent;
-    private Player target;
-    private Vector3 previousPlayerPos;
-    private Vector3 walkPoint;
-    private bool playerInSightRange, playerInAttackRange, walkPointSet, alreadyAttacked;
+    protected int health;
+    protected NavMeshAgent agent;
+    protected Player target;
+    protected Vector3 walkPoint;
+    protected bool playerInSightRange, playerInAttackRange, walkPointSet, alreadyAttacked;
 
-    private Player[] playersInSightRange;
-    private Player[] playersInAttackRange;
+    protected Player[] playersInSightRange;
+    protected Player[] playersInAttackRange;
 
-    private EnemyState currentState;
-    delegate void OnAnimationFinished();
+    protected EnemyState currentState;
+    protected delegate void OnAnimationFinished();
 
-    private List<Player> auxPlayers;
+    protected List<Player> auxPlayers;
 
-    private AudioManager audioManager;
+    protected AudioManager audioManager;
+    protected Vector3 originalDestPosition;
 
-    enum EnemyState
+    protected enum EnemyState
     {
         AttackIdle,
         Patrolling,
@@ -76,16 +76,16 @@ public class Enemy : MonoBehaviourPun
         animator.SetFloat("MovementSpeed", 1.4f - 1f / speed);
 
         // Called only twice per second to improve performance
-        InvokeRepeating(nameof(EnemyUpdate), 0.3f, 0.3f);
+        InvokeRepeating(nameof(EnemyUpdate), 0.4f, 0.4f);
     }
 
-    void UpdateAnimation(string parameter, bool value)
+    protected void UpdateAnimation(string parameter, bool value)
     {
         animator.SetBool(parameter, value);
     }
 
 
-    void EnemyUpdate()
+    protected void EnemyUpdate()
     {
         // Might be performance heavy. Need testing to verify
         if (!PhotonNetwork.IsMasterClient || currentState == EnemyState.Dead)
@@ -102,7 +102,7 @@ public class Enemy : MonoBehaviourPun
 
     }
 
-    private bool CheckPlayersInRange(float range, ref Player[] playerList)
+    protected bool CheckPlayersInRange(float range, ref Player[] playerList)
     {
         // Counting not alive players
         Collider[] totalPlayersColliders = 
@@ -117,7 +117,7 @@ public class Enemy : MonoBehaviourPun
     }
 
 
-    private void Patroling()
+    protected void Patroling()
     {
         currentState = EnemyState.Patrolling;
         UpdateAnimation();
@@ -137,23 +137,26 @@ public class Enemy : MonoBehaviourPun
         if (distanceToWalkPoint.magnitude < 5f)
             walkPointSet = false;
     }
-    private void ChasePlayer()
+    protected virtual void ChasePlayer()
     {
-        currentState = EnemyState.Chasing;
-        UpdateAnimation();
         if (target == null)
             ChooseRandomTargetInList(ref playersInSightRange);
-
         Vector3 playerPos = target.transform.position;
-        // Update only when target has moved
-        if (Vector3.Distance(previousPlayerPos, playerPos) > attackRange)
+
+        // Update if player moved
+        if(Vector3.Distance(playerPos, originalDestPosition) > attackRange + 2f)
         {
             agent.SetDestination(playerPos);
-            previousPlayerPos = playerPos;
+            if (agent.pathStatus == NavMeshPathStatus.PathComplete)
+            {
+                currentState = EnemyState.Chasing;
+                UpdateAnimation();
+                originalDestPosition = playerPos;
+            }
         }
     }
 
-    private void AttackPlayer()
+    protected virtual void AttackPlayer()
     {
         currentState = EnemyState.Attacking;
         UpdateAnimation();
@@ -162,7 +165,6 @@ public class Enemy : MonoBehaviourPun
         {
             ChooseRandomTargetInList(ref playersInAttackRange);
         }
-      // agent.SetDestination(transform.position);
 
         transform.LookAt(target.transform.position);
 
@@ -177,13 +179,13 @@ public class Enemy : MonoBehaviourPun
 
         }
     }
-    private void ResetAttack()
+    protected void ResetAttack()
     {
         alreadyAttacked = false;
         UpdateAnimation("AttackReady", true);
     }
 
-    private void SearchWalkPoint()
+    protected void SearchWalkPoint()
     {
         float randomZ = Random.Range(-walkPointRange, walkPointRange);
         float randomX = Random.Range(-walkPointRange, walkPointRange);
@@ -197,7 +199,7 @@ public class Enemy : MonoBehaviourPun
     }
 
 
-    void UpdateAnimation()
+    protected void UpdateAnimation()
     {
         switch(currentState)
         {
@@ -220,15 +222,16 @@ public class Enemy : MonoBehaviourPun
     }
 
 
-    private void ChooseRandomTargetInList(ref Player[] playerRangeList)
+    protected void ChooseRandomTargetInList(ref Player[] playerRangeList)
     {
         target = playerRangeList[Random.Range(0, playerRangeList.Length - 1)];
     }
 
 
 
-    IEnumerator WaitForAnimation(OnAnimationFinished onAnimationFinished)
+    protected IEnumerator WaitForAnimation(OnAnimationFinished onAnimationFinished)
     {
+
         yield return new WaitForEndOfFrame();
 
         AnimatorStateInfo animatorStateInfo =  animator.GetCurrentAnimatorStateInfo(0);
@@ -238,6 +241,7 @@ public class Enemy : MonoBehaviourPun
             yield return null;
 
         }
+        Debug.Log("Finished animation coroutine");
         onAnimationFinished();
 
     }
@@ -274,12 +278,14 @@ public class Enemy : MonoBehaviourPun
         if (health <= 0)
         {
             currentState = EnemyState.Dead;
+            RoomController.Instance.DecreaseCurrentEnemiesCount();
             Die();
+
         }
 
     }
 
-    public void Die()
+    public virtual void Die()
     {
         OnAnimationFinished onAnimationFinished = delegate ()
         {
@@ -287,7 +293,6 @@ public class Enemy : MonoBehaviourPun
             agent.isStopped = false;
             GameObject deathAnimationObj = Instantiate(deathAnimation.gameObject);
             deathAnimationObj.transform.position = transform.position;
-            RoomController.Instance.DecreaseCurrentEnemiesCount();
 
             if (photonView.IsMine)
                 PhotonNetwork.Destroy(gameObject);
@@ -299,13 +304,13 @@ public class Enemy : MonoBehaviourPun
 
     }
 
-    private void UpdateHealthUI()
+    protected void UpdateHealthUI()
     {
         barraVida.fillAmount = (float)health / maxHealth;
         lifeText.text = health.ToString() + " / " + maxHealth.ToString();
     }
 
-    private void CreateFloatingText(string text)
+    protected void CreateFloatingText(string text)
     {
         DamagePopupText instance = Instantiate(popupTextPrefab, transform);
 
@@ -313,9 +318,11 @@ public class Enemy : MonoBehaviourPun
     }
 
 
+
+
     // DEBUG ///////////////////////////////////////////////////
 
-    void OnDrawGizmosSelected()
+    protected virtual void OnDrawGizmosSelected()
     {
         Gizmos.color = Color.red;
         Gizmos.DrawWireSphere(transform.position, attackRange);
@@ -330,7 +337,6 @@ public class Enemy : MonoBehaviourPun
             Gizmos.DrawLine(target.transform.position, target.transform.position + Vector3.up * 100f);
         }
         Gizmos.color = Color.white;
-
     }
 
 

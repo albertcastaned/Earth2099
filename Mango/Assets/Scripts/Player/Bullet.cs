@@ -41,7 +41,6 @@ public class Bullet : MonoBehaviourPun
     {
         if (hit)
             return;
-        //TODO: Different damage per bullet
         if (collision.gameObject.CompareTag("Enemy"))
         {
             hit = true;
@@ -49,6 +48,7 @@ public class Bullet : MonoBehaviourPun
                 m_renderer.enabled = false;
             collision.gameObject.GetComponent<Enemy>().photonView.RPC("ReduceHealth", RpcTarget.AllBufferedViaServer, (int)Random.Range(damage -2, damage + 2));
             Instantiate(collisionEnemyEffect, transform.position, Quaternion.identity);
+            Destroy(gameObject);
         }
         else if (!collision.gameObject.CompareTag("Player") || !collision.gameObject.CompareTag("Bullet"))
         {
@@ -56,6 +56,7 @@ public class Bullet : MonoBehaviourPun
             if (m_renderer != null)
                 m_renderer.enabled = false;
             hit = true;
+            Destroy(gameObject);
 
         }
     }
