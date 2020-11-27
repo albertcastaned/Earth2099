@@ -20,9 +20,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="109bf6b6-9ab5-4220-b47c-afb0e34a3fd8" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/../Resources/Player.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/../Resources/Player.prefab" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ColorSkies/Skies/Sky_5.mat" beforeDir="false" afterPath="$PROJECT_DIR$/../ColorSkies/Skies/Sky_5.mat" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.Scripts.dir/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Scripts.dir/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ReceiveDamage.cs" beforeDir="false" afterPath="$PROJECT_DIR$/ReceiveDamage.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Player.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Player.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/PowerUpActions.cs" beforeDir="false" afterPath="$PROJECT_DIR$/PowerUpActions.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -33,18 +34,25 @@
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/../../.." />
   </component>
   <component name="HighlightingSettingsPerFile">
-    <setting file="file://$PROJECT_DIR$/FaceCamera.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/createEnemies.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/CameraFollow.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/makeDamage.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/GameLobby.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/RoomController.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Health_enemy.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Enemy.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Dialog.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Bullet.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Health_Player.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/ReceiveDamage.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/../../../../Tarea91/Assets/Scripts/Singleton.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/PowerUp.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/PowerUpActions.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/RoomController.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/../Plugins/Mapbox/Unity/Utilities/DontDestroyOnLoad.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/PowerUpBehaviour.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/FaceCamera.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/CameraFollow.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/PowerUpController.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/GameLobby.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/../../../../Tarea91/Assets/Scripts/GameController.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/GunHolder.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Dialog.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Player.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/createPowerups.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/createEnemies.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/../../../../Tarea91/Assets/Scripts/Player.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Enemy.cs" root0="SKIP_HIGHLIGHTING" />
   </component>
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
@@ -54,6 +62,14 @@
         <option value="$PROJECT_DIR$/Health_enemy.cs" />
         <option value="$PROJECT_DIR$/Health_Player.cs" />
         <option value="$PROJECT_DIR$/ReceiveDamage.cs" />
+        <option value="$PROJECT_DIR$/createPowerups.cs" />
+        <option value="$PROJECT_DIR$/../../../../Tarea91/Assets/Scripts/Singleton.cs" />
+        <option value="$PROJECT_DIR$/../../../../Tarea91/Assets/Scripts/Player.cs" />
+        <option value="$PROJECT_DIR$/PowerUp.cs" />
+        <option value="$PROJECT_DIR$/PowerUpController.cs" />
+        <option value="$PROJECT_DIR$/PowerUpBehaviour.cs" />
+        <option value="$PROJECT_DIR$/PowerUpActions.cs" />
+        <option value="$PROJECT_DIR$/Player.cs" />
       </list>
     </option>
   </component>
@@ -79,6 +95,14 @@
       <workItem from="1602458874098" duration="3360000" />
       <workItem from="1603781794582" duration="499000" />
       <workItem from="1603860905323" duration="7959000" />
+      <workItem from="1604984711694" duration="958000" />
+      <workItem from="1605056500019" duration="2673000" />
+      <workItem from="1605393684995" duration="2816000" />
+      <workItem from="1605480315434" duration="858000" />
+      <workItem from="1605670611375" duration="2098000" />
+      <workItem from="1605747468304" duration="1168000" />
+      <workItem from="1606172428156" duration="2725000" />
+      <workItem from="1606177681812" duration="7131000" />
     </task>
     <servers />
   </component>
@@ -101,5 +125,11 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="true" />
+  </component>
+  <component name="WindowStateProjectService">
+    <state x="100" y="100" width="1080" height="600" key="VCS.FileHistoryDialog" timestamp="1606263100530">
+      <screen x="0" y="23" width="1280" height="777" />
+    </state>
+    <state x="100" y="100" width="1080" height="600" key="VCS.FileHistoryDialog/0.23.1280.777@0.23.1280.777" timestamp="1606263100530" />
   </component>
 </project>

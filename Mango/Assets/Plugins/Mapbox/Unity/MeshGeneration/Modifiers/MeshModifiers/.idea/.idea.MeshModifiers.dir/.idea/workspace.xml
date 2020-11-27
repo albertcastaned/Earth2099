@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="76efeffc-4331-43fb-bda5-469c2aa4b680" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/../../../../Resources/MapboxStyles/Styles/MapboxSampleStyles/Fantasy/Assets/Textures/.FantasyNormal.png.icloud" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../../Resources/MapboxStyles/Styles/MapboxSampleStyles/Realistic/Assets/Textures/.RealisticTopNormal.png.icloud" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../../../../SciFiWarriorPBRHPPolyart/Textures/.HP_Albedo.png.icloud" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../../../../SciFiWarriorPBRHPPolyart/Textures/.PBR_Albedo.png.icloud" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../../../../SciFiWarriorPBRHPPolyart/Textures/.PBR_Free_AO.png.icloud" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../../../../SciFiWarriorPBRHPPolyart/Textures/.PBR_Free_EM.png.icloud" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../../../../SciFiWarriorPBRHPPolyart/Textures/.PBR_Free_MS.png.icloud" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../../../../SciFiWarriorPBRHPPolyart/Textures/.PBR_Free_NM.png.icloud" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../../../../Scripts/PowerUp.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../../../../../../Scripts/PowerUp.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../../../../Scripts/PowerUpActions.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../../../../../../Scripts/PowerUpActions.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../../../../Scripts/PowerUpController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../../../../../../Scripts/PowerUpController.cs" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/../../../../../../../.." />
+  </component>
+  <component name="HighlightingSettingsPerFile">
+    <setting file="file://$PROJECT_DIR$/../../../../../../Scripts/PowerUpController.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/../../../../../../Scripts/PowerUpBehaviour.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/../../../../../../Scripts/PowerUpActions.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/../../../../../../Scripts/PowerUp.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/../../Filters/HeightFilter.cs" root0="SKIP_HIGHLIGHTING" />
+  </component>
+  <component name="IdeDocumentHistory">
+    <option name="CHANGED_PATHS">
+      <list>
+        <option value="$PROJECT_DIR$/../../../../../../Scripts/PowerUp.cs" />
+        <option value="$PROJECT_DIR$/../../../../../../Scripts/PowerUpController.cs" />
+        <option value="$PROJECT_DIR$/../../../../../../Scripts/PowerUpActions.cs" />
+      </list>
+    </option>
+  </component>
+  <component name="ProjectId" id="1kLhujq4nEhBC1EsqcQHz2DgGyl" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="vue.rearranger.settings.migration" value="true" />
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="76efeffc-4331-43fb-bda5-469c2aa4b680" name="Default Changelist" comment="" />
+      <created>1605486011468</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1605486011468</updated>
+      <workItem from="1605486029397" duration="3617000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="UnityProjectConfiguration" hasMinimizedUI="null" />
+  <component name="UnityUnitTestConfiguration" currentTestLauncher="NUnit" />
+  <component name="VcsManagerConfiguration">
+    <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="true" />
+  </component>
+</project>

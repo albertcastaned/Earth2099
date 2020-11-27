@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 1220836768118475217}
   - component: {fileID: 1220836768118475218}
   - component: {fileID: 1220836768118475221}
+  - component: {fileID: 4437460532301919284}
   m_Layer: 0
   m_Name: Bullet
   m_TagString: Bullet
@@ -108,7 +109,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 92cd3768e68b8174e8f4e84c1c43648e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 2
+  damage: 25
+  collisionEffect: {fileID: 4000011450163336, guid: 02a509a7fa70ed740ba4197e20c5d32d,
+    type: 3}
+  collisionEnemyEffect: {fileID: 4000013252684874, guid: e5a3d6da48298a0458c1990f58c27069,
+    type: 3}
 --- !u!54 &1220836768118475221
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -122,9 +127,35 @@ Rigidbody:
   m_AngularDrag: 0.05
   m_UseGravity: 0
   m_IsKinematic: 0
-  m_Interpolate: 0
+  m_Interpolate: 1
   m_Constraints: 112
-  m_CollisionDetection: 0
+  m_CollisionDetection: 1
+--- !u!114 &4437460532301919284
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1220836768118475219}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 66e2cf47f2391b74d8cbce6a54b7c0f6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sounds:
+  - name: Shoot
+    clip: {fileID: 8300000, guid: 1b145bcffd767854fb0c71c37678ebaa, type: 3}
+    volume: 1
+    volumeVariance: 0.265
+    pitch: 1
+    pitchVariance: 0.26
+    spatialBlend: 1
+    minDistance: 5
+    maxDistance: 100
+    loop: 0
+    audioRolloffMode: 1
+    mixerGroup: {fileID: 24300002, guid: 76ab6064d8cb9b141838fbb24a714081, type: 2}
+    source: {fileID: 0}
 --- !u!1 &8435850617189361251
 GameObject:
   m_ObjectHideFlags: 0
