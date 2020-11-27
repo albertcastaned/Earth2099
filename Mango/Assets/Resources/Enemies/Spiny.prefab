@@ -52,7 +52,7 @@ MonoBehaviour:
   walkPointRange: 50
   timeBetweenAttacks: 1.5
   stunnedByHits: 1
-  points: 0
+  points: 15
   barraVida: {fileID: 1233073371105874743}
   lifeText: {fileID: 5272249431233698663}
   popupTextPrefab: {fileID: 3372425993928838701, guid: 37d4fadc287bd604c84ae0766f5b5a6a,

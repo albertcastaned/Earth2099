@@ -49,6 +49,7 @@ public class Player : MonoBehaviourPun, IPunObservable
 
     private bool isLoading = false;
     public GameObject gunHolder;
+    private GunHolder gunHolderScript;
     private AudioManager audioManager;
 
     private DebugController debugController;
@@ -74,6 +75,7 @@ public class Player : MonoBehaviourPun, IPunObservable
         SetAnimation("isIdle", true);
         StartCoroutine("WaitForLoad");
         UpdateHealthUI();
+        gunHolderScript = gunHolder.GetComponent<GunHolder>();
         photonView.RPC(nameof(SetupPartyHealthBars), RpcTarget.AllBufferedViaServer);
         StartCoroutine(PlayRepeatingWalkSoundEffect());
     }
@@ -115,7 +117,7 @@ public class Player : MonoBehaviourPun, IPunObservable
 
     void SetDirection()
     {
-        if(!CanMove)
+        if (!CanMove)
         {
             moveDir.x = 0;
             moveDir.z = 0;
@@ -250,7 +252,7 @@ public class Player : MonoBehaviourPun, IPunObservable
         {
             if ((moveDir.x != 0 || moveDir.z != 0) && controller.isGrounded)
             {
-                if(state == PlayerState.Dodging)
+                if (state == PlayerState.Dodging)
                 {
                     time = 0.1f;
                 }
@@ -275,6 +277,7 @@ public class Player : MonoBehaviourPun, IPunObservable
     {
 
         CheckSettingsPressed();
+        CheckCanUseWeapon();
         if (state == PlayerState.Dead)
         {
             moveDir = Vector3.zero;
@@ -310,12 +313,27 @@ public class Player : MonoBehaviourPun, IPunObservable
 
     void CheckSettingsPressed()
     {
-        if(!IsChatting && Input.GetKeyDown(KeyCode.Escape))
+        if (!IsChatting && Input.GetKeyDown(KeyCode.Escape))
         {
             settingsMenu.SetActive(!settingsMenu.activeInHierarchy);
         }
     }
-    
+
+    void CheckCanUseWeapon()
+    {
+        if (gunHolderScript.SelectedGun == null)
+            return;
+        if(CanMove)
+        {
+            gunHolderScript.SelectedGun.SetActive(true);
+        }
+        else
+        {
+            gunHolderScript.SelectedGun.SetActive(false);
+        }
+    }
+
+
     void CheckDead()
     {
         if (health <= 0)
@@ -417,7 +435,7 @@ public class Player : MonoBehaviourPun, IPunObservable
         {
             stream.SendNext(health);
             stream.SendNext(maxHealth);
-            stream.SendNext(gunHolder.GetComponent<GunHolder>().selectedGunIndex);
+            stream.SendNext(gunHolderScript.selectedGunIndex);
             stream.SendNext(state);
             stream.SendNext(trailRenderrer.emitting);
         }

@@ -9,9 +9,9 @@ public class ApplicationManager : Singleton<ApplicationManager> {
 	{
 		#if UNITY_EDITOR
 		UnityEditor.EditorApplication.isPlaying = false;
-		#else
-		Application.Quit();
 		#endif
+		Application.Quit();
+
 	}
 
 	public void LoadingScene ()

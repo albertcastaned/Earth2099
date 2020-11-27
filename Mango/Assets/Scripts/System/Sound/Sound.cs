@@ -28,9 +28,10 @@ public class Sound {
 	public float maxDistance = 200;
 
 	public bool loop = false;
-
+	public bool playOnAwake = false;
 	public AudioRolloffMode audioRolloffMode = AudioRolloffMode.Linear; 
 	public AudioMixerGroup mixerGroup;
+
 
 	[HideInInspector]
 	public AudioSource source;

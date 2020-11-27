@@ -279,6 +279,8 @@ public class Enemy : MonoBehaviourPun
         }
         if (health <= 0)
         {
+            CreateFloatingText("+" + points, false);
+
             currentState = EnemyState.Dead;
             RoomController.Instance.DecreaseCurrentEnemiesCount();
             Die();
@@ -317,10 +319,14 @@ public class Enemy : MonoBehaviourPun
         lifeText.text = health.ToString() + " / " + maxHealth.ToString();
     }
 
-    protected void CreateFloatingText(string text)
+    protected void CreateFloatingText(string text, bool isDamage = true)
     {
         DamagePopupText instance = Instantiate(popupTextPrefab, transform);
 
+        if(!isDamage)
+        {
+            instance.damageText.color = Color.yellow;
+        }
         instance.SetText(text);
     }
 

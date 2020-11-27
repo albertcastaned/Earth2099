@@ -39,7 +39,7 @@ RenderSettings:
   m_ReflectionIntensity: 0.069
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 2938426574818789253}
-  m_IndirectSpecularColor: {r: 0.10675477, g: 0.12557992, b: 0.15919155, a: 0.069}
+  m_IndirectSpecularColor: {r: 0.12237438, g: 0.14494276, b: 0.18318826, a: 0.069}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -304,6 +304,7 @@ GameObject:
   - component: {fileID: 350755464}
   - component: {fileID: 350755466}
   - component: {fileID: 350755465}
+  - component: {fileID: 350755467}
   m_Layer: 0
   m_Name: RoomManager
   m_TagString: Untagged
@@ -449,6 +450,18 @@ MonoBehaviour:
     type: 3}
   powerupHudPrefab: {fileID: 0}
   hudPowerUpDisplayParent: {fileID: 0}
+--- !u!114 &350755467
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 350755459}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7696221f0cbbc764498b26fbbf4228af, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &712111739
 GameObject:
   m_ObjectHideFlags: 0
