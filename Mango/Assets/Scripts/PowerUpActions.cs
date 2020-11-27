@@ -17,10 +17,16 @@ public class PowerUpActions : MonoBehaviour
 
 	public void IncreaseLifeStartAction(Player player)
     {
+        Debug.Log("Ahora si se activo el power");
         player.health += 10;
         if (player.maxHealth < player.health)
             player.health = player.maxHealth;
 
 		player.UpdateHealthUI();
+    }
+    
+    public void IncreaseBulletsGun(Player player)
+    {
+        player.aumentarBalas();
     }
 }

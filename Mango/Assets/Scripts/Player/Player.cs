@@ -416,4 +416,11 @@ public class Player : MonoBehaviourPun, IPunObservable
     {
         invincible = !invincible;
     }
+
+    public void aumentarBalas()
+    {
+        GameObject gun = _getSelectedGun();
+        ProjectileGun scriptGun = gun.GetComponent<ProjectileGun>();
+        scriptGun.moreBullets();
+    }
 }
