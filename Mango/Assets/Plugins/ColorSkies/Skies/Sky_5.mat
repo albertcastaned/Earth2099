@@ -94,5 +94,6 @@ Material:
     - _OcclusionStrength: 1
     - _Parallax: 0.02
     - _Rotation: 320.85886
+
     m_Colors:
     - _Tint: {r: 0.5, g: 0.5, b: 0.5, a: 0.5}
