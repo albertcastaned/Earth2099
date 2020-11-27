@@ -178,4 +178,9 @@ public class ProjectileGun : MonoBehaviourPun
         numberOfMagazines -= 1;
         reloading = false;
     }
+
+    public void moreBullets()
+    {
+        numberOfMagazines += 1;       
+    }
 }
