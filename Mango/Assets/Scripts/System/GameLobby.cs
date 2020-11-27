@@ -7,8 +7,8 @@ using UnityEngine.SceneManagement;
 
 public class GameLobby : MonoBehaviourPunCallbacks
 {
-    public int maximosJugadores;
-
+    int maximosJugadores;
+    string maximosJugadoresInput;
     string playerName = "Player";
 
     // Los jugadores seran separados por version. Es importante cambiar la version cuando se cambia el codigo para no tener errores en instancias por diferente codigo.
@@ -21,11 +21,14 @@ public class GameLobby : MonoBehaviourPunCallbacks
     bool joiningRoom = false;
     bool joiningDebugRoom = false;
 
+    public GUISkin skin;
+    float margin = 5f;
 
     // Start is called before the first frame update
     void Start()
     {
         gameVersion = Application.version;
+        maximosJugadoresInput = "4";
 
         Debug.Log("Version: " + gameVersion);
         PhotonNetwork.AutomaticallySyncScene = true;
@@ -55,7 +58,8 @@ public class GameLobby : MonoBehaviourPunCallbacks
 
     void OnGUI()
     {
-        GUI.Window(0, new Rect(Screen.width / 2 - 450, Screen.height / 2 - 200, 900, 400), LobbyWindow, "Lobby");
+        GUI.skin = skin;
+        GUI.Window(0, new Rect(margin, margin, Screen.width - margin * 2, Screen.height - margin * 2), LobbyWindow, "Lobby");
     }
 
     bool RoomNameAvailable()
@@ -80,11 +84,14 @@ public class GameLobby : MonoBehaviourPunCallbacks
 
         GUILayout.FlexibleSpace();
 
-        roomName = GUILayout.TextField(roomName, GUILayout.Width(250));
+        roomName = GUILayout.TextField(roomName, GUILayout.Width(200));
+        GUILayout.Label("Max players: ");
+
+        maximosJugadoresInput = GUILayout.TextField(maximosJugadoresInput, GUILayout.Width(100));
 
         if (GUILayout.Button("Crear Partida", GUILayout.Width(125)))
         {
-            if (roomName != "" && playerName != "" && RoomNameAvailable())
+            if (roomName != "" && playerName != "" && RoomNameAvailable() && int.TryParse(maximosJugadoresInput, out maximosJugadores))
             {
                 joiningRoom = true;
 
@@ -96,7 +103,7 @@ public class GameLobby : MonoBehaviourPunCallbacks
                 PhotonNetwork.JoinOrCreateRoom(roomName, roomOptions, TypedLobby.Default);
             }
         }
-
+        /*
         # if UNITY_EDITOR
         if (GUILayout.Button("Entrar a debug"))
         {
@@ -113,6 +120,7 @@ public class GameLobby : MonoBehaviourPunCallbacks
             
         }
         #endif
+        */
         GUILayout.EndHorizontal();
 
         roomListScroll = GUILayout.BeginScrollView(roomListScroll, true, true);
